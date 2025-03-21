@@ -55,7 +55,7 @@ CSRF_TRUSTED_ORIGINS = [
 ]
 
 
-ROOT_URLCONF = 'flare.urls'
+ROOT_URLCONF = 'experience.urls'
 CORS_ALLOWED_ORIGINS = ['https://www.iatwexperience.com',
                         'https://iatwexperience.com',
                         'http://127.0.0.1:8000']
