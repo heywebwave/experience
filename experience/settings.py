@@ -11,7 +11,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-a+4v*$(bg*dab%$ivubd7a48#56ab7p^d7!-y+6d_0n+epe661'
+SECRET_KEY = config("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -28,7 +28,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    
+    'django.contrib.humanize',
     # Third-party apps
     'django_countries',
     'phonenumber_field',
@@ -48,6 +48,17 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'experience.urls'
+
+CSRF_TRUSTED_ORIGINS = [
+    "https://iatwexperience.com",
+    "https://www.iatwexperience.com",
+]
+
+
+ROOT_URLCONF = 'flare.urls'
+CORS_ALLOWED_ORIGINS = ['https://www.iatwexperience.com',
+                        'https://iatwexperience.com',
+                        'http://127.0.0.1:8000']
 
 TEMPLATES = [
     {
@@ -71,25 +82,30 @@ WSGI_APPLICATION = 'experience.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
-if not DEBUG:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.postgresql',
-            'NAME': 'postgres',
-            'USER': config('USER'),
-            'PASSWORD': config('PASSWORD'),
-            'HOST': config('HOST'),
-            'PORT': config('DBPORT'),
-        }
+# if not DEBUG:
+#     DATABASES = {
+#         'default': {
+#             'ENGINE': 'django.db.backends.postgresql',
+#             'NAME': 'postgres',
+#             'USER': config('USER'),
+#             'PASSWORD': config('PASSWORD'),
+#             'HOST': config('HOST'),
+#             'PORT': config('DBPORT'),
+#         }
+#     }
+# else:
+#     DATABASES = {
+#         "default": {
+#             "ENGINE": "django.db.backends.sqlite3",
+#             "NAME": BASE_DIR / "db.sqlite3",
+#         }
+#     }
+DATABASES = {
+    "default": {
+        "ENGINE": "django.db.backends.sqlite3",
+        "NAME": BASE_DIR / "db.sqlite3",
     }
-else:
-    DATABASES = {
-        "default": {
-            "ENGINE": "django.db.backends.sqlite3",
-            "NAME": BASE_DIR / "db.sqlite3",
-        }
-    }
-
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
