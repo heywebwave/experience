@@ -13,11 +13,11 @@
                      height="50">
             </a>
             <!-- Menu button for mobile -->
-            <button class="menu-btn border-0 bg-transparent d-lg-none" onclick="toggleMenu()">
+            <button class="menu-btn border-0 bg-transparent d-lg-none rounded-pill border border-dark px-4 py-2 fs-5" onclick="toggleMenu()">
                 Menu
             </button>
             <!-- About link for desktop -->
-            <a href="#" class="text-decoration-none text-dark d-none d-lg-block fs-3 fw-semibold">About Us</a>
+            <a href="#" class="text-decoration-none text-dark d-none d-lg-block fs-3 fw-semibold hover-underline">About Us</a>
         </div>
     </div>
 </header>
@@ -31,7 +31,7 @@
                      alt="I am That Woman Logo" 
                      height="50">
             </a>
-            <button class="close-btn text-white border-0 bg-transparent" onclick="toggleMenu()">
+            <button class="close-btn text-white border-0 bg-transparent rounded-pill border border-white px-4 py-2 fs-5" onclick="toggleMenu()">
                 Close
             </button>
         </div>
@@ -39,7 +39,6 @@
             <a href="#" class="menu-item">About Us</a>
             <a href="#" class="menu-item">Events</a>
             <a href="#" class="menu-item">Contact</a>
-            <!-- Add more items as needed -->
         </div>
     </div>
 </div>
@@ -389,42 +388,47 @@
         }
     }
 
-    .menu-btn {
-        font-size: 1rem;
+    .menu-btn, .close-btn {
+        font-size: 1.1rem;
         cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .close-btn {
+        border: 1px solid #ffffff !important;
+    }
+
+    .close-btn:hover {
+        background-color: #ffffff;
+        color: #000000;
     }
 
     .dark-menu {
         position: fixed;
         top: 0;
-        left: 0;
+        left: -100%;  /* Start from off-screen */
         width: 100%;
         height: 100%;
         background-color: #000000;
         z-index: 1000;
-        display: none;
-        opacity: 0;
-        transition: opacity 0.3s ease;
-    }
-
-    .dark-menu.active {
+        transition: left 0.4s ease;
         display: block;
         opacity: 1;
     }
 
-    .menu-content {
-        padding: 1rem;
-        height: 100%;
+    .dark-menu.active {
+        left: 0;  /* Slide in to visible area */
     }
 
-    .close-btn {
-        font-size: 1rem;
-        cursor: pointer;
+    .menu-content {
+        padding: 1.5rem;
+        height: 100%;
     }
 
     .menu-items {
         margin-top: 4rem;
-        text-align: center;
+        text-align: left;  /* Align menu items to left */
+        padding-left: 1rem;
     }
 
     .menu-item {
@@ -438,6 +442,43 @@
 
     .menu-item:hover {
         color: #888;
+    }
+
+    @media (max-width: 768px) {
+        .menu-items {
+            text-align: left;
+        }
+    }
+
+    /* Hover underline animation for About link */
+    .hover-underline {
+        position: relative;
+    }
+
+    .hover-underline::after {
+        content: '';
+        position: absolute;
+        width: 0;
+        height: 2px;
+        bottom: 0;
+        left: 0;
+        background-color: #000000;
+        transition: width 0.3s ease;
+    }
+
+    .hover-underline:hover::after {
+        width: 100%;
+    }
+
+    /* Menu button styles */
+    .menu-btn {
+        border: 1px solid #000000 !important;
+        transition: all 0.3s ease;
+    }
+
+    .menu-btn:hover {
+        background-color: #000000;
+        color: white;
     }
 </style>
 
