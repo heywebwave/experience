@@ -24,7 +24,8 @@
 
 <!-- Dark Overlay Menu -->
 <div id="darkMenu" class="dark-menu">
-    <div class="menu-content">
+    <div class="menu-content d-flex flex-column h-100">
+        <!-- Header -->
         <div class="d-flex justify-content-between align-items-center mb-4">
             <a href="/" class="navbar-brand">
                 <img src="{% static 'images/WhatsApp_Image_2025-03-16_at_20.48.58_38f3d405-removebg-preview 1.jpg' %}" 
@@ -35,10 +36,22 @@
                 Close
             </button>
         </div>
-        <div class="menu-items">
+
+        <!-- Menu Items -->
+        <div class="menu-items mb-auto">
             <a href="#" class="menu-item">About Us</a>
-            <a href="#" class="menu-item">Events</a>
-            <a href="#" class="menu-item">Contact</a>
+        </div>
+
+        <!-- Bottom Content -->
+        <div class="menu-bottom text-white">
+            <h3 class="fs-4 mb-3">Empowering marginalized women</h3>
+            <p class="mb-4">Welcome! You've taken the first step on a transformative journey. By subscribing to our community, you're not just becoming part of a program—you're becoming part of a movement.</p>
+            
+            <!-- Subscribe Form -->
+            <div class="subscribe-form">
+                <input type="email" class="form-control form-control-lg mb-3" placeholder="Enter your Email Address Here">
+                <button class="btn btn-light w-100 py-3">Subscribe</button>
+            </div>
         </div>
     </div>
 </div>
@@ -190,6 +203,30 @@
 </footer>
 
 <style>
+    /* Font styles */
+    h1, h2, h3, h4, h5, h6,
+    .display-4, .display-6 {
+        font-family: 'Poly', serif !important;
+    }
+
+    /* Body font styles */
+    body, 
+    p, 
+    .lead, 
+    .btn, 
+    input, 
+    .menu-item,
+    .card-text,
+    .form-control,
+    .menu-bottom p {
+        font-family: 'Lora', serif !important;
+    }
+
+    /* Adjust line height for better readability */
+    p, .lead, .card-text {
+        line-height: 1.6;
+    }
+
     .btn-dark{
         background-color: #000000;
         border-color: #000000;
@@ -406,7 +443,7 @@
     .dark-menu {
         position: fixed;
         top: 0;
-        left: -100%;  /* Start from off-screen */
+        left: -100%;
         width: 100%;
         height: 100%;
         background-color: #000000;
@@ -417,17 +454,16 @@
     }
 
     .dark-menu.active {
-        left: 0;  /* Slide in to visible area */
+        left: 0;
     }
 
     .menu-content {
         padding: 1.5rem;
-        height: 100%;
     }
 
     .menu-items {
         margin-top: 4rem;
-        text-align: left;  /* Align menu items to left */
+        text-align: left;
         padding-left: 1rem;
     }
 
@@ -435,7 +471,7 @@
         display: block;
         color: white;
         text-decoration: none;
-        font-size: 2rem;
+        font-size: 2.5rem;
         margin-bottom: 1.5rem;
         transition: color 0.3s ease;
     }
@@ -445,9 +481,53 @@
     }
 
     @media (max-width: 768px) {
-        .menu-items {
-            text-align: left;
+        .menu-content {
+            padding: 1.5rem;
+            overflow-y: auto;
         }
+        
+        .menu-bottom {
+            margin-top: 2rem;
+        }
+    }
+
+    .menu-bottom {
+        padding: 1rem;
+    }
+
+    .menu-bottom h3 {
+        font-weight: 500;
+    }
+
+    .menu-bottom p {
+        font-size: 0.9rem;
+        opacity: 0.9;
+        text-align: justify;
+        word-spacing: 0.5px !important;
+    }
+
+    .subscribe-form input {
+        background: transparent;
+        border: 1px solid rgba(255,255,255,0.3);
+        color: white;
+    }
+
+    .subscribe-form input::placeholder {
+        color: rgba(255,255,255,0.7);
+    }
+
+    .subscribe-form input:focus {
+        background: transparent;
+        color: white;
+        border-color: white;
+        box-shadow: none;
+    }
+
+    .subscribe-form .btn-light {
+        background: #ffffff;
+        color: #000000;
+        border: none;
+        font-weight: 500;
     }
 
     /* Hover underline animation for About link */
