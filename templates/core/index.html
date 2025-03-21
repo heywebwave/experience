@@ -89,6 +89,9 @@
             <!-- Event Card 1 -->
             <div class="col-md-6 mb-4">
                 <div class="card h-100">
+                    <div class="countdown-badge">
+                        <span class="countdown" data-date="2025-12-01"></span>
+                    </div>
                     <img src="{% static 'images/4774.jpg' %}" class="card-img-top" alt="Event 1">
                     <div class="card-body">
                         <h5 class="card-title">The Retreat Conf... <span class="text-muted">— December 2025</span></h5>
@@ -101,6 +104,9 @@
             <!-- Event Card 2 -->
             <div class="col-md-6 mb-4">
                 <div class="card h-100">
+                    <div class="countdown-badge">
+                        <span class="countdown" data-date="2025-12-15"></span>
+                    </div>
                     <img src="{% static 'images/2151339788.jpg' %}" class="card-img-top" alt="Event 2">
                     <div class="card-body">
                         <h5 class="card-title">Greece <span class="text-muted">— December 2025</span></h5>
@@ -142,6 +148,59 @@
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
+</section>
+
+<!-- Add this before the newsletter section -->
+<section class="testimonials-section py-5">
+    <div class="container">
+        <h2 class="text-center mb-4">Testimonies of our Events</h2>
+        <p class="text-center mb-5">Lorem ipsum dolor sit amet consectetur. Amet phasellus et purus quis cursus ultrices nam id. Nulla nulla felis elit lorem.</p>
+        
+        <div class="testimonial-slider position-relative">
+            <!-- Swiper -->
+            <div class="swiper testimonialSwiper">
+                <div class="swiper-wrapper">
+                    <!-- Testimonial 1 -->
+                    <div class="swiper-slide">
+                        <div class="testimonial-content text-center">
+                            <div class="testimonial-images">
+                                <img src="{% static 'images/testimonial1.jpeg' %}" alt="Testimonial 1" class="testimonial-img rounded-4">
+                            </div>
+                            <h3 class="mt-4 mb-2">Sharon</h3>
+                            <p class="text-muted">Indonesia Trip</p>
+                        </div>
+                    </div>
+                    <!-- Testimonial 2 -->
+                    <div class="swiper-slide">
+                        <div class="testimonial-content text-center">
+                            <div class="testimonial-images">
+                                <img src="{% static 'images/testimonial2.jpeg' %}" alt="Testimonial 2" class="testimonial-img rounded-4">
+                            </div>
+                            <h3 class="mt-4 mb-2">Jessica</h3>
+                            <p class="text-muted">Dubai Experience</p>
+                        </div>
+                    </div>
+                    <!-- Testimonial 3 -->
+                    <div class="swiper-slide">
+                        <div class="testimonial-content text-center">
+                            <div class="testimonial-images">
+                                <img src="{% static 'images/testimonial3.jpeg' %}" alt="Testimonial 3" class="testimonial-img rounded-4">
+                            </div>
+                            <h3 class="mt-4 mb-2">Maria</h3>
+                            <p class="text-muted">Greece Adventure</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Navigation buttons -->
+            <div class="swiper-button-prev custom-nav"></div>
+            <div class="swiper-button-next custom-nav"></div>
+            
+            <!-- Pagination -->
+            <div class="swiper-pagination"></div>
         </div>
     </div>
 </section>
@@ -560,6 +619,212 @@
         background-color: #000000;
         color: white;
     }
+
+    /* Fade in and slide up animation for sections */
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    /* Subtle scale animation for images */
+    @keyframes scaleIn {
+        from {
+            opacity: 0;
+            transform: scale(0.98);
+        }
+        to {
+            opacity: 1;
+            transform: scale(1);
+        }
+    }
+
+    /* Stagger text animation */
+    @keyframes textReveal {
+        from {
+            opacity: 0;
+            transform: translateY(10px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    /* Apply animations to elements */
+    .hero-section {
+        opacity: 0;
+        animation: fadeInUp 1s ease forwards;
+    }
+
+    .hero-section .lead {
+        opacity: 0;
+        animation: textReveal 0.8s ease forwards 0.4s;
+    }
+
+    .image-wrapper img {
+        opacity: 0;
+        animation: scaleIn 1.2s ease forwards 0.2s;
+    }
+
+    .card {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: all 0.6s ease;
+    }
+
+    .card.visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    /* Subtle hover effects */
+    .card {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+    }
+
+    .btn {
+        transition: transform 0.2s ease;
+    }
+
+    .btn:hover {
+        transform: translateY(-2px);
+    }
+
+    /* Newsletter section animation */
+    .newsletter-section {
+        position: relative;
+        overflow: hidden;
+    }
+
+    
+
+    @keyframes lineExpand {
+        to {
+            transform: scaleX(1);
+        }
+    }
+
+    /* Countdown Badge Styles */
+    .countdown-badge {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        background: rgba(0, 0, 0, 0.8);
+        color: white;
+        padding: 8px 12px;
+        border-radius: 4px;
+        font-size: 0.9rem;
+        font-family: 'Lora', serif;
+        backdrop-filter: blur(4px);
+        z-index: 1;
+    }
+
+    .countdown {
+        display: inline-block;
+    }
+
+    .countdown.highlight {
+        animation: pulse 1s ease;
+    }
+
+    @keyframes pulse {
+        0% { transform: scale(1); }
+        50% { transform: scale(1.05); }
+        100% { transform: scale(1); }
+    }
+
+    /* Testimonials Section Styles */
+    .testimonials-section {
+        background-color: #ffffff;
+        padding: 4rem 0;
+    }
+
+    .testimonial-slider {
+        padding: 2rem 0;
+    }
+
+    .testimonial-images {
+        position: relative;
+        width: 300px;
+        height: 300px;
+        margin: 0 auto;
+        perspective: 1000px;
+    }
+
+    .testimonial-img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 16px;
+        box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+        transition: transform 0.5s ease;
+    }
+
+    /* Swiper Custom Styles */
+    .swiper {
+        padding: 2rem 0;
+    }
+
+    .custom-nav {
+        width: 40px !important;
+        height: 40px !important;
+        background-color: #000 !important;
+        border-radius: 50%;
+        color: #fff !important;
+    }
+
+    .custom-nav::after {
+        font-size: 1.2rem !important;
+    }
+
+    .swiper-button-disabled {
+        opacity: 0.5 !important;
+    }
+
+    .swiper-pagination-bullet {
+        width: 8px;
+        height: 8px;
+        background-color: #000;
+        opacity: 0.3;
+    }
+
+    .swiper-pagination-bullet-active {
+        opacity: 1;
+    }
+
+    /* Animation for slide transition */
+    .swiper-slide-active .testimonial-img {
+        transform: scale(1);
+    }
+
+    .swiper-slide-prev .testimonial-img,
+    .swiper-slide-next .testimonial-img {
+        transform: scale(0.8);
+        opacity: 0.5;
+    }
+
+    /* Mobile Styles */
+    @media (max-width: 768px) {
+        .testimonial-images {
+            width: 200px;
+            height: 200px;
+        }
+
+        .custom-nav {
+            display: none !important;
+        }
+    }
 </style>
 
 <script>
@@ -568,5 +833,99 @@
         menu.classList.toggle('active');
         document.body.style.overflow = menu.classList.contains('active') ? 'hidden' : '';
     }
+
+    // Intersection Observer for card animations
+    document.addEventListener('DOMContentLoaded', function() {
+        const cards = document.querySelectorAll('.card');
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+
+        cards.forEach(card => {
+            observer.observe(card);
+        });
+    });
+
+    // Countdown Timer Function
+    function initCountdowns() {
+        const countdowns = document.querySelectorAll('.countdown');
+        
+        function updateCountdown(element) {
+            const targetDate = new Date(element.dataset.date);
+            const now = new Date();
+            const difference = targetDate - now;
+
+            if (difference <= 0) {
+                element.textContent = 'Event Started';
+                return;
+            }
+
+            const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+            // Format the countdown text
+            element.textContent = `${days}d : ${hours}h : ${minutes}m : ${seconds}s`;
+
+            // Add highlight animation when minutes or seconds change
+            if (seconds === 0) {
+                element.classList.add('highlight');
+                setTimeout(() => element.classList.remove('highlight'), 1000);
+            }
+        }
+
+        // Update all countdowns
+        countdowns.forEach(countdown => {
+            updateCountdown(countdown);
+            setInterval(() => updateCountdown(countdown), 1000);
+        });
+    }
+
+    // Initialize countdowns when DOM is loaded
+    document.addEventListener('DOMContentLoaded', function() {
+        initCountdowns();
+    });
+
+    document.addEventListener('DOMContentLoaded', function() {
+        // Initialize Swiper
+        const testimonialSwiper = new Swiper('.testimonialSwiper', {
+            effect: 'coverflow',
+            grabCursor: true,
+            centeredSlides: true,
+            slidesPerView: 'auto',
+            initialSlide: 1,
+            coverflowEffect: {
+                rotate: 0,
+                stretch: 0,
+                depth: 100,
+                modifier: 2,
+                slideShadows: false,
+            },
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+            breakpoints: {
+                320: {
+                    slidesPerView: 1,
+                },
+                768: {
+                    slidesPerView: 3,
+                }
+            }
+        });
+    });
 </script>
 {% endblock %}
