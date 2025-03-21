@@ -1,0 +1,448 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block title %}I am That Woman Experience{% endblock %}
+
+{% block content %}
+<!-- Header -->
+<header class="py-1 bg-white shadow-sm">
+    <div class="container">
+        <div class="d-flex justify-content-between align-items-center">
+            <a href="/" class="navbar-brand">
+                <img src="{% static 'images/WhatsApp_Image_2025-03-16_at_20.48.58_38f3d405-removebg-preview 1.jpg' %}" 
+                     alt="I am That Woman Logo" 
+                     height="50">
+            </a>
+            <button class="menu-btn border-0 bg-transparent" onclick="toggleMenu()">
+                Menu
+            </button>
+        </div>
+    </div>
+</header>
+
+<!-- Dark Overlay Menu -->
+<div id="darkMenu" class="dark-menu">
+    <div class="menu-content">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <a href="/" class="navbar-brand">
+                <img src="{% static 'images/WhatsApp_Image_2025-03-16_at_20.48.58_38f3d405-removebg-preview 1.jpg' %}" 
+                     alt="I am That Woman Logo" 
+                     height="50">
+            </a>
+            <button class="close-btn text-white border-0 bg-transparent" onclick="toggleMenu()">
+                Close
+            </button>
+        </div>
+        <div class="menu-items">
+            <a href="#" class="menu-item">About Us</a>
+            <a href="#" class="menu-item">Events</a>
+            <a href="#" class="menu-item">Contact</a>
+            <!-- Add more items as needed -->
+        </div>
+    </div>
+</div>
+
+<section class="hero-section position-relative">
+    <div class="container">
+        <div class="row align-items-center min-vh-75">
+            <!-- Text Content -->
+            <div class="col-lg-6 text-center text-lg-start order-1 order-lg-1 py-5">
+                <h1 class="display-4 fw-bold mb-3">I am That Woman Experience:</h1>
+                <h2 class="h3 mb-4">Empowering Marginalized Women</h2>
+                <p class="lead mb-4">
+                    I am that woman is an organization dedicated to empowering marginalized women by providing them with ideas, skills, mentorship, and opportunities
+                </p>
+                <a href="#" class="btn btn-dark btn-lg px-5">Join Us</a>
+            </div>
+            
+            <!-- Image -->
+            <div class="col-lg-6 order-2 position-relative">
+                <div class="image-wrapper position-relative">
+                    <img src="{% static 'images/Frame-43.jpg' %}" alt="Empowered Woman" class="img-fluid rounded" >
+                    
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Upcoming Events Section -->
+<section class="upcoming-events py-5">
+    <div class="container">
+        <h2 class="mb-4 text-center text-lg-start">Our Upcoming Events <span class="text-warning">★</span></h2>
+        <div class="row">
+            <!-- Event Card 1 -->
+            <div class="col-md-6 mb-4">
+                <div class="card h-100">
+                    <img src="{% static 'images/4774.jpg' %}" class="card-img-top" alt="Event 1">
+                    <div class="card-body">
+                        <h5 class="card-title">The Retreat Conf... <span class="text-muted">— December 2025</span></h5>
+                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nisl nisi, cursus id mauris vel, facilisis dignissim elit.</p>
+                        <p class="fw-bold">$3540</p>
+                        <a href="#" class="btn btn-outline-dark">View More</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Event Card 2 -->
+            <div class="col-md-6 mb-4">
+                <div class="card h-100">
+                    <img src="{% static 'images/2151339788.jpg' %}" class="card-img-top" alt="Event 2">
+                    <div class="card-body">
+                        <h5 class="card-title">Greece <span class="text-muted">— December 2025</span></h5>
+                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam nisl nisi, cursus id mauris vel, facilisis dignissim elit.</p>
+                        <p class="fw-bold">$3540</p>
+                        <a href="#" class="btn btn-outline-dark">View More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="upcoming-events py-5">
+    <div class="container">
+        <h2 class="mb-4 text-center text-lg-start">Check out our past Events</h2>
+        <div class="row">
+            <!-- Event Card 1 -->
+            <div class="col-md-6 mb-4">
+                <div class="card h-100">
+                    <img src="{% static 'images/4774.jpg' %}" class="card-img-top" alt="Event 1">
+                    <div class="card-body">
+                        <h5 class="card-title">Dubai... <span class="text-muted">— December 2025</span></h5>
+                        <p class="card-text">Lorem ipsum dolor sit amet consectetur. Amet phasellus et purus quis cursus ultrices nam id. Nulla nulla felis elit lorem.Lorem ipsum dolor sit amet consectetur. Amet phasellus et purus quis cursus ultrices nam id. Nulla nulla felis elit lorem.Lorem ipsum dolor sit amet consectetur. Amet phasellus et purus quis cursus ultrices nam id. Nulla nulla felis elit lorem.</p>
+                        <a href="#" class="btn btn-outline-dark">View More</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Event Card 2 -->
+            <div class="col-md-6 mb-4">
+                <div class="card h-100">
+                    <img src="{% static 'images/2151339788.jpg' %}" class="card-img-top" alt="Event 2">
+                    <div class="card-body">
+
+                        <h5 class="card-title">Indonesia <span class="text-muted">— December 2025</span></h5>
+                        <p class="card-text">Lorem ipsum dolor sit amet consectetur. Amet phasellus et purus quis cursus ultrices nam id. Nulla nulla felis elit lorem.Lorem ipsum dolor sit amet consectetur. Amet phasellus et purus quis cursus ultrices nam id. Nulla nulla felis elit lorem.Lorem ipsum dolor sit amet consectetur. Amet phasellus et purus quis cursus ultrices nam id. Nulla nulla felis elit lorem.</p>
+                        <a href="#" class="btn btn-outline-dark">View More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Newsletter Section -->
+<section class="newsletter-section py-5">
+    <div class="container">
+        <div class="row justify-content-between">
+            <!-- Logo -->
+            <div class="col-md-4 mb-4 mb-md-0">
+                <img src="{% static 'images/WhatsApp_Image_2025-03-16_at_20.48.58_38f3d405-removebg-preview 1.jpg' %}" 
+                    alt="I am That Woman Logo" 
+                    class="img-fluid" style="max-width: 150px;">
+            </div>
+
+            <div class="col-md-4 mb-4 mb-md-0 text-md-end d-none d-md-block d-lg-block d-xl-block">
+                <a href="#" class="text-decoration-none text-dark fw-semibold fs-5">Know More About Us</a>
+            </div>
+            
+            <!-- Content -->
+            <div class="row mt-2-desktop justify-content-between">
+                <div class="col-md-9 ">
+                    <h2 class="display-6 mb-3 text-start">Empowering marginalized women</h2>
+                    <p class="lead mb-4 text-start">
+                        At I Am That Woman, we are committed to delivering knowledge, shifting perceptions, and shaping a future where women are empowered to lead, succeed, and thrive.
+                    </p>
+                    
+                    <!-- Subscribe Form -->
+                    <div class="row g-2">
+                        <div class="col-sm-5">
+                            <input type="email" class="form-control form-control-lg" placeholder="Enter your Email Address Here">
+                        </div>
+                        <div class="col-sm-3 align-self-md-center">
+                            <button class="btn btn-dark w-100 btn-lg">Subscribe</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 text-md-end d-none d-md-block d-lg-block d-xl-block align-self-end">
+                    <p class="align-self-center">Copyright. IATWExperience.com</p>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="py-4 d-none d-sm-block d-md-block d-lg-none d-xl-none">
+    <div class="container">
+        <div class="row">
+            <div class="col-auto">
+                <a href="#" class="text-decoration-none text-dark fw-semibold fs-5">Know More About Us</a>
+            </div>
+            <div class="col-auto">
+                <p class="mb-5 ">Copyright. IATWExperience.com</p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<style>
+    .btn-dark{
+        background-color: #000000;
+        border-color: #000000;
+    }
+    .hero-section {
+        background-color: #ffffff;
+        overflow: hidden;
+    }
+    
+    h1 {
+        color: #333333;
+    }
+    
+    .lead {
+        color: #666666;
+    }
+
+    .navbar-brand img {
+        max-width: 200px;
+        height: auto;
+    }
+
+    /* Decorative elements positioning */
+    .decorative-elements {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        pointer-events: none;
+    }
+
+    .heart-icon {
+        position: absolute;
+        bottom: 10%;
+        right: 5%;
+        width: 40px;
+    }
+
+    .wave-icon {
+        position: absolute;
+        top: 10%;
+        right: 10%;
+        width: 40px;
+    }
+
+    /* Image and decorative elements */
+    .image-wrapper {
+        overflow: visible;
+        width: 100%;
+        height: 100%;
+    }
+   
+    
+    .bold-text {
+        top: 20%;
+        left: -5%;
+        font-weight: bold;
+        font-size: 1.2rem;
+        transform: rotate(-30deg);
+    }
+    
+    .heart {
+        bottom: 20%;
+        right: -10%;
+        transform: rotate(20deg);
+    }
+    
+    .curve {
+        top: 15%;
+        right: 5%;
+        transform: rotate(45deg);
+    }
+    
+    .rotate-text {
+        position: absolute;
+        transform: rotate(90deg);
+        right: -40px;
+        bottom: 25px;
+        font-size: 0.8rem;
+    }
+    
+    /* Increase image size on large screens */
+    @media (min-width: 992px) {
+        .col-lg-6.order-2 {
+            overflow: visible;
+        }
+        
+        .image-wrapper img {
+            margin-left: -10%;
+            width: 140%;
+            max-width: none;
+        }
+
+        .mt-2-desktop{
+            margin-top: 2rem;
+        }
+      
+    }
+
+    /* Mobile Styles */
+    @media (max-width: 991px) {
+        .btn {
+            width: 100%;
+        }
+        
+        .hero-section .row {
+            flex-direction: column;
+        }
+
+        .hero-section .text-lg-start {
+            text-align: center !important;
+        }
+
+        .col-lg-6 {
+            padding: 0 2rem;
+        }
+        .image-wrapper img {
+            width: 125%;
+            max-width: none;
+            margin-left: -12%;
+        }
+        
+    }
+
+    .upcoming-events {
+        background-color: #f8f9fa;
+    }
+
+    .card-title {
+        font-size: 1.25rem;
+    }
+
+    .card-text {
+        font-size: 0.9rem;
+    }
+
+    @media (max-width: 768px) {
+        .card-title {
+            font-size: 1rem;
+        }
+
+        .card-text {
+            font-size: 0.8rem;
+        }
+    }
+
+    /* Newsletter Section Styles */
+    .newsletter-section {
+        background-color: #ffffff;
+        border-top: 1px solid #eee;
+        text-align: left;
+    }
+
+    .newsletter-section h2 {
+        font-weight: 500;
+    }
+
+    .form-control {
+        border: 1px solid #ddd;
+        padding: 0.75rem 1rem;
+    }
+
+    .form-control:focus {
+        border-color: #000;
+        box-shadow: none;
+    }
+
+    /* Footer Styles */
+    footer {
+        background-color: #ffffff;
+        border-top: 1px solid #eee;
+    }
+
+    /* Mobile Responsive Adjustments */
+    @media (max-width: 768px) {
+        .newsletter-section {
+            text-align: left !important;
+        }
+        
+        .newsletter-section .row {
+            flex-direction: column;
+        }
+        
+        .newsletter-section .col-md-3 {
+            margin-bottom: 2rem;
+        }
+        
+        footer {
+            text-align: left;
+        }
+        
+        footer .row {
+            flex-direction: column;
+            gap: 1rem;
+        }
+    }
+
+    .menu-btn {
+        font-size: 1rem;
+        cursor: pointer;
+    }
+
+    .dark-menu {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: #000000;
+        z-index: 1000;
+        display: none;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+
+    .dark-menu.active {
+        display: block;
+        opacity: 1;
+    }
+
+    .menu-content {
+        padding: 1rem;
+        height: 100%;
+    }
+
+    .close-btn {
+        font-size: 1rem;
+        cursor: pointer;
+    }
+
+    .menu-items {
+        margin-top: 4rem;
+        text-align: center;
+    }
+
+    .menu-item {
+        display: block;
+        color: white;
+        text-decoration: none;
+        font-size: 2rem;
+        margin-bottom: 1.5rem;
+        transition: color 0.3s ease;
+    }
+
+    .menu-item:hover {
+        color: #888;
+    }
+</style>
+
+<script>
+    function toggleMenu() {
+        const menu = document.getElementById('darkMenu');
+        menu.classList.toggle('active');
+        document.body.style.overflow = menu.classList.contains('active') ? 'hidden' : '';
+    }
+</script>
+{% endblock %}
