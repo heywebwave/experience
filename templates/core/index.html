@@ -1,5 +1,6 @@
 {% extends 'base/base.html' %}
 {% load static %}
+{% load custom_filters %}
 {% block title %}I am That Woman Experience{% endblock %}
 
 {% block content %}
@@ -85,18 +86,20 @@
                     <input type="email" class="form-control form-control-lg" placeholder="Enter your Email Address Here">
                 </div>
                 <div class="mb-3">
-                    <select class="form-select form-select-lg" aria-label="Select your country">
-                        <option selected>Select your country</option>
-                        <option value="1">United States</option>
-                        <option value="2">United Kingdom</option>
-                        <option value="3">Canada</option>
+                    <select class="form-select form-select-lg country-select" id="countrySelect" aria-label="Select your country">
+                        <option selected disabled>Select your country</option>
+                        {% for code, name in countries %}
+                            <option value="{{ code }}" data-code="{{ code }}" data-dial-code="{{ dial_codes|get_item:code }}">
+                                {{ name }}
+                            </option>
+                        {% endfor %}
                     </select>
                 </div>
                 <div class="mb-4">
                     <div class="input-group">
-                        <span class="input-group-text">
-                            <img src="{% static 'images/us-flag.png' %}" alt="US Flag" class="country-flag" width="20">
-                            +1
+                        <span class="input-group-text country-code-display">
+                            <img src="https://flagcdn.com/24x18/us.png" alt="Country Flag" class="country-flag" id="selectedFlag">
+                            <span id="dialCode">+1</span>
                         </span>
                         <input type="tel" class="form-control form-control-lg" placeholder="Enter your Phone Number">
                     </div>
@@ -1011,6 +1014,42 @@
             padding: 0.625rem 0.875rem;
         }
     }
+
+    /* Country Select and Phone Styles */
+    .country-select {
+        background-position: right 1rem center;
+        padding-right: 2.5rem;
+    }
+
+    .country-code-display {
+        min-width: 100px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        background-color: #f8f9fa;
+        border: 1px solid #ddd;
+        padding: 0.75rem 1rem;
+    }
+
+    .country-flag {
+        width: 24px;
+        height: 18px;
+        object-fit: cover;
+        border-radius: 2px;
+    }
+
+    #dialCode {
+        font-size: 0.95rem;
+        color: #333;
+    }
+
+    /* Reduce the height of select and inputs */
+    .register-form .form-select-lg,
+    .register-form .form-control-lg {
+        padding-top: 0.5rem;
+        padding-bottom: 0.5rem;
+        font-size: 0.95rem;
+    }
 </style>
 
 <script>
@@ -1137,6 +1176,26 @@
     // Prevent popup from closing when clicking inside
     document.querySelector('.register-content').addEventListener('click', function(event) {
         event.stopPropagation();
+    });
+
+    // Country Select Handler
+    document.addEventListener('DOMContentLoaded', function() {
+        const countrySelect = document.getElementById('countrySelect');
+        const selectedFlag = document.getElementById('selectedFlag');
+        const dialCode = document.getElementById('dialCode');
+
+        countrySelect.addEventListener('change', function() {
+            const selectedOption = this.options[this.selectedIndex];
+            const countryCode = selectedOption.value.toLowerCase();
+            const dialCodeValue = selectedOption.dataset.dialCode;
+
+            // Update flag
+            selectedFlag.src = `https://flagcdn.com/24x18/${countryCode}.png`;
+            selectedFlag.alt = `${selectedOption.text} Flag`;
+
+            // Update dial code
+            dialCode.textContent = `+${dialCodeValue}`;
+        });
     });
 </script>
 {% endblock %}

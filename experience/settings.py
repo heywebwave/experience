@@ -14,7 +14,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = config("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     
     # Local apps
     'userauths',
+    'core',
 ]
 
 MIDDLEWARE = [
@@ -157,3 +158,5 @@ AUTH_USER_MODEL = 'userauths.CustomUser'
 
 # Phone number field settings
 PHONENUMBER_DEFAULT_REGION = 'US'  # Set your default region
+
+
