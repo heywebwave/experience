@@ -1127,6 +1127,8 @@
             centeredSlides: true,
             slidesPerView: 'auto',
             initialSlide: 1,
+            loop: true,
+            loopedSlides: 3,
             coverflowEffect: {
                 rotate: 0,
                 stretch: 0,
@@ -1149,6 +1151,10 @@
                 768: {
                     slidesPerView: 3,
                 }
+            },
+            autoplay: {
+                delay: 3000,
+                disableOnInteraction: false,
             }
         });
     });
