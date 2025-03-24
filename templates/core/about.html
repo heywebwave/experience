@@ -1,0 +1,308 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% load custom_filters %}
+{% block title %}I am That Woman Experience{% endblock %}
+
+{% block content %}
+<!-- Back to Homepage Link -->
+<div class="back-section py-4">
+    <div class="container">
+        <a href="/" class="back-link text-decoration-none text-dark d-flex align-items-center">
+            <i class="fas fa-arrow-left me-2"></i>
+            <span class="fs-5">Back to Homepage</span>
+        </a>
+    </div>
+</div>
+
+<!-- About Section -->
+<section class="about-section pb-5">
+    <div class="container">
+        <div class="row align-items-start justify-content-between g-2">
+            <!-- Profile Image and Contact - Desktop -->
+            <div class="col-lg-5  d-lg-block bg-light-grey">
+                <div class="profile-section">
+                    <img src="{% static 'images/frghuhguh.png' %}" alt="Profile" class="profile-image img-fluid mb-4">
+                    
+                </div>
+            </div>
+            
+            <div class="col-lg-6 bg-light-grey">
+                <div class="content-wrapper p-3">
+                    <h1 class="display-4 fw-bold mb-2">I Am That Woman</h1>
+                    <h2 class="h3 mb-4 pt-4">Who we are & Our Mission?</h2>
+                    <div class="about-content">
+                        <p class="lead mb-4">
+                            I Am That Woman is an organization dedicated to empowering marginalized women by providing them with ideas, skills, mentorship, and opportunities. Our mission is to create a safe space for women to grow, learn, and thrive in their personal and professional lives.
+                        </p>
+                        <p class="mb-4">
+                            Through workshops, mentorship, seminars, and conferences, we help all who identify as women to find their voice and grow in their professional and personal lives. We believe in creating opportunities for women to network, connect, and support each other in their journey towards success.
+                        </p>
+                        <p class="mb-4">
+                            We understand that the progression of growth, from the mentorship to the actual implementation of skills, can be challenging. That's why we provide hands-on training, ongoing support, and a community of like-minded women who are ready to lift each other up.
+                        </p>
+                        <p class="mb-4">
+                            Join us as we continue building a future where every woman has access to the resources, education, and network she needs to succeed. Together, we are creating a legacy of empowered women who empower others.
+                        </p>
+                    </div>
+                    
+                </div>
+               
+            </div>
+            <div class="contact-info d-block d-lg-none mt-4 bg-light-grey">
+                <h3 class="h4 mb-3">Get In Touch</h3>
+                <p class="text-muted mb-4">Please reach out to us anytime ....</p>
+                <div class="contact-links">
+                    <div class="contact-item mb-3">
+                        <div class="d-flex align-items-center">
+                            <div class="contact-icon rounded-circle me-3 d-flex align-items-center justify-content-center">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div>
+                                <h4 class="contact-label mb-1">E-Mail</h4>
+                                <p class="contact-value mb-0">Contact@IATWexperience.com</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="contact-item mb-3">
+                        <div class="d-flex align-items-center">
+                            <div class="contact-icon rounded-circle me-3 d-flex align-items-center justify-content-center">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div>
+                                <h4 class="contact-label mb-1">Phone Number</h4>
+                                <p class="contact-value mb-0">+(1) 814 77567888</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="d-flex align-items-center">
+                            <div class="contact-icon rounded-circle me-3 d-flex align-items-center justify-content-center">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div>
+                                <h4 class="contact-label mb-1">Address</h4>
+                                <p class="contact-value mb-0">Ohio, United states</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="contact-info d-none d-lg-block px-3 bg-light-grey">
+                <h3 class="h4 mb-3">Get In Touch</h3>
+                <p class="text-muted mb-4">Please reach out to us anytime ....</p>
+                <div class="contact-links contact-desktop">
+                    <div class="contact-item d-flex align-items-center mb-4">
+                        <div class="contact-icon rounded-circle  d-flex align-items-center justify-content-center">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div>
+                            <h4 class="contact-label mb-1">E-Mail</h4>
+                            <p class="contact-value mb-0">Contact@IATWexperience.com</p>
+                        </div>
+                    </div>
+                    <div class="contact-item d-flex align-items-center mb-4">
+                        <div class="contact-icon rounded-circle  d-flex align-items-center justify-content-center">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div>
+                            <h4 class="contact-label mb-1">Phone Number</h4>
+                            <p class="contact-value mb-0">+(1) 814 77567888</p>
+                        </div>
+                    </div>
+                    <div class="contact-item d-flex align-items-center">
+                        <div class="contact-icon rounded-circle d-flex align-items-center justify-content-center">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div>
+                            <h4 class="contact-label mb-1">Address</h4>
+                            <p class="contact-value mb-0">Ohio, United states</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    /* Header Styles */
+    header {
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        background: white;
+    }
+
+    /* Back Link Styles */
+    .back-section {
+        background: white;
+    }
+
+    .back-link {
+        font-family: 'Poly', serif;
+    }
+
+    .back-link:hover {
+        opacity: 0.8;
+    }
+
+    /* About Section Styles */
+    .about-section {
+        background-color: #ffffff;
+    }
+
+    .bg-light-grey {
+        background-color: #F9F9F9;
+        border-radius: 0;
+        padding: 1.5rem;
+        border: 1px solid rgba(160, 158, 158, 0.38);
+    }
+
+    .profile-image {
+        width: 100%;
+        height: auto;
+        border-radius: 8px;
+    }
+
+    .about-content p {
+        color: #4A4A4A;
+        line-height: 1.8;
+    }
+
+    h1.display-4 {
+        font-size: 2.5rem;
+        margin-bottom: 0.5rem;
+    }
+
+    h2.h3 {
+        color: #000;
+        font-weight: 600;
+        font-size: 1.3rem;
+    }
+
+    .contact-info {
+        margin-top: 2rem;
+    }
+
+    .contact-link {
+        color: #333333;
+        transition: color 0.3s ease;
+    }
+
+    .contact-link:hover {
+        color: #000000;
+    }
+
+    .contact-link i {
+        width: 24px;
+        text-align: center;
+    }
+
+    /* Mobile Styles */
+    @media (max-width: 991px) {
+        .about-section {
+            text-align: left;
+        }
+
+        .contact-info {
+            background-color: #F9F9F9;
+            border-radius: 8px;
+            margin-top: 4rem !important;
+        }
+
+        .contact-link {
+            font-size: 0.95rem;
+        }
+        .bg-light-grey {
+            margin-top: 1.5rem !important;
+        }
+    }
+
+    /* Desktop Styles */
+    @media (min-width: 992px) {
+        .row.g-2 {
+            margin: 0 -0.25rem;
+        }
+        
+        .row.g-2 > [class*="col-"] {
+            padding: 0 0.25rem;
+        }
+
+        .col-lg-5 {
+            width: 49%;
+        }
+        
+        .col-lg-6 {
+            width: 49%;
+        }
+
+        .profile-section {
+            position: sticky;
+            top: 2rem;
+        }
+
+        .bg-light-grey {
+            height: 100%;
+        }
+    }
+
+    /* Add these new styles for contact section */
+    .contact-icon {
+        width: 40px;
+        height: 40px;
+        background-color: #000;
+        color: white;
+    }
+
+    .contact-label {
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: #000;
+        margin-bottom: 0.25rem;
+    }
+
+    .contact-value {
+        color: #666;
+        font-size: 0.95rem;
+    }
+
+    /* Mobile specific styles */
+    @media (max-width: 991px) {
+        .contact-label {
+            font-size: 1rem;
+        }
+        
+        .contact-value {
+            font-size: 0.9rem;
+        }
+    }
+
+    /* Only modify the contact-desktop related styles */
+    .contact-desktop {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        gap: 2rem;
+    }
+
+    .contact-desktop .contact-item {
+        flex: 1;
+    }
+
+    .contact-desktop .contact-icon {
+        margin: 0;
+        margin-right: 1rem;
+    }
+
+    .contact-desktop .contact-item .d-flex {
+        flex-direction: row;
+        align-items: flex-start;
+    }
+
+    @media (min-width: 992px) {
+        .contact-desktop .contact-label {
+            margin-top: 0;
+        }
+    }
+</style>
+{% endblock %}
