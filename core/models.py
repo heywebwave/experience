@@ -24,6 +24,7 @@ class Event(models.Model):
     image = CloudinaryField(folder="event-images")
     price = models.DecimalField(max_digits=10, decimal_places=2)
     event_date = models.DateField()
+    group_size = models.IntegerField(default=10)
     location = models.CharField(max_length=100)
     status = models.CharField(max_length=10, choices=EVENT_STATUS, default='upcoming')
     created_at = models.DateTimeField(auto_now_add=True)
