@@ -1,11 +1,11 @@
 from django.db import models
-
 # Create your models here.
 from django.contrib.auth.models import AbstractUser, BaseUserManager
-from django.db import models
 from django.utils.translation import gettext_lazy as _
 from django_countries.fields import CountryField
 from phonenumber_field.modelfields import PhoneNumberField
+from django.utils import timezone
+from datetime import date
 
 class CustomUserManager(BaseUserManager):
     def create_user(self, email, password=None, **extra_fields):

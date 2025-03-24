@@ -44,7 +44,31 @@ h1 {
     max-width: 200px;
     height: auto;
 }
+    /* Header Styles */
+    header {
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        background: white;
+    }
 
+    /* Back Link Styles */
+    .back-section {
+        background: white;
+    }
+
+    .back-link {
+        font-family: 'Poly', serif;
+    }
+
+    .back-link:hover {
+        opacity: 0.8;
+    }
+
+    /* About Section Styles */
+    .about-section {
+        background-color: #ffffff;
+    }
 /* Decorative elements positioning */
 .decorative-elements {
     position: absolute;

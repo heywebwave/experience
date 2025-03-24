@@ -8,6 +8,9 @@ from django.views.generic import CreateView, TemplateView
 from django.views.generic.base import View
 from .models import CustomUser
 from .forms import CustomUserCreationForm, CustomAuthenticationForm
+from django.views.decorators.csrf import csrf_exempt
+from django.views.decorators.http import require_POST
+import os
 
 class RegisterView(CreateView):
     model = CustomUser

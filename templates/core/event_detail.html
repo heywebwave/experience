@@ -19,35 +19,83 @@
     <div class="container">
         <div class="row align-items-start justify-content-between g-2">
             <!-- Profile Image and Contact - Desktop -->
-            <div class="col-lg-5  d-lg-block bg-light-grey">
+            <div class="col-lg-12  d-lg-block ">
                 <div class="profile-section">
-                    <img src="{% static 'images/frghuhguh.png' %}" alt="Profile" class="profile-image img-fluid mb-4">
+                    <img src="{{event.image.url}}" alt="Profile" class="profile-image img-fluid mb-4">
                     
                 </div>
             </div>
             
-            <div class="col-lg-6 bg-light-grey">
+            <div class="col-lg-12 ">
                 <div class="content-wrapper p-3">
-                    <h1 class="display-4 fw-bold mb-2">I Am That Woman</h1>
-                    <h2 class="h3 mb-4 pt-4">Who we are & Our Mission?</h2>
+                    <h1 class="display-4 fw-bold mb-2">{{event.title}}</h1>
                     <div class="about-content">
-                        <p class="lead mb-4">
-                            I Am That Woman is an organization dedicated to empowering marginalized women by providing them with ideas, skills, mentorship, and opportunities. Our mission is to create a safe space for women to grow, learn, and thrive in their personal and professional lives.
+                        <p class="lead mb-4 pt-2">
+                            {{event.description}}
                         </p>
-                        <p class="mb-4">
-                            Through workshops, mentorship, seminars, and conferences, we help all who identify as women to find their voice and grow in their professional and personal lives. We believe in creating opportunities for women to network, connect, and support each other in their journey towards success.
-                        </p>
-                        <p class="mb-4">
-                            We understand that the progression of growth, from the mentorship to the actual implementation of skills, can be challenging. That's why we provide hands-on training, ongoing support, and a community of like-minded women who are ready to lift each other up.
-                        </p>
-                        <p class="mb-4">
-                            Join us as we continue building a future where every woman has access to the resources, education, and network she needs to succeed. Together, we are creating a legacy of empowered women who empower others.
-                        </p>
+                        
                     </div>
                     
                 </div>
                
             </div>
+            <div class="col-lg-12 d-flex justify-content-between mb-5">
+                <div class="col-lg-4">
+                    <div class="contact-info d-none d-lg-block px-3 ">
+                        <h3 class="h4 mb-3">What's included?</h3>
+    
+                        <div class="contact-links contact-desktop pt-3">
+                            <div class="contact-item d-flex align-items-center mb-4">
+                                <div class="contact-icon rounded-circle  d-flex align-items-center justify-content-center">
+                                    <i class="fas fa-envelope"></i>
+                                </div>
+                                <div>
+                             
+                                    <p class="contact-value mb-0">Contact@IATWexperience.com</p>
+                                </div>
+                            </div>
+                           
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="contact-info d-none d-lg-block px-3 ">
+                        <h3 class="h4 mb-3">What's not included?</h3>
+                        
+                        <div class="contact-links contact-desktop pt-3">
+                            <div class="contact-item d-flex align-items-center mb-4">
+                                <div class="contact-icon rounded-circle  d-flex align-items-center justify-content-center">
+                                    <i class="fas fa-envelope"></i>
+                                </div>
+                                <div>
+                                   
+                                    <p class="contact-value mb-0">Contact@IATWexperience.com</p>
+                                </div>
+                            </div>
+                           
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="contact-info d-none d-lg-block px-3 bg-light-grey">
+                        <h3 class="h4 mb-3">Get In Touch</h3>
+                        <p class="text-muted mb-4">Please reach out to us anytime ....</p>
+                        <div class="contact-links contact-desktop">
+                            <div class="contact-item d-flex align-items-center mb-4">
+                                <div class="contact-icon rounded-circle  d-flex align-items-center justify-content-center">
+                                    <i class="fas fa-envelope"></i>
+                                </div>
+                                <div>
+                                    <h4 class="contact-label mb-1">E-Mail</h4>
+                                    <p class="contact-value mb-0">Contact@IATWexperience.com</p>
+                                </div>
+                            </div>
+                        
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
             <div class="contact-info d-block d-lg-none mt-4 bg-light-grey">
                 <h3 class="h4 mb-3">Get In Touch</h3>
                 <p class="text-muted mb-4">Please reach out to us anytime ....</p>

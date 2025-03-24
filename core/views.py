@@ -1,6 +1,14 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django_countries import countries
 from phonenumber_field.phonenumber import PhoneNumber
+from decouple import config
+from django.http import JsonResponse, HttpResponse
+from django.views.decorators.http import require_POST
+from django.views.decorators.csrf import csrf_exempt
+from core.models import Event
+from django.template.loader import render_to_string
+import time
+
 
 app_name = 'core'
 # Create your views here.
@@ -201,13 +209,37 @@ def get_dial_codes():
 
 
 def index(request):
+    events = Event.objects.all()
+    upcoming_events = events.filter(status='upcoming').order_by('event_date')[:2]
+    past_events = events.filter(status='past').order_by('-event_date')[:2]
     context = {
         'countries': list(countries),
         'dial_codes': get_dial_codes(),
+        'upcoming_events': upcoming_events,
+        'past_events': past_events,
     }
     return render(request, 'core/index.html', context)
 
 def about(request):
     return render(request, 'core/about.html')
+
+
+
+
+@csrf_exempt
+@require_POST
+def update_event_status(request):
+    Event.update_all_event_status()
+    return JsonResponse({'status': 'success'})
+
+
+def event_list(request):
+    events = Event.objects.all()
+    return render(request, 'core/event_list.html', {'events': events})
+
+def event_detail(request, slug):
+    event = get_object_or_404(Event, slug=slug)
+    return render(request, 'core/event_detail.html', {'event': event})
+
 
 
