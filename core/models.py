@@ -12,6 +12,44 @@ cloudinary.config(
   api_secret = "9dd_1LrMmKMq4yQG7zWwVAk87n0"
 )
 # Create your models here.
+class EventFeature(models.Model):
+    name = models.CharField(max_length=100)
+    is_included = models.BooleanField(default=True)
+    event = models.ForeignKey('Event', on_delete=models.CASCADE, related_name='features')
+
+    def __str__(self):
+        return f"{self.name} ({'Included' if self.is_included else 'Not Included'})"
+
+    def not_included(self):
+        return not self.is_included
+
+class EventMedia(models.Model):
+    MEDIA_TYPES = (
+        ('image', 'Image'),
+        ('video', 'Video'),
+    )
+
+    event = models.ForeignKey('Event', on_delete=models.CASCADE, related_name='media')
+    media_type = models.CharField(max_length=5, choices=MEDIA_TYPES)
+    file = models.FileField(upload_to='event_media/')
+    thumbnail = models.ImageField(upload_to='event_thumbnails/', blank=True, null=True)
+    title = models.CharField(max_length=100, blank=True)
+    order = models.PositiveIntegerField(default=0)
+    is_featured = models.BooleanField(default=False)
+    
+    class Meta:
+        ordering = ['order']
+        verbose_name_plural = 'Event media'
+
+    def __str__(self):
+        return f"{self.event.title} - {self.get_media_type_display()}"
+
+    def save(self, *args, **kwargs):
+        # Ensure only one featured media per event
+        if self.is_featured:
+            EventMedia.objects.filter(event=self.event, is_featured=True).exclude(id=self.id).update(is_featured=False)
+        super().save(*args, **kwargs)
+
 class Event(models.Model):
     EVENT_STATUS = (
         ('upcoming', 'Upcoming'),
@@ -76,6 +114,24 @@ class Event(models.Model):
         cls.objects.filter(event_date__lt=today, status='upcoming').update(status='past')
         # Update upcoming events (in case any were manually set to past)
         cls.objects.filter(event_date__gte=today, status='past').update(status='upcoming')
+
+    @property
+    def featured_media(self):
+        """Returns the featured media or the first media item"""
+        featured = self.media.filter(is_featured=True).first()
+        if not featured:
+            featured = self.media.first()
+        return featured
+
+    @property
+    def video(self):
+        """Returns the first video"""
+        return self.media.filter(media_type='video').first()
+
+    @property
+    def images(self):
+        """Returns all images"""
+        return self.media.filter(media_type='image')
 
 class Testimonial(models.Model):
     name = models.CharField(max_length=100)

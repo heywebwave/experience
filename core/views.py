@@ -5,7 +5,7 @@ from decouple import config
 from django.http import JsonResponse, HttpResponse
 from django.views.decorators.http import require_POST
 from django.views.decorators.csrf import csrf_exempt
-from core.models import Event
+from core.models import Event, EventFeature
 from django.template.loader import render_to_string
 import time
 
@@ -239,7 +239,8 @@ def event_list(request):
 
 def event_detail(request, slug):
     event = get_object_or_404(Event, slug=slug)
-    return render(request, 'core/event_detail.html', {'event': event})
+    features = EventFeature.objects.filter(event=event)
+    return render(request, 'core/event_detail.html', {'event': event, 'features': features})
 
 
 

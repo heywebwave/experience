@@ -44,15 +44,18 @@
                     <div class="contact-info d-none d-lg-block px-3 ">
                         <h3 class="h4 mb-3">What's included?</h3>
     
-                        <div class="contact-links contact-desktop pt-3">
+                        <div class="contact-links contact-desktop pt-3 d-grid gap-2">
+                            {% for feature in features %}
+                            {% if feature.is_included %}
                             <div class="contact-item d-flex align-items-center mb-4">
                                 <img src="{% static 'images/noto_kissing-face-with-closed-eyes.jpg' %}" class="px-2" alt="Profile">
                                 <div>
                              
-                                    <p class="contact-value mb-0">Contact@IATWexperience.com</p>
+                                    <p class="contact-value mb-0">{{feature.name}}</p>
                                 </div>
                             </div>
-                           
+                            {% endif %}
+                            {% endfor %}
                         </div>
                     </div>
                 </div>
@@ -60,15 +63,18 @@
                     <div class="contact-info d-none d-lg-block px-3 ">
                         <h3 class="h4 mb-3">What's not included?</h3>
                         
-                        <div class="contact-links contact-desktop pt-3">
+                        <div class="contact-links contact-desktop pt-3 d-grid gap-2">
+                            {% for feature in features %}
+                            {% if feature.not_included %}
                             <div class="contact-item d-flex align-items-center mb-4">
-                                <img src="{% static 'images/noto_disappointed-face.jpg' %}" class="px-2" alt="Profile">
+                                <img src="{% static 'images/noto_kissing-face-with-closed-eyes.jpg' %}" class="px-2" alt="Profile">
                                 <div>
-                                   
-                                    <p class="contact-value mb-0">Contact@IATWexperience.com</p>
+                             
+                                    <p class="contact-value mb-0">{{feature.name}}</p>
                                 </div>
                             </div>
-                           
+                            {% endif %}
+                            {% endfor %}
                         </div>
                     </div>
                 </div>
@@ -127,10 +133,14 @@
                             </div>
                         
                         </div>
-                        <div class="px-2 mt-3">
-                            <button type="button" class="btn btn-dark btn-sm py-2 px-4 ">Pay in full (${{event.price|floatformat:0|intcomma}})</button>
-                            <button type="button" class="btn btn-outline-dark btn-sm py-2 px-4">Save a spot (${% widthratio event.price 2 1 %})</button>
+                        <div class="px-2 mt-3 d-flex align-items-center justify-content-between gap-2">
+                            <button type="button" class="btn btn-dark py-2 w-100 " style="font-size:0.875rem">Pay in full (${{event.price|floatformat:0|intcomma}})</button>
+                            <button type="button" class="btn btn-outline-dark py-2 w-100 " style="font-size:0.875rem">Save a spot (${% widthratio event.price 2 1 %})</button>
                         </div>
+                        {% comment %} <div class="px-2 mt-3 d-flex flex-column gap-2">
+                            <button type="button" class="btn btn-dark py-2 w-100 fs-6">Pay in full (${{event.price|floatformat:0|intcomma}})</button>
+                            <button type="button" class="btn btn-outline-dark py-2 w-100 fs-6">Save a spot (${% widthratio event.price 2 1 %})</button>
+                        </div> {% endcomment %}
                     </div>
                 </div>
             </div>
@@ -210,6 +220,36 @@
         </div>
     </div>
 </section>
+
+<!-- Event Media Gallery Section -->
+<div class="event-media-gallery mb-4">
+    <!-- Featured Video (if exists) -->
+    {% if event.video %}
+    <div class="event-video mb-4">
+        <video class="w-100" controls poster="{{ event.video.thumbnail.url }}">
+            <source src="{{ event.video.file.url }}" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+    {% endif %}
+
+    <!-- Image Gallery -->
+    {% if event.images.exists %}
+    <div class="event-images">
+        <div class="row g-3">
+            {% for media in event.images %}
+            <div class="col-md-4">
+                <a href="{{ media.file.url }}" data-fslightbox="gallery">
+                    <img src="{{ media.file.url }}" 
+                         alt="{{ media.title|default:event.title }}" 
+                         class="img-fluid rounded shadow-sm hover-scale">
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    {% endif %}
+</div>
 
 <style>
 
@@ -367,5 +407,27 @@
             margin-top: 0;
         }
     }
+
+    .hover-scale {
+        transition: transform 0.3s ease;
+    }
+
+    .hover-scale:hover {
+        transform: scale(1.05);
+    }
+
+    .event-video {
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+
+    .event-images img {
+        aspect-ratio: 16/9;
+        object-fit: cover;
+    }
 </style>
+
+<!-- Add in head or before closing body -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fslightbox/3.3.1/index.min.js"></script>
 {% endblock %}
