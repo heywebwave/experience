@@ -31,11 +31,13 @@ class EventMedia(models.Model):
 
     event = models.ForeignKey('Event', on_delete=models.CASCADE, related_name='media')
     media_type = models.CharField(max_length=5, choices=MEDIA_TYPES)
-    file = models.FileField(upload_to='event_media/')
-    thumbnail = models.ImageField(upload_to='event_thumbnails/', blank=True, null=True)
+    # For images: use Cloudinary
+    image = CloudinaryField(folder="event-images", null=True, blank=True)
+    # For videos: store Vimeo URL
+    video_url = models.URLField(max_length=255, null=True, blank=True, 
+                              help_text="Enter Vimeo video URL (e.g., https://vimeo.com/123456789)")
     title = models.CharField(max_length=100, blank=True)
     order = models.PositiveIntegerField(default=0)
-    is_featured = models.BooleanField(default=False)
     
     class Meta:
         ordering = ['order']
@@ -45,10 +47,16 @@ class EventMedia(models.Model):
         return f"{self.event.title} - {self.get_media_type_display()}"
 
     def save(self, *args, **kwargs):
-        # Ensure only one featured media per event
-        if self.is_featured:
-            EventMedia.objects.filter(event=self.event, is_featured=True).exclude(id=self.id).update(is_featured=False)
+
         super().save(*args, **kwargs)
+
+    @property
+    def vimeo_embed_url(self):
+        """Convert Vimeo URL to embed URL"""
+        if self.video_url and 'vimeo.com' in self.video_url:
+            video_id = self.video_url.split('/')[-1]
+            return f"https://player.vimeo.com/video/{video_id}"
+        return None
 
 class Event(models.Model):
     EVENT_STATUS = (
@@ -57,12 +65,14 @@ class Event(models.Model):
     )
 
     title = models.CharField(max_length=200)
-    slug = models.UUIDField(max_length=255, unique=True, blank=True)
+    slug = models.SlugField(max_length=255, unique=True)
     description = models.TextField()
-    image = CloudinaryField(folder="event-images")
-    price = models.DecimalField(max_digits=10, decimal_places=2)
+    image = CloudinaryField(folder="event-images", null=True, blank=True)
+    price = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)
     event_date = models.DateField()
     group_size = models.IntegerField(default=10)
+    pay_in_part = models.DecimalField(max_digits=10, decimal_places=2)
+    complete_payment_before = models.DateField()
     location = models.CharField(max_length=100)
     status = models.CharField(max_length=10, choices=EVENT_STATUS, default='upcoming')
     created_at = models.DateTimeField(auto_now_add=True)
@@ -157,3 +167,16 @@ class Testimonial(models.Model):
 
     def __str__(self):
         return f"Testimonial by {self.name} for {self.event.title}"
+
+class Itinerary(models.Model):
+    event = models.ForeignKey('Event', on_delete=models.CASCADE, related_name='itineraries')
+    day = models.PositiveIntegerField()  # Day number (e.g., 1, 2, 3, etc.)
+    description = models.TextField()  # Description of the day's itinerary
+    image = CloudinaryField(folder="itineraries")  # Image for the itinerary
+
+    class Meta:
+        ordering = ['day']  # Order by day number
+        unique_together = ('event', 'day')  # Ensure no duplicate days for the same event
+
+    def __str__(self):
+        return f"Itinerary for {self.event.title} - Day {self.day}"

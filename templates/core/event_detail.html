@@ -67,7 +67,7 @@
                             {% for feature in features %}
                             {% if feature.not_included %}
                             <div class="contact-item d-flex align-items-center mb-4">
-                                <img src="{% static 'images/noto_kissing-face-with-closed-eyes.jpg' %}" class="px-2" alt="Profile">
+                                <img src="{% static 'images/noto_disappointed-face.jpg' %}" class="px-2" alt="Profile">
                                 <div>
                              
                                     <p class="contact-value mb-0">{{feature.name}}</p>
@@ -118,7 +118,7 @@
                                     
                                 <div>
                                  
-                                    <p class="contact-value mb-0 px-2">Save a spot with a deposit of <span class="fw-bold text-black">${% widthratio event.price 2 1 %}</span></p>
+                                    <p class="contact-value mb-0 px-2">Save a spot with a deposit of <span class="fw-bold text-black">${{event.pay_in_part|floatformat:0|intcomma}}</span></p>
                                 </div>
                             </div>
                         
@@ -135,7 +135,7 @@
                         </div>
                         <div class="px-2 mt-3 d-flex align-items-center justify-content-between gap-2">
                             <button type="button" class="btn btn-dark py-2 w-100 " style="font-size:0.875rem">Pay in full (${{event.price|floatformat:0|intcomma}})</button>
-                            <button type="button" class="btn btn-outline-dark py-2 w-100 " style="font-size:0.875rem">Save a spot (${% widthratio event.price 2 1 %})</button>
+                            <button type="button" class="btn btn-outline-dark py-2 w-100 " style="font-size:0.875rem">Save a spot (${{event.pay_in_part|floatformat:0|intcomma}})</button>
                         </div>
                         {% comment %} <div class="px-2 mt-3 d-flex flex-column gap-2">
                             <button type="button" class="btn btn-dark py-2 w-100 fs-6">Pay in full (${{event.price|floatformat:0|intcomma}})</button>
@@ -146,110 +146,92 @@
             </div>
             
             <div class="contact-info d-block d-lg-none mt-4 bg-light-grey">
-                <h3 class="h4 mb-3">Get In Touch</h3>
-                <p class="text-muted mb-4">Please reach out to us anytime ....</p>
-                <div class="contact-links">
-                    <div class="contact-item mb-3">
-                        <div class="d-flex align-items-center">
-                            <div class="contact-icon rounded-circle me-3 d-flex align-items-center justify-content-center">
-                                <i class="fas fa-envelope"></i>
-                            </div>
-                            <div>
-                                <h4 class="contact-label mb-1">E-Mail</h4>
-                                <p class="contact-value mb-0">Contact@IATWexperience.com</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="contact-item mb-3">
-                        <div class="d-flex align-items-center">
-                            <div class="contact-icon rounded-circle me-3 d-flex align-items-center justify-content-center">
-                                <i class="fas fa-phone"></i>
-                            </div>
-                            <div>
-                                <h4 class="contact-label mb-1">Phone Number</h4>
-                                <p class="contact-value mb-0">+(1) 814 77567888</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="contact-item">
-                        <div class="d-flex align-items-center">
-                            <div class="contact-icon rounded-circle me-3 d-flex align-items-center justify-content-center">
-                                <i class="fas fa-map-marker-alt"></i>
-                            </div>
-                            <div>
-                                <h4 class="contact-label mb-1">Address</h4>
-                                <p class="contact-value mb-0">Ohio, United states</p>
-                            </div>
-                        </div>
+                    <!-- Featured Video (if exists) -->
+                {% if images %}
+                <div class="event-video mb-4">
+                    <div class="ratio ratio-16x9">
+                        <iframe src="{{ video.vimeo_embed_url }}"
+                                allow="autoplay; fullscreen; picture-in-picture"
+                                allowfullscreen>
+                        </iframe>
                     </div>
                 </div>
+                {% endif %}
+
+                <!-- Image Gallery -->
+                {% if event.images.exists %}
+                <div class="event-images">
+                    <div class="row g-3">
+                        {% for media in event.images %}
+                        <div class="col-md-4">
+                            <a href="{{ media.image.url }}" data-fslightbox="gallery">
+                                <img src="{{ media.image.url }}" 
+                                    alt="{{ media.title|default:event.title }}" 
+                                    class="img-fluid rounded shadow-sm hover-scale">
+                            </a>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                {% endif %}
             </div>
             <div class="contact-info d-none d-lg-block px-3 bg-light-grey">
-                <h3 class="h4 mb-3">Get In Touch</h3>
-                <p class="text-muted mb-4">Please reach out to us anytime ....</p>
-                <div class="contact-links contact-desktop">
-                    <div class="contact-item d-flex align-items-center mb-4">
-                        <div class="contact-icon rounded-circle  d-flex align-items-center justify-content-center">
-                            <i class="fas fa-envelope"></i>
-                        </div>
-                        <div>
-                            <h4 class="contact-label mb-1">E-Mail</h4>
-                            <p class="contact-value mb-0">Contact@IATWexperience.com</p>
-                        </div>
-                    </div>
-                    <div class="contact-item d-flex align-items-center mb-4">
-                        <div class="contact-icon rounded-circle  d-flex align-items-center justify-content-center">
-                            <i class="fas fa-phone"></i>
-                        </div>
-                        <div>
-                            <h4 class="contact-label mb-1">Phone Number</h4>
-                            <p class="contact-value mb-0">+(1) 814 77567888</p>
-                        </div>
-                    </div>
-                    <div class="contact-item d-flex align-items-center">
-                        <div class="contact-icon rounded-circle d-flex align-items-center justify-content-center">
-                            <i class="fas fa-map-marker-alt"></i>
-                        </div>
-                        <div>
-                            <h4 class="contact-label mb-1">Address</h4>
-                            <p class="contact-value mb-0">Ohio, United states</p>
-                        </div>
+                    <!-- Featured Video (if exists) -->
+                {% if video.vimeo_embed_url %}
+                <div class="event-video mb-4">
+                    <div class="ratio ratio-16x9">
+                        <iframe src="{{ event.video.vimeo_embed_url }}"
+                                allow="autoplay; fullscreen; picture-in-picture"
+                                allowfullscreen>
+                        </iframe>
                     </div>
                 </div>
+                {% endif %}
+
+                <!-- Image Gallery -->
+                {% if event.images.exists %}
+                <div class="event-images">
+                    <div class="row g-3">
+                        {% for media in event.images %}
+                        <div class="col-md-{{event.images.count|divisibleby:2|yesno:'6,4'}}">
+                            <a href="{{ media.image.url }}" data-fslightbox="gallery">
+                                <img src="{{ media.image.url }}" 
+                                    alt="{{ media.title|default:event.title }}" 
+                                    class="img-fluid rounded shadow-sm hover-scale">
+                            </a>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                {% endif %}
             </div>
         </div>
     </div>
 </section>
 
-<!-- Event Media Gallery Section -->
-<div class="event-media-gallery mb-4">
-    <!-- Featured Video (if exists) -->
-    {% if event.video %}
-    <div class="event-video mb-4">
-        <video class="w-100" controls poster="{{ event.video.thumbnail.url }}">
-            <source src="{{ event.video.file.url }}" type="video/mp4">
-            Your browser does not support the video tag.
-        </video>
-    </div>
-    {% endif %}
-
-    <!-- Image Gallery -->
-    {% if event.images.exists %}
-    <div class="event-images">
-        <div class="row g-3">
-            {% for media in event.images %}
-            <div class="col-md-4">
-                <a href="{{ media.file.url }}" data-fslightbox="gallery">
-                    <img src="{{ media.file.url }}" 
-                         alt="{{ media.title|default:event.title }}" 
-                         class="img-fluid rounded shadow-sm hover-scale">
-                </a>
+<!-- Upcoming Events Section -->
+<section class="upcoming-events py-5">
+    <div class="container">
+        <h2 class="mb-4 text-left text-lg-start">Itenaries</h2>
+        <div class="row">
+            <!-- Event Card 1 -->
+            {% for itinerary in itineraries %}
+            <div class="col-md-6 mb-4">
+                <div class="card h-100">
+                    
+                    <img src="{{itinerary.image.url}}" class="card-img-top" alt="Event 1">
+                    <div class="card-body">
+                        <h3 class="card-title">Day {{itinerary.day}} </h5>
+                        <p class="card-text">{{itinerary.description}}</p>
+   
+                    </div>
+                </div>
             </div>
             {% endfor %}
+           
         </div>
     </div>
-    {% endif %}
-</div>
+</section>
 
 <style>
 

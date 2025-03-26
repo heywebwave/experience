@@ -240,7 +240,19 @@ def event_list(request):
 def event_detail(request, slug):
     event = get_object_or_404(Event, slug=slug)
     features = EventFeature.objects.filter(event=event)
-    return render(request, 'core/event_detail.html', {'event': event, 'features': features})
+    
+    # Get video and images
+    video = event.media.filter(media_type='video').first()
+    images = event.media.filter(media_type='image')
+    itineraries = event.itineraries.all()
+    context = {
+        'event': event,
+        'features': features,
+        'video': video,
+        'images': images,
+        'itineraries': itineraries,
+    }
+    return render(request, 'core/event_detail.html', context)
 
 
 
