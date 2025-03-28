@@ -24,6 +24,7 @@
             <p class="text-muted mb-4 text-lg-center text-start">Welcome! Please complete the form below to register for The Experience Retreat 2025 Columbus Ohio, taking place on June 27th to 29th 2025 at Ohio. Your information will help us ensure an enjoyable and seamless experience.</p>
             
             <form class="register-form">
+                <h4 class="mb-3">Conference Preferences</h4>
                 <div class="mb-3">
                     <input type="text" class="form-control form-control-lg" placeholder="Enter your First Name">
                 </div>
@@ -67,7 +68,7 @@
                         </div>
                         <div class="">
                             <input class="" type="checkbox" id="sessionC">
-                            <label class="form-check-label" for="sessionC">Session C: Prophetic prayer & Healing & Deliverance</label>
+                            <label class="form-check-label" for="sessionC">Session C: Prayer, Healing & Deliverance</label>
                         </div>
                     </div>
                     
@@ -130,7 +131,81 @@
                         </div>
                     </div>
                 </div>
-
+                <div class="dietary-medical-info mt-5 ">
+                    <h4 class="mb-3">Dietary & Medical Information</h4>
+                    
+                    <div class="mb-3">
+                        <label>A. Do you have any dietary restrictions or food allergies?</label>
+                        <div>
+                            <input type="checkbox" id="vegetarian">
+                            <label for="vegetarian" class="form-check-label">Vegetarian</label>
+                        </div>
+                        <div>
+                            <input type="checkbox" id="vegan">
+                            <label for="vegan" class="form-check-label">Vegan</label>
+                        </div>
+                        <div>
+                            <input type="checkbox" id="glutenFree">
+                            <label for="glutenFree" class="form-check-label">Gluten-Free</label>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="medicalConditions">B. Do you have any medical conditions or mobility needs we should be aware of?</label>
+                        <textarea class="form-control" id="medicalConditions" rows="3" placeholder="Enter your answer here"></textarea>
+                    </div>
+                    
+                    <h4 class="mt-5 mb-3">Emergency Contact Information</h4>
+                    
+                    <div class="mb-3">
+                        <label for="emergencyContactName" class="form-check-label">A. Emergency Contact Name</label>
+                        <input type="text" class="form-control" id="emergencyContactName" placeholder="Enter your answer here">
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="emergencyContactRelationship" class="form-check-label">B. Relationship to You</label>
+                        <input type="text" class="form-control" id="emergencyContactRelationship" placeholder="Enter your answer here">
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="emergencyContactPhone" class="form-check-label">C. Emergency Contact Phone Number</label>
+                        <input type="tel" class="form-control" id="emergencyContactPhone" placeholder="Enter your answer here">
+                    </div>
+                    
+                    <h4 class="mt-5 mb-3">Additional Information</h4>
+                    
+                    <div class="mb-3">
+                        <label>A. How did you hear about this retreat?</label>
+                        <div>
+                            <input type="checkbox"  id="hearWebsite">
+                            <label for="hearWebsite" class="form-check-label">Website</label>
+                        </div>
+                        <div>
+                            <input type="checkbox" id="hearSocial">
+                            <label for="hearSocial" class="form-check-label">Social Media</label>
+                        </div>
+                        <div>
+                            <input type="checkbox" id="hearReferral">
+                            <label for="hearReferral" class="form-check-label" >Referral</label>
+                        </div>
+                        <div>
+                            <input type="checkbox" id="hearOthers">
+                            <label for="hearOthers" class="form-check-label">Others -</label>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label>A. Are you interested in volunteering or leading a session?</label>
+                        <div>
+                            <input type="radio" name="volunteerInterest" id="volunteerYes" value="yes">
+                            <label for="volunteerYes" class="form-check-label">Yes</label>
+                        </div>
+                        <div>
+                            <input type="radio" name="volunteerInterest" id="volunteerNo" value="no">
+                            <label for="volunteerNo" class="form-check-label">No</label>
+                        </div>
+                    </div>
+                </div>
                 <button type="submit" class="btn btn-dark btn-lg w-100">Submit</button>
             </form>
         </div>
@@ -552,6 +627,10 @@
     .event-images img {
         aspect-ratio: 16/9;
         object-fit: cover;
+    }
+
+    .form-check-label{
+        font-size: 0.9rem !important;  
     }
 </style>
 
