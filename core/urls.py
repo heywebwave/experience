@@ -8,4 +8,5 @@ urlpatterns = [
     path('cron/update-event-status/', views.update_event_status, name='update_event_status'),
     path('events/', views.event_list, name='event_list'),
     path('event/<slug:slug>/', views.event_detail, name='event_detail'),
+    path('event/<slug:slug>/media/', views.event_media, name='event_media'),
 ]

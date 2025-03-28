@@ -243,7 +243,7 @@ def event_detail(request, slug):
     
     # Get video and images
     video = event.media.filter(media_type='video').first()
-    images = event.media.filter(media_type='image')
+    images = event.media.filter(media_type='image')[:5]
     itineraries = event.itineraries.all()
     context = {
         'event': event,
@@ -254,5 +254,15 @@ def event_detail(request, slug):
     }
     return render(request, 'core/event_detail.html', context)
 
-
+def event_media(request, slug):
+    event = get_object_or_404(Event, slug=slug)
+    # Get video and images
+    video = event.media.filter(media_type='video').first()
+    images = event.media.filter(media_type='image')
+    context = {
+        'event': event,
+        'video': video,
+        'images': images,
+    }
+    return render(request, 'core/event_media.html', context)
 

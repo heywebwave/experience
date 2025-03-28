@@ -4,6 +4,139 @@
 {% block title %}I am That Woman Experience{% endblock %}
 
 {% block content %}
+
+<!-- Registration Popup -->
+<div class="register-popup" id="registerPopup">
+    <div class="register-content">
+        <div class="register-header d-flex justify-content-between align-items-center mb-4">
+            <!-- Close button - mobile only -->
+            <button class="close-register border-0 bg-transparent d-lg-none" onclick="toggleRegister()">
+                <i class="fas fa-times fs-4"></i>
+            </button>
+            <!-- Mobile only menu button -->
+            <button class="menu-btn border-0 bg-transparent d-lg-none rounded-pill border border-dark px-4 py-2 fs-5" onclick="toggleMenu()">
+                Menu
+            </button>
+        </div>
+        
+        <div class="register-body">
+            <h2 class="mb-3 text-lg-center text-start" >The Experience Retreat 2025</h2>
+            <p class="text-muted mb-4 text-lg-center text-start">Welcome! Please complete the form below to register for The Experience Retreat 2025 Columbus Ohio, taking place on June 27th to 29th 2025 at Ohio. Your information will help us ensure an enjoyable and seamless experience.</p>
+            
+            <form class="register-form">
+                <div class="mb-3">
+                    <input type="text" class="form-control form-control-lg" placeholder="Enter your First Name">
+                </div>
+                <div class="mb-3">
+                    <input type="text" class="form-control form-control-lg" placeholder="Enter your Last Name">
+                </div>
+                <div class="mb-3">
+                    <input type="email" class="form-control form-control-lg" placeholder="Enter your Email Address Here">
+                </div>
+                <div class="mb-3">
+                    <select class="form-select form-select-lg country-select" id="countrySelect" aria-label="Select your country">
+                        <option selected disabled>Select your country</option>
+                        {% for code, name in countries %}
+                            <option value="{{ code }}" data-code="{{ code }}" data-dial-code="{{ dial_codes|get_item:code }}">
+                                {{ name }}
+                            </option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="mb-4">
+                    <div class="input-group">
+                        <span class="input-group-text country-code-display">
+                            <img src="https://flagcdn.com/24x18/us.png" alt="Country Flag" class="country-flag" id="selectedFlag">
+                            <span id="dialCode">+1</span>
+                        </span>
+                        <input type="tel" class="form-control form-control-lg" placeholder="Enter your Phone Number">
+                    </div>
+                </div>
+                <div class="conference-preferences mt-5">
+                    <h4 class="mb-3">Conference Preferences</h4>
+                    
+                    <div class="mb-3">
+                        <label class="text-muted mb-2">A. Which sessions or tracks are you most interested in? (Select all that apply)</label>
+                        <div class="">
+                            <input class="" type="checkbox" id="sessionA">
+                            <label class="form-check-label" for="sessionA">Session A: spa</label>
+                        </div>
+                        <div class="">
+                            <input class="" type="checkbox" id="sessionB">
+                            <label class="form-check-label" for="sessionB">Session B: volleyball Tournament</label>
+                        </div>
+                        <div class="">
+                            <input class="" type="checkbox" id="sessionC">
+                            <label class="form-check-label" for="sessionC">Session C: Prophetic prayer & Healing & Deliverance</label>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label class="text-muted mb-2">B. Will you attend all days of the retreat?</label>
+                        <div class="">
+                            <input class="" type="radio" name="attendAllDays" id="attendYes" value="yes">
+                            <label class="form-check-label" for="attendYes">Yes</label>
+                        </div>
+                        <div class="">
+                            <input class="" type="radio" name="attendAllDays" id="attendNo" value="no">
+                            <label class="form-check-label" for="attendNo">No</label>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="goalsExpectations" class="text-muted mb-2">C. Do you have any specific goals or expectations for attending?</label>
+                        <textarea class="form-control" id="goalsExpectations" rows="3" placeholder="Enter your Answer here"></textarea>
+                    </div>
+                    
+                    <h4 class="mt-5 mb-3">Accommodation & Travel</h4>
+                    
+                    <div class="mb-3">
+                        <label class="text-muted mb-2">A. Do you need accommodation?</label>
+                        <div class="">
+                            <input class="" type="radio" name="needAccommodation" id="accommodationYes" value="yes">
+                            <label class="form-check-label" for="accommodationYes">Yes</label>
+                        </div>
+                        <div class="">
+                            <input class="" type="radio" name="needAccommodation" id="accommodationNo" value="no">
+                            <label class="form-check-label" for="accommodationNo">No</label>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label class="text-muted mb-2">B. Do you need transportation assistance?</label>
+                        <div class="">
+                            <input class="" type="radio" name="transportationAssistance" id="transportYes" value="yes">
+                            <label class="form-check-label" for="transportYes">Yes (Shuttle from airport or station.)</label>
+                        </div>
+                        <div class="">
+                            <input class="" type="radio" name="transportationAssistance" id="transportNo" value="no">
+                            <label class="form-check-label" for="transportNo">No</label>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="roommatePreference" class="text-muted mb-2">C. Do you have a roommate preference? (Optional)</label>
+                        <input type="text" class="form-control" id="roommatePreference" placeholder="Enter your answer here (optional)">
+                    </div>
+                    
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label for="arrivalDate" class="text-muted mb-2">D. Arrival Date</label>
+                            <input type="date" class="form-control" id="arrivalDate" placeholder="DD/MM/YY">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="departureDate" class="text-muted mb-2">E. Departure Date</label>
+                            <input type="date" class="form-control" id="departureDate" placeholder="DD/MM/YY">
+                        </div>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-dark btn-lg w-100">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>
+
 <!-- Back to Homepage Link -->
 <div class="back-section py-4">
     <div class="container">
@@ -39,9 +172,9 @@
                 </div>
                
             </div>
-            <div class="col-lg-12 d-flex justify-content-between mb-5">
-                <div class="col-lg-4">
-                    <div class="contact-info d-none d-lg-block px-3 ">
+            <div class="col-lg-12 d-lg-flex d-sm-grid justify-content-between mb-5">
+                <div class="col-lg-4 col-12">
+                    <div class="contact-info  d-lg-block px-3 ">
                         <h3 class="h4 mb-3">What's included?</h3>
     
                         <div class="contact-links contact-desktop pt-3 d-grid gap-2">
@@ -59,8 +192,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4">
-                    <div class="contact-info d-none d-lg-block px-3 ">
+                <div class="col-lg-4 col-12">
+                    <div class="contact-info  d-lg-block px-3 ">
                         <h3 class="h4 mb-3">What's not included?</h3>
                         
                         <div class="contact-links contact-desktop pt-3 d-grid gap-2">
@@ -78,8 +211,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4">
-                    <div class="contact-info d-none d-lg-block px-3 bg-light-grey">
+                <div class="col-lg-4 col-12">
+                    <div class="contact-info  d-lg-block px-3 bg-light-grey">
                         
                         <div class="contact-links contact-desktop">
                             <div class="contact-item d-flex align-items-center mb-4">
@@ -134,7 +267,7 @@
                         
                         </div>
                         <div class="px-2 mt-3 d-flex align-items-center justify-content-between gap-2">
-                            <button type="button" class="btn btn-dark py-2 w-100 " style="font-size:0.875rem">Pay in full (${{event.price|floatformat:0|intcomma}})</button>
+                            <button type="button" class="btn btn-dark py-2 w-100 " onclick="toggleRegister()" style="font-size:0.875rem">Pay in full (${{event.price|floatformat:0|intcomma}})</button>
                             <button type="button" class="btn btn-outline-dark py-2 w-100 " style="font-size:0.875rem">Save a spot (${{event.pay_in_part|floatformat:0|intcomma}})</button>
                         </div>
                         {% comment %} <div class="px-2 mt-3 d-flex flex-column gap-2">
@@ -142,6 +275,14 @@
                             <button type="button" class="btn btn-outline-dark py-2 w-100 fs-6">Save a spot (${% widthratio event.price 2 1 %})</button>
                         </div> {% endcomment %}
                     </div>
+                </div>
+            </div>
+            <div class="py-4">
+                <div class="container text-end">
+                    <a href="{% url 'core:event_media' event.slug %}" class="back-link text-decoration-none text-dark d-flex align-items-center justify-content-end">
+                        <span class="fs-5">View Event Media ({{ event.media.count }})</span>
+                        <i class="fas fa-arrow-right px-2"></i>
+                    </a>
                 </div>
             </div>
             
@@ -216,18 +357,22 @@
         <div class="row">
             <!-- Event Card 1 -->
             {% for itinerary in itineraries %}
-            <div class="col-md-6 mb-4">
-                <div class="card h-100">
-                    
-                    <img src="{{itinerary.image.url}}" class="card-img-top" alt="Event 1">
-                    <div class="card-body">
-                        <h3 class="card-title">Day {{itinerary.day}} </h5>
-                        <p class="card-text">{{itinerary.description}}</p>
-   
+                <div class="col-md-6 col-lg-6 mb-4">
+                    <div class="card h-100 d-md-flex flex-md-row">
+                        
+                        <div class="col-12 col-md-6">
+                            <img src="{{ itinerary.image.url }}" class="card-img-top" alt="Event 1">
+                        </div>
+                        
+                        <div class="card-body col-12 col-md-6">
+                            <h2 class="text-lg-center text-start">Day {{ itinerary.day }}</h2>
+                            <p class="card-text">{{ itinerary.description }}</p>
+                        </div>
+                        
                     </div>
                 </div>
-            </div>
             {% endfor %}
+
            
         </div>
     </div>
