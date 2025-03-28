@@ -252,6 +252,8 @@ def event_detail(request, slug):
         'images': images,
         'itineraries': itineraries,
         'countries': list(countries),
+        'dial_codes': get_dial_codes(),
+
     }
     return render(request, 'core/event_detail.html', context)
 
