@@ -25,40 +25,44 @@
             
             <form class="register-form">
                 <h4 class="mb-3">Conference Preferences</h4>
-                <div class="mb-3">
-                    <input type="text" class="form-control form-control-lg" placeholder="Enter your First Name">
-                </div>
-                <div class="mb-3">
-                    <input type="text" class="form-control form-control-lg" placeholder="Enter your Last Name">
-                </div>
-                <div class="mb-3">
-                    <input type="email" class="form-control form-control-lg" placeholder="Enter your Email Address Here">
-                </div>
-                <div class="mb-3">
-                    <input type="text" class="form-control form-control-lg" placeholder="Organisation Name (optional)">
-                </div>
-                <div class="mb-3">
-                    <input type="text" class="form-control form-control-lg" placeholder="Job title or position (optional)">
-                </div>
-                <div class="mb-3">
-                    <select class="form-select form-select-lg country-select" id="countrySelect" aria-label="Select your country">
-                        <option selected disabled>Select your country</option>
-                        {% for code, name in countries %}
-                            <option value="{{ code }}" data-code="{{ code }}" data-dial-code="{{ dial_codes|get_item:code }}">
-                                {{ name }}
-                            </option>
-                        {% endfor %}
-                    </select>
-                </div>
-                <div class="mb-4">
-                    <div class="input-group">
-                        <span class="input-group-text country-code-display">
-                            <img src="https://flagcdn.com/24x18/us.png" alt="Country Flag" class="country-flag" id="selectedFlag">
-                            <span id="dialCode">+1</span>
-                        </span>
-                        <input type="tel" class="form-control form-control-lg" placeholder="Enter your Phone Number">
+                <div class="row g-1">
+                    <div class="col-md-6 mb-3">
+                        <input type="text" class="form-control form-control-lg" placeholder="Enter your First Name">
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <input type="text" class="form-control form-control-lg" placeholder="Enter your Last Name">
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <input type="email" class="form-control form-control-lg" placeholder="Enter your Email Address Here">
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <input type="text" class="form-control form-control-lg" placeholder="Organisation Name (optional)">
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <input type="text" class="form-control form-control-lg" placeholder="Job title or position (optional)">
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <select class="form-select form-select-lg country-select" id="countrySelect" aria-label="Select your country">
+                            <option selected disabled>Select your country</option>
+                            {% for code, name in countries %}
+                                <option value="{{ code }}" data-code="{{ code }}" data-dial-code="{{ dial_codes|get_item:code }}">
+                                    {{ name }}
+                                </option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="col-md-12 mb-4">
+                        <div class="input-group">
+                            <span class="input-group-text country-code-display">
+                                <img src="https://flagcdn.com/24x18/us.png" alt="Country Flag" class="country-flag" id="selectedFlag">
+                                <span id="dialCode">+1</span>
+                            </span>
+                            <input type="tel" class="form-control form-control-lg" placeholder="Enter your Phone Number">
+                        </div>
                     </div>
                 </div>
+                
+                
                 <div class="conference-preferences mt-5">
                     <h4 class="mb-3">Conference Preferences</h4>
                     

@@ -251,6 +251,7 @@ def event_detail(request, slug):
         'video': video,
         'images': images,
         'itineraries': itineraries,
+        'countries': list(countries),
     }
     return render(request, 'core/event_detail.html', context)
 

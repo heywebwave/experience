@@ -755,3 +755,6 @@ footer {
 .bg-grey {
     background-color: #EDEBEB33;
 }
+::placeholder {
+    font-size: 0.8rem !important; /* Adjust as needed */
+}
