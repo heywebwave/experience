@@ -141,53 +141,60 @@
 <!-- Add this before the newsletter section -->
 <section class="testimonials-section py-5">
     <div class="container">
-        <h2 class="text-center mb-4">Testimonies of our Events</h2>
-        <p class="text-center mb-5">Lorem ipsum dolor sit amet consectetur. Amet phasellus et purus quis cursus ultrices nam id. Nulla nulla felis elit lorem.</p>
-        
-        <div class="testimonial-slider position-relative">
-            <!-- Swiper -->
-            <div class="swiper testimonialSwiper">
-                <div class="swiper-wrapper">
-                    <!-- Testimonial 1 -->
-                    <div class="swiper-slide">
-                        <div class="testimonial-content text-center">
-                            <div class="testimonial-images">
-                                <img src="{% static 'images/testimonial1.jpeg' %}" alt="Testimonial 1" class="testimonial-img rounded-4">
-                            </div>
-                            <h3 class="mt-4 mb-2">Sharon</h3>
-                            <p class="text-muted">Indonesia Trip</p>
-                        </div>
-                    </div>
-                    <!-- Testimonial 2 -->
-                    <div class="swiper-slide">
-                        <div class="testimonial-content text-center">
-                            <div class="testimonial-images">
-                                <img src="{% static 'images/testimonial2.jpeg' %}" alt="Testimonial 2" class="testimonial-img rounded-4">
-                            </div>
-                            <h3 class="mt-4 mb-2">Jessica</h3>
-                            <p class="text-muted">Dubai Experience</p>
-                        </div>
-                    </div>
-                    <!-- Testimonial 3 -->
-                    <div class="swiper-slide">
-                        <div class="testimonial-content text-center">
-                            <div class="testimonial-images">
-                                <img src="{% static 'images/testimonial3.jpeg' %}" alt="Testimonial 3" class="testimonial-img rounded-4">
-                            </div>
-                            <h3 class="mt-4 mb-2">Maria</h3>
-                            <p class="text-muted">Greece Adventure</p>
-                        </div>
-                    </div>
-                </div>
+        <div class="row">
+            <div class="col-lg-6">
+                <h1 class="text-center mt-5 mb-5 fw-500">Testimonies of our Events</h1>
+                <p class="text-center mb-5">Lorem ipsum dolor sit amet consectetur. Amet phasellus et purus quis cursus ultrices nam id. Nulla nulla felis elit lorem.Lorem ipsum dolor sit amet consectetur. Amet phasellus et purus quis cursus ultrices nam id. Nulla nulla felis elit lorem.Lorem ipsum dolor sit amet consectetur. Amet phasellus et purus quis cursus ultrices nam id.</p>
+               
+                 <!-- Pagination -->
+              
             </div>
-            
-            <!-- Navigation buttons -->
-            <div class="swiper-button-prev custom-nav"></div>
-            <div class="swiper-button-next custom-nav"></div>
-            
-            <!-- Pagination -->
-            <div class="swiper-pagination"></div>
+            <div class="col-lg-6">  
+                <div class="testimonial-slider position-relative">
+                    <!-- Swiper -->
+                    <div class="swiper testimonialSwiper">
+                        <div class="swiper-wrapper">
+                            <!-- Testimonial 1 -->
+                            <div class="swiper-slide" data-description="Sharon experienced the beauty of Indonesia during her trip. She explored pristine beaches, vibrant markets, and ancient temples. The cultural immersion and warm hospitality left her speechless.">
+                                <div class="testimonial-content text-center">
+                                    <div class="testimonial-images">
+                                        <img src="{% static 'images/testimonial1.jpeg' %}" alt="Testimonial 1" class="testimonial-img rounded-4">
+                                    </div>
+                                    <h3 class="mt-4 mb-2">Sharon</h3>
+                                    <p class="text-muted">Indonesia Trip</p>
+                                </div>
+                            </div>
+                            <!-- Testimonial 2 -->
+                            <div class="swiper-slide" data-description="Jessica embarked on an unforgettable adventure in Dubai. From desert safaris to luxurious skyscrapers, she marveled at the city's blend of tradition and modernity. A truly magical experience!">
+                                <div class="testimonial-content text-center">
+                                    <div class="testimonial-images">
+                                        <img src="{% static 'images/testimonial2.jpeg' %}" alt="Testimonial 2" class="testimonial-img rounded-4">
+                                    </div>
+                                    <h3 class="mt-4 mb-2">Jessica</h3>
+                                    <p class="text-muted">Dubai Experience</p>
+                                </div>
+                            </div>
+                            <!-- Testimonial 3 -->
+                            <div class="swiper-slide" data-description="Maria discovered the charm of Greece during her vacation. She sailed through crystal-clear waters, visited historic ruins, and enjoyed local cuisine. Her journey was nothing short of breathtaking.">
+                                <div class="testimonial-content text-center">
+                                    <div class="testimonial-images">
+                                        <img src="{% static 'images/testimonial3.jpeg' %}" alt="Testimonial 3" class="testimonial-img rounded-4">
+                                    </div>
+                                    <h3 class="mt-4 mb-2">Maria</h3>
+                                    <p class="text-muted">Greece Adventure</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                </div>
+                
+                
+                
+              
+            </div>
         </div>
+        
+       
     </div>
 </section>
 

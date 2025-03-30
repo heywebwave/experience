@@ -569,6 +569,7 @@ footer {
     opacity: 1;
 }
 
+
 /* Animation for slide transition */
 .swiper-slide-active .testimonial-img {
     transform: scale(1);

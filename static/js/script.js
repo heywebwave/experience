@@ -4,7 +4,11 @@ function toggleMenu() {
     menu.classList.toggle('active');
     document.body.style.overflow = menu.classList.contains('active') ? 'hidden' : '';
 }
-
+function updateDescription(index) {
+    const slides = document.querySelectorAll('.swiper-slide');
+    const descriptionElement = document.getElementById('testimonial-description');
+    descriptionElement.textContent = slides[index].getAttribute('data-description');
+}
 // Intersection Observer for card animations
 document.addEventListener('DOMContentLoaded', function() {
     const cards = document.querySelectorAll('.card');
@@ -82,11 +86,11 @@ document.addEventListener('DOMContentLoaded', function() {
         loop: true,
         loopedSlides: 3,
         coverflowEffect: {
-            rotate: 0,
+            rotate: 0, // Prevents default rotation on Y
             stretch: 0,
-            depth: 100,
-            modifier: 2,
-            slideShadows: false,
+            depth: 200,
+            modifier: 1,
+            slideShadows: false, 
         },
         navigation: {
             nextEl: '.swiper-button-next',
@@ -104,10 +108,12 @@ document.addEventListener('DOMContentLoaded', function() {
                 slidesPerView: 3,
             }
         },
+       
         autoplay: {
             delay: 3000,
             disableOnInteraction: false,
-        }
+        },
+        
     });
 });
 
