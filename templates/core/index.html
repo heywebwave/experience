@@ -69,7 +69,7 @@
                 <p class="lead mb-4">
                     I am that woman is an organization dedicated to empowering marginalized women by providing them with ideas, skills, mentorship, and opportunities
                 </p>
-                <a href="#" class="btn btn-dark btn-lg px-5" onclick="toggleRegister()">Join Us</a>
+                <a href="#" class="btn btn-dark btn-lg px-5" style="width: 250px" onclick="toggleRegister()">Join Us</a>
             </div>
             
             <!-- Image -->
@@ -94,14 +94,17 @@
             <div class="col-md-6 mb-4">
                 <div class="card h-100">
                     <div class="countdown-badge">
-                        <span class="countdown" data-date="{{event.event_date|date:"Y-m-d"}}"></span>
+                        <i class=""></i><span class="countdown" data-date="{{event.event_date|date:"Y-m-d"}}"></span><br>
+                        <span class="countdown-details">
+                            
+                        </span>
                     </div>
                     <img src="{{event.image.url}}" class="card-img-top" alt="Event 1">
                     <div class="card-body">
                         <h5 class="card-title">{{event.title}} <span class="text-muted">— {{event.event_date|date:"F Y"}}</span></h5>
                         <p class="card-text">{{event.description}}</p>
-                        <p class="fw-bold">${{event.price|floatformat:0|intcomma}}</p>
-                        <a href="{% url 'core:event_detail' event.slug %}" class="btn btn-outline-dark">View More</a>
+                        <p class="fw-bold fs-4">${{event.price|floatformat:0|intcomma}}</p>
+                        <a href="{% url 'core:event_detail' event.slug %}" class="btn btn-outline-dark px-4">View More</a>
                     </div>
                 </div>
             </div>
@@ -125,7 +128,7 @@
                     <div class="card-body">
                         <h5 class="card-title">{{event.title}} <span class="text-muted">— {{event.event_date|date:"F Y"}}</span></h5>
                         <p class="card-text">{{event.description}}</p>
-                        <a href="{% url 'core:event_detail' event.slug %}" class="btn btn-outline-dark">View More</a>
+                        <a href="{% url 'core:event_detail' event.slug %}" class="btn btn-outline-dark px-4">View More</a>
                     </div>
                 </div>
             </div>
@@ -188,6 +191,8 @@
     </div>
 </section>
 
-
+{% block extra_js %}
+<script src="{% static 'js/script.js' %}"></script>
+{% endblock %}
 
 {% endblock %}

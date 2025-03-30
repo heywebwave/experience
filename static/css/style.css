@@ -488,7 +488,18 @@ footer {
 .countdown {
     display: inline-block;
 }
+.countdown-badge .countdown-details {
+    display: none;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.8s ease-in-out, visibility 0.8s ease-in-out, display 1s ease-in-out;
+}
 
+.countdown-badge:hover .countdown-details {
+    opacity: 1;
+    visibility: visible;
+    display: block;
+}
 .countdown.highlight {
     animation: pulse 1s ease;
 }
@@ -582,7 +593,7 @@ footer {
 }
 
 /* Registration Popup Styles */
-.register-popup {
+.register-popup, .event-popup {
     position: fixed;
     top: 0;
     right: -100%;
@@ -594,17 +605,17 @@ footer {
     overflow-y: auto;
 }
 
-.register-popup.active {
+.register-popup.active, .event-popup.active {
     right: 0;
 }
 
-.register-content {
-    padding: 2rem;
-    max-width: 500px;
+.register-content, .event-content {
+    padding: 1rem;
+    max-width: 600px;
     margin: 0 auto;
 }
 
-.register-header {
+.register-header, .event-header {
     position: relative;
 }
 
@@ -616,22 +627,27 @@ footer {
 
 .register-form input,
 .register-form select,
-.register-form .input-group-text {
+.register-form .input-group-text,
+.event-form input,
+.event-form select,
+.event-form .input-group-text {
     padding: 0.75rem 1rem;
     font-size: 0.95rem;
 }
 
 .register-form .mb-3,
-.register-form .mb-4 {
+.register-form .mb-4,
+.event-form .mb-3,
+.event-form .mb-4 {
     margin-bottom: 1rem !important;
 }
 
-.register-body h2 {
+.register-body h2, .event-body h2 {
     font-size: 1.75rem;
     margin-bottom: 0.5rem;
 }
 
-.register-body p {
+.register-body p, .event-body p {
     font-size: 0.9rem;
     margin-bottom: 1.5rem;
 }
@@ -642,7 +658,7 @@ footer {
 
 /* Desktop Styles */
 @media (min-width: 992px) {
-    .register-popup {
+    .register-popup, .event-popup {
         right: auto;
         left: 50%;
         transform: translateX(-50%) scale(0.9);
@@ -661,57 +677,60 @@ footer {
         scrollbar-color: #888 #f1f1f1;
     }
 
-    .register-popup.active {
+    .register-popup.active, .event-popup.active {
         transform: translateX(-50%) scale(1);
         opacity: 1;
         pointer-events: all;
     }
 
-    .register-content {
+    .register-content, .event-content {
         padding: 2rem 3.5rem;
     }
 
-    .register-header {
+    .register-header, .event-header {
         margin-bottom: 0 !important;
     }
 
-    .register-popup::-webkit-scrollbar {
+    .register-popup::-webkit-scrollbar, .event-popup::-webkit-scrollbar {
         width: 6px;
     }
 
-    .register-popup::-webkit-scrollbar-track {
+    .register-popup::-webkit-scrollbar-track, .event-popup::-webkit-scrollbar-track {
         background: #f1f1f1;
         border-radius: 3px;
     }
 
-    .register-popup::-webkit-scrollbar-thumb {
+    .register-popup::-webkit-scrollbar-thumb, .event-popup::-webkit-scrollbar-thumb {
         background: #888;
         border-radius: 3px;
     }
 
-    .register-popup::-webkit-scrollbar-thumb:hover {
+    .register-popup::-webkit-scrollbar-thumb:hover, .event-popup::-webkit-scrollbar-thumb:hover {
         background: #555;
     }
 }
 
 /* Mobile Styles */
 @media (max-width: 991px) {
-    .register-popup {
+    .register-popup, .event-popup {
         height: 100%;
         overflow-y: auto;
     }
     
-    .register-content {
+    .register-content, .event-content {
         padding: 1.25rem;
     }
     
-    .register-header {
+    .register-header, .event-header {
         margin-bottom: 1.5rem !important;
     }
 
     .register-form input,
     .register-form select,
-    .register-form .input-group-text {
+    .register-form .input-group-text,
+    .event-form input,
+    .event-form select,
+    .event-form .input-group-text {
         padding: 0.625rem 0.875rem;
     }
 }
@@ -746,7 +765,9 @@ footer {
 
 /* Reduce the height of select and inputs */
 .register-form .form-select-lg,
-.register-form .form-control-lg {
+.register-form .form-control-lg,
+.event-form .form-select-lg,
+.event-form .form-control-lg {
     padding-top: 0.5rem;
     padding-bottom: 0.5rem;
     font-size: 0.95rem;
