@@ -29,6 +29,7 @@ class RegisterView(CreateView):
 
     def form_invalid(self, form):
         if self.request.headers.get('X-Requested-With') == 'XMLHttpRequest':
+            
             return JsonResponse({
                 'status': 'error',
                 'errors': form.errors
