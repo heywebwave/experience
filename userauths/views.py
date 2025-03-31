@@ -15,8 +15,7 @@ import os
 class RegisterView(CreateView):
     model = CustomUser
     form_class = CustomUserCreationForm
-    template_name = 'userauths/register.html'
-    success_url = reverse_lazy('login')
+    success_url = reverse_lazy('userauths:login')
 
     def form_valid(self, form):
         response = super().form_valid(form)

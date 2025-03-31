@@ -1,9 +1,15 @@
 
+@font-face {
+    font-family: 'Bagoss'; /* Custom name for the font */
+    src: url('/static/fonts/Bagoss.woff2') format('woff2'),
+    url('/static/fonts/Bagoss.woff') format('woff'),
+}	
 /* Font styles */
 h1, h2, h3, h4, h5, h6,
 .display-4, .display-6 {
-    font-family: 'Poly', serif !important;
+    font-family: 'Poly', sans-serif !important;
 }
+
 
 /* Body font styles */
 body, 
@@ -15,7 +21,34 @@ input,
 .card-text,
 .form-control,
 .menu-bottom p {
-    font-family: 'Lora', serif !important;
+    font-family: 'Archivo', sans-serif !important;
+}
+
+.wobble {
+    cursor: pointer;
+    transition: transform 0.4s ease-out;
+}
+
+.wobble:hover {
+    animation: horizontalBounce 0.4s ease-in-out;
+}
+
+@keyframes horizontalBounce {
+    0% {
+        transform: scaleX(1);
+    }
+    25% {
+        transform: scaleX(0.99);
+    }
+    50% {
+        transform: scaleX(1.01);
+    }
+    75% {
+        transform: scaleX(0.99);
+    }
+    100% {
+        transform: scaleX(1);
+    }
 }
 
 /* Adjust line height for better readability */
@@ -152,7 +185,9 @@ h1 {
     .btn {
         width: 100%;
     }
-    
+    .lead{
+        font-size: 1rem;
+    }
     .hero-section .row {
         flex-direction: column;
     }
@@ -453,7 +488,7 @@ footer {
 }
 
 .btn:hover {
-    transform: translateY(-2px);
+    animation: horizontalBounce 0.4s ease-in-out;
 }
 
 /* Newsletter section animation */

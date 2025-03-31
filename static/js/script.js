@@ -152,10 +152,51 @@ document.addEventListener('DOMContentLoaded', function() {
         const dialCodeValue = selectedOption.dataset.dialCode;
 
         // Update flag
-        selectedFlag.src = `https://flagcdn.com/24x18/${countryCode}.png`;
+        selectedFlag.src = `/static/flags/${countryCode}.gif`;
         selectedFlag.alt = `${selectedOption.text} Flag`;
 
         // Update dial code
         dialCode.textContent = `+${dialCodeValue}`;
+    });
+});
+
+
+document.addEventListener("DOMContentLoaded", function () {
+    const form = document.getElementById("registerForm");
+    const submitBtn = document.getElementById("submitBtn");
+    const btnText = submitBtn.querySelector(".btn-text");
+    const spinner = submitBtn.querySelector(".spinner-border");
+
+    form.addEventListener("submit", function (event) {
+        event.preventDefault();
+
+        // Show loader and disable button
+        btnText.textContent = "Processing...";
+        spinner.classList.remove("d-none");
+        submitBtn.disabled = true;
+
+        let formData = new FormData(form);
+
+        fetch(form.action, {
+            method: "POST",
+            body: formData,
+            headers: { "X-Requested-With": "XMLHttpRequest" },
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.status === "success") {
+                document.getElementById("registerPopup").classList.add("hidden");
+                document.getElementById("successPopup").classList.remove("hidden");
+            } else if (data.status === "error") {
+                alert("Error: " + Object.values(data.errors).join("\n"));
+            }
+        })
+        .catch(error => console.error("Error:", error))
+        .finally(() => {
+            // Restore button state
+            btnText.textContent = "Submit";
+            spinner.classList.add("d-none");
+            submitBtn.disabled = false;
+        });
     });
 });
