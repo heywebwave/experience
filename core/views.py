@@ -10,6 +10,7 @@ from django.template.loader import render_to_string
 import time
 import stripe
 from django.conf import settings
+from .forms import EventRegistrationForm
 
 app_name = 'core'
 # Create your views here.
@@ -297,40 +298,29 @@ def event_media(request, slug):
     }
     return render(request, 'core/event_media.html', context)
 
-def register_event(request, event_id):
+from django.http import JsonResponse
+
+def event_registration_view(request):
     if request.method == 'POST':
-        try:
-            # Get the event
-            event = Event.objects.get(id=event_id)
-            
-            # Create registration
-            registration = EventRegistration(
-                event=event,
-                first_name=request.POST.get('first_name'),
-                last_name=request.POST.get('last_name'),
-                email=request.POST.get('email'),
-                organization=request.POST.get('organization', ''),
-                job_title=request.POST.get('job_title', ''),
-                country=request.POST.get('country'),
-                phone_number=request.POST.get('phone_number'),
-                sessions=request.POST.getlist('sessions'),
-                attend_all_days=request.POST.get('attendAllDays') == 'yes',
-                goals_expectations=request.POST.get('goalsExpectations', ''),
-                need_accommodation=request.POST.get('needAccommodation') == 'yes',
-                need_transportation=request.POST.get('transportationAssistance') == 'yes',
-                roommate_preference=request.POST.get('roommatePreference', ''),
-                arrival_date=request.POST.get('arrivalDate'),
-                departure_date=request.POST.get('departureDate')
-            )
-            registration.save()
-            
-            messages.success(request, 'Registration successful!')
-            return redirect('core:event_detail', slug=event.slug)
-            
-        except Exception as e:
-            messages.error(request, 'An error occurred during registration. Please try again.')
-            
-    return redirect('core:event_detail', slug=event.slug)
+        form_data = request.POST.copy()
+        sessions = request.POST.getlist('sessions')
+        dietary_restrictions = request.POST.getlist('dietary_restrictions')
+        how_heard_about_event = request.POST.getlist('how_heard_about_event')
+
+        form_data.setlist('sessions', sessions)
+        form_data.setlist('dietary_restrictions', dietary_restrictions)
+        form_data.setlist('how_heard_about_event', how_heard_about_event)
+
+        form = EventRegistrationForm(form_data)
+        if form.is_valid():
+            form.save()
+            return JsonResponse({'status': 'success', 'message': 'Registration successful!'})
+        else:
+            return JsonResponse({'status': 'error', 'errors': form.errors}, status=400)
+
+    else:
+        form = EventRegistrationForm()
+        return render(request, 'event_registration.html', {'form': form})
 
 @csrf_exempt
 def stripe_webhook(request):

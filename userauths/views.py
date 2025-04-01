@@ -61,40 +61,52 @@ def sign_up(request):
             'errors': "Invalid request method. Please use POST.",
         }, status=400)
 
+
+
 def sign_in(request):
     if request.method == "POST":
         form = SignInForm(request.POST)
         
         # Validate the form
         if form.is_valid():
-            email = form.cleaned_data.get('email')
-            password = form.cleaned_data.get('password')
-            
-            # Authenticate user
-            user = authenticate(request, email=email, password=password)
-            
-            if user is None:
+            try:
+                email = form.cleaned_data.get('email')
+                password = form.cleaned_data.get('password')
+                
+                # Authenticate user
+                user = authenticate(request, email=email, password=password)
+                
+                if user is None:
+                    
+                    return JsonResponse(
+                        {'success': False, 'message': 'Invalid credentials.'}, 
+                        status=401
+                    )
+                
+                # Check if the account is active
+                if not user.is_active:
+                    
+                    return JsonResponse(
+                        {'success': False, 'message': 'Account is inactive. Please contact support.'}, 
+                        status=401
+                    )
+                
+                # Log in the user
+                login(request, user)
+                fullname = getattr(user, 'first_name', 'User')  # Use a default value if full_name is missing
+                
+                # Successful login response
                 return JsonResponse(
-                    {'success': False, 'message': 'Invalid credentials.'}, 
-                    status=401
+                    {'success': True, 'message': f"Welcome back, {fullname}!", 'redirect_url': "/"},
+                    status=200
                 )
             
-            # Check if the account is active
-            if not user.is_active:
+            except Exception as e:
+                
                 return JsonResponse(
-                    {'success': False, 'message': 'Account is inactive. Please contact support.'}, 
-                    status=401
+                    {'success': False, 'message': 'An unexpected error occurred. Please try again later.'},
+                    status=500
                 )
-            
-            # Log in the user
-            login(request, user)
-            fullname = f"{user.full_name}"
-            
-            # Successful login response
-            return JsonResponse(
-                {'success': True, 'message': f"Welcome back, {fullname}!",'redirect_url': "/dashboard/"},
-                status=200
-            )
         
         # Handle form errors
         return JsonResponse(
@@ -108,7 +120,6 @@ def sign_in(request):
             'success': False,
             'errors': "Invalid request method. Please use POST.",
         }, status=400)
-
 
 def logout_view(request):
     logout(request)

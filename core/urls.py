@@ -8,6 +8,7 @@ urlpatterns = [
     path('cron/update-event-status/', views.update_event_status, name='update_event_status'),
     path('events/', views.event_list, name='event_list'),
     path('event/<slug:slug>/', views.event_detail, name='event_detail'),
+    path('registration/', views.event_registration_view, name='registration'),
     path('event/<slug:slug>/media/', views.event_media, name='event_media'),
     path('webhook/stripe/', views.stripe_webhook, name='stripe_webhook'),
 ]
