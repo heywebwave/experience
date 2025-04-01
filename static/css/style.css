@@ -10,7 +10,11 @@ h1, h2, h3, h4, h5, h6,
     font-family: 'Poly', sans-serif !important;
 }
 
-
+.error-message {
+    color: red;
+    font-size: 0.875rem; /* Adjust size as needed */
+    margin-top: 0.25rem;
+}
 /* Body font styles */
 body, 
 p, 
@@ -167,6 +171,7 @@ h1 {
     .col-lg-6.order-2 {
         overflow: visible;
     }
+ 
     
     .image-wrapper img {
         margin-left: -10%;
@@ -184,6 +189,11 @@ h1 {
 @media (max-width: 991px) {
     .btn {
         width: 100%;
+    }
+    .popup{
+        width: 100%;
+        max-width: 90%;
+        margin: 0 auto;
     }
     .lead{
         font-size: 1rem;
@@ -629,7 +639,7 @@ footer {
 }
 
 /* Registration Popup Styles */
-.register-popup, .event-popup {
+.register-popup, .event-popup{
     position: fixed;
     top: 0;
     right: -100%;
@@ -694,6 +704,10 @@ footer {
 
 /* Desktop Styles */
 @media (min-width: 992px) {
+    #loginPopup{
+        width: 100%;
+        max-width: 500px;
+    }
     .register-popup, .event-popup {
         right: auto;
         left: 50%;

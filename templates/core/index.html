@@ -22,21 +22,24 @@
         
         <div class="register-body">
             <h2 class="mb-3">Register With Us</h2>
-            <p class="text-muted mb-4">Create an account with us to be a part of the amazing women that never refuse to back down.</p>
-            
+            <span><p class="text-muted ">Create an account with us to be a part of the amazing women that never refuse to back down.  <span id="openLoginPopupFromRegister" class="mb-4" style="cursor:pointer; text-decoration: underline;">Already have an account? Login</span></p>
+               </span>
             <form class="register-form" id="registerForm" method="POST" action="{% url 'userauths:register' %}">
                 {% csrf_token %}
                 <div class="mb-3">
-                    <input type="text" class="form-control form-control-lg" name="first_name"  placeholder="Enter your First Name">
+                    <input type="text" class="form-control form-control-lg" name="first_name" placeholder="Enter your First Name">
+                    <div class="error-message text-danger small"></div>
                 </div>
                 <div class="mb-3">
-                    <input type="text" class="form-control form-control-lg" name="last_name"  placeholder="Enter your Last Name">
+                    <input type="text" class="form-control form-control-lg" name="last_name" placeholder="Enter your Last Name">
+                    <div class="error-message text-danger small"></div>
                 </div>
                 <div class="mb-3">
-                    <input type="email" class="form-control form-control-lg" name="email"  placeholder="Enter your Email Address Here">
+                    <input type="email" class="form-control form-control-lg" name="email" placeholder="Enter your Email Address Here">
+                    <div class="error-message text-danger small"></div>
                 </div>
                 <div class="mb-3">
-                    <select class="form-select form-select-lg country-select" id="countrySelect" name="country"  aria-label="Select your country">
+                    <select class="form-select form-select-lg country-select" id="countrySelect" name="country" aria-label="Select your country">
                         <option selected disabled>Select your country</option>
                         {% for code, name in countries %}
                             <option value="{{ code }}" data-code="{{ code }}" data-dial-code="{{ dial_codes|get_item:code }}">
@@ -44,6 +47,7 @@
                             </option>
                         {% endfor %}
                     </select>
+                    <div class="error-message text-danger small"></div>
                 </div>
                 <div class="mb-4">
                     <div class="input-group">
@@ -52,51 +56,79 @@
                             <span id="dialCode">+1</span>
                         </span>
                         <input type="tel" class="form-control form-control-lg" name="phone_number" placeholder="Enter your Phone Number">
+                        <div class="error-message text-danger small"></div>
                     </div>
                 </div>
                 <div class="mb-3">
                     <input type="password" class="form-control form-control-lg" name="password" placeholder="Enter your Password">
+                    <div class="error-message text-danger small"></div>
                 </div>
                 <button type="submit" id="submitBtn" class="btn btn-dark btn-lg w-100">
                     <span class="btn-text">Submit</span>
-                    <span class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true"></span>
+                    
                 </button>
                 
             </form>
         </div>
-        <!-- Congratulations Popup -->
-        <div id="successPopup" class="success-popup hidden">
-            <img src="{% static 'images/success.jpg' %}" alt="Success" class="success-img">
-            <p class="success-text">Congratulations! Your registration was successful.</p>
-        </div>
-        <style>
-            .success-popup {
-                position: fixed;
-                top: 50%;
-                left: 50%;
-                transform: translate(-50%, -50%);
-                background: white;
-                padding: 20px;
-                border-radius: 10px;
-                box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-                text-align: center;
-            }
-            .hidden {
-                display: none;
-            }
-            .success-img {
-                width: 100%;
-                border-radius: 10px;
-            }
-            .success-text {
-                font-size: 18px;
-                font-weight: bold;
-                margin-top: 10px;
-            }
-        </style>
+    
+        
     </div>
 </div>
+<!-- Login Popup -->
+<div id="loginPopup" class="popup hidden">
+    <div class="popup-content">
+        
+        <h2 style="text-align: start" class="mb-4">Login</h2>
+        <p class="text-muted mb-4" style="text-align: start">Login to be a part of the amazing women that never refuse to back down.</p>
+        <form id="loginForm" method="POST" action="{% url 'userauths:login' %}">
+            {% csrf_token %}
+            <div class="mb-3">
+                <input type="email" class="form-control form-control-lg" name="email" placeholder="Enter your Email Address">
+                <div class="error-message text-danger small"></div>
+            </div>
+            <div class="mb-3">
+                <input type="password" class="form-control form-control-lg" name="password" placeholder="Enter your Password">
+                <div class="error-message text-danger small"></div>
+            </div>
+            <button type="submit" id="loginSubmitBtn" class="btn btn-dark btn-lg w-100">
+                <span class="btn-text">Login</span>
 
+            </button>
+            
+        </form>
+    </div>
+</div>
+<div id="successPopup" class="popup hidden">
+    <img src="{% static 'images/success.jpg' %}" alt="Success" class="success-img">
+    <p class="success-text">Congratulations! Your registration was successful.</p>
+</div>
+<style>
+    .popup {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: white;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        text-align: center;
+        z-index: 1000;
+        max-width: 90%;
+    }
+    .hidden {
+        display: none;
+    }
+    .success-img {
+        width: 100%;
+        border-radius: 10px;
+    }
+    .success-text {
+        font-size: 18px;
+        font-weight: bold;
+        margin-top: 10px;
+    }
+</style>
 <section class="hero-section position-relative">
     <div class="container">
         <div class="row align-items-center min-vh-75">

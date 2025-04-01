@@ -159,44 +159,102 @@ document.addEventListener('DOMContentLoaded', function() {
         dialCode.textContent = `+${dialCodeValue}`;
     });
 });
+$(document).ready(function () {
+    $("#openLoginPopupFromRegister").on("click", function (event) {
+        event.stopPropagation(); // Prevent click from bubbling up
+        $("#loginPopup").removeClass("hidden");
+        $("#registerPopup").removeClass("active");
+        setTimeout(() => {
+            $("#loginForm [name='email']").focus();
+        }, 100);
+    });
+
+    // Hide popup when clicking outside
+    $(document).on("click", function (event) {
+        if (!$(event.target).closest("#loginPopup, #openLoginPopupFromRegister").length) {
+            $("#loginPopup").addClass("hidden");
+        }
+    });
+});
 
 
-document.addEventListener("DOMContentLoaded", function () {
-    const form = document.getElementById("registerForm");
-    const submitBtn = document.getElementById("submitBtn");
-    const btnText = submitBtn.querySelector(".btn-text");
-    const spinner = submitBtn.querySelector(".spinner-border");
-
-    form.addEventListener("submit", function (event) {
+$(document).ready(function () {
+    $("#registerForm").submit(function (event) {
         event.preventDefault();
+        event.stopPropagation(); // Prevents the form from submitting normally
 
-        // Show loader and disable button
-        btnText.textContent = "Processing...";
-        spinner.classList.remove("d-none");
-        submitBtn.disabled = true;
+        const formData = new FormData(this); // Collects the form data in the correct format
 
-        let formData = new FormData(form);
+        const $signupBtn = $("#submitBtn");
+        $signupBtn.prop("disabled", true).html('Continue <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>');
 
-        fetch(form.action, {
-            method: "POST",
-            body: formData,
-            headers: { "X-Requested-With": "XMLHttpRequest" },
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.status === "success") {
-                document.getElementById("registerPopup").classList.add("hidden");
-                document.getElementById("successPopup").classList.remove("hidden");
-            } else if (data.status === "error") {
-                alert("Error: " + Object.values(data.errors).join("\n"));
+        const csrfToken = $('input[name="csrfmiddlewaretoken"]').val();
+
+        $.ajax({
+            url: "/user/sign-up/",
+            type: "POST",
+            data: formData,
+            processData: false, // Prevents jQuery from converting the FormData object to a string
+            contentType: false, // Allows the FormData object to set its own content type
+            beforeSend: function (xhr) {
+                xhr.setRequestHeader("X-CSRFToken", csrfToken);
+            },
+            success: function (response) {
+                if (response.success) {
+                    console.log("Sign up successful!");
+                    $("#registerPopup").addClass("hidden");
+                    $("#successPopup").removeClass("hidden");
+                    // window.location.href = response.redirect_url;
+                } else {
+                    console.error(response.errors?.email || response.message || "An error occurred.");
+                }
+            },
+            error: function (xhr) {
+                const response = xhr.responseJSON;
+                console.error(response);
+            },
+            complete: function () {
+                $signupBtn.prop("disabled", false).html('Continue');
             }
-        })
-        .catch(error => console.error("Error:", error))
-        .finally(() => {
-            // Restore button state
-            btnText.textContent = "Submit";
-            spinner.classList.add("d-none");
-            submitBtn.disabled = false;
+        });
+    });
+    $("#loginForm").submit(function (event) {
+        event.preventDefault();
+    
+        const formData = new FormData(this); // Collects the form data in the correct format
+    
+        const $signinBtn = $("#loginSubmitBtn");
+        $signinBtn.prop("disabled", true).html('Signing In <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>');
+    
+        const csrfToken = $('input[name="csrfmiddlewaretoken"]').val();
+    
+        $.ajax({
+            url: "/user/login/", // Replace with your sign-in endpoint
+            type: "POST",
+            data: formData,
+            processData: false, // Prevents jQuery from converting the FormData object to a string
+            contentType: false, // Allows the FormData object to set its own content type
+            beforeSend: function (xhr) {
+                xhr.setRequestHeader("X-CSRFToken", csrfToken);
+            },
+            success: function (response) {
+                if (response.success) {
+                    console.log("Sign in successful!");
+                    window.location.href = response.redirect_url; // Redirect to the specified URL
+                } else {
+                    // Handle errors (e.g., invalid credentials)
+                    console.error(response.message || "An error occurred.");
+                    console.error(response.message || "An error occurred."); // Optional: Display a message to the user
+                }
+            },
+            error: function (xhr) {
+                const response = xhr.responseJSON;
+                console.error(response?.message || "An error occurred.");
+                console.error(response?.message || "An error occurred."); // Optional: Display a message to the user
+            },
+            complete: function () {
+                $signinBtn.prop("disabled", false).html('Sign In');
+            }
         });
     });
 });

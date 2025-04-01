@@ -9,7 +9,7 @@ from django.urls import re_path
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('dashboard/', RedirectView.as_view(pattern_name='userauths:login'), name='home'),
-    path('auth/', include('userauths.urls')),
+    path('user/', include('userauths.urls')),
     path('', include('core.urls')),
 
     re_path(r'^media/(?P<path>.*)$', serve,{'document_root': settings.MEDIA_ROOT}),
