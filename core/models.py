@@ -5,6 +5,9 @@ from django.utils.text import slugify
 from django.urls import reverse
 import cloudinary
 from cloudinary.models import CloudinaryField
+from userauths.models import CustomUser  
+from django_countries.fields import CountryField
+from phonenumber_field.modelfields import PhoneNumberField 
           
 cloudinary.config( 
   cloud_name = "dl7u4nm7l",
@@ -73,6 +76,8 @@ class Event(models.Model):
     group_size = models.IntegerField(default=10)
     pay_in_part = models.DecimalField(max_digits=10, decimal_places=2)
     complete_payment_before = models.DateField()
+    full_payment_link = models.URLField(max_length=500, blank=True)
+    part_payment_link = models.URLField(max_length=500, blank=True)
     location = models.CharField(max_length=100)
     status = models.CharField(max_length=10, choices=EVENT_STATUS, default='upcoming')
     created_at = models.DateTimeField(auto_now_add=True)
@@ -180,3 +185,70 @@ class Itinerary(models.Model):
 
     def __str__(self):
         return f"Itinerary for {self.event.title} - Day {self.day}"
+    
+
+class EventRegistration(models.Model):
+    # Personal Information
+    first_name = models.CharField(max_length=100)
+    last_name = models.CharField(max_length=100)
+    email = models.EmailField()
+    organization = models.CharField(max_length=200, blank=True)
+    job_title = models.CharField(max_length=200, blank=True)
+    country = CountryField()
+    phone_number = PhoneNumberField()
+
+    # Conference Preferences
+    sessions = models.JSONField(default=list)  # Store selected sessions
+    attend_all_days = models.BooleanField()
+    goals_expectations = models.TextField(blank=True)
+
+    # Accommodation & Travel
+    need_accommodation = models.BooleanField()
+    need_transportation = models.BooleanField()
+    roommate_preference = models.CharField(max_length=200, blank=True)
+    arrival_date = models.DateField()
+    departure_date = models.DateField()
+
+    # Dietary and Medical Information
+    dietary_restrictions = models.JSONField(default=list, blank=True)  # Vegetarian, Vegan, Gluten-Free, etc.
+    medical_conditions = models.TextField(blank=True)  # Medical conditions or mobility needs
+
+    # Emergency Contact Information
+    emergency_contact_name = models.CharField(max_length=200, blank=True)
+    emergency_contact_relationship = models.CharField(max_length=100, blank=True)
+    emergency_contact_phone = PhoneNumberField(blank=True)
+
+    # Additional Information
+    how_heard_about_event = models.JSONField(default=list, blank=True)  # Website, Social Media, Referral, Others
+    interested_in_volunteering = models.BooleanField(null=True, blank=True)  # Yes/No for volunteering
+
+    # Event Reference
+    event = models.ForeignKey('Event', on_delete=models.CASCADE)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.first_name} {self.last_name} - {self.event.title}"
+
+
+class Payment(models.Model):
+    PAYMENT_TYPE_CHOICES = (
+        ('full', 'Full Payment'),
+        ('part', 'Part Payment'),
+    )
+    
+    PAYMENT_STATUS_CHOICES = (
+        ('pending', 'Pending'),
+        ('completed', 'Completed'),
+        ('failed', 'Failed'),
+    )
+
+    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
+    event = models.ForeignKey(Event, on_delete=models.CASCADE)
+    amount = models.DecimalField(max_digits=10, decimal_places=2)
+    payment_type = models.CharField(max_length=10, choices=PAYMENT_TYPE_CHOICES)
+    payment_status = models.CharField(max_length=10, choices=PAYMENT_STATUS_CHOICES, default='pending')
+    stripe_payment_id = models.CharField(max_length=100, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.user.username} - {self.event.title} - {self.payment_type}"

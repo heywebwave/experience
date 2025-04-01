@@ -5,10 +5,11 @@ from decouple import config
 from django.http import JsonResponse, HttpResponse
 from django.views.decorators.http import require_POST
 from django.views.decorators.csrf import csrf_exempt
-from core.models import Event, EventFeature
+from core.models import Event, EventFeature, EventRegistration, Payment
 from django.template.loader import render_to_string
 import time
-
+import stripe
+from django.conf import settings
 
 app_name = 'core'
 # Create your views here.
@@ -207,6 +208,27 @@ def get_dial_codes():
     }
     return dial_codes
 
+def has_user_registered_for_event(user_email, slug):
+    """
+    Check if a user has registered for a specific event.
+    
+    Args:
+        user_email (str): The email of the user to check.
+        slug : The slug of the event to check.
+    
+    Returns:
+        bool: True if the user is registered, False otherwise.
+    """
+    # Get the event object
+    event = get_object_or_404(Event, slug=slug)
+    
+    # Check if a registration exists for the user and event
+    registration_exists = EventRegistration.objects.filter(
+        email=user_email,
+        event=event
+    ).exists()
+    
+    return registration_exists
 
 def index(request):
     events = Event.objects.all()
@@ -245,6 +267,11 @@ def event_detail(request, slug):
     video = event.media.filter(media_type='video').first()
     images = event.media.filter(media_type='image')[:5]
     itineraries = event.itineraries.all()
+    user_email = request.user.email if request.user.is_authenticated else None
+    
+    is_registered = False
+    if user_email:
+        is_registered = has_user_registered_for_event(user_email, slug)
     context = {
         'event': event,
         'features': features,
@@ -253,6 +280,7 @@ def event_detail(request, slug):
         'itineraries': itineraries,
         'countries': list(countries),
         'dial_codes': get_dial_codes(),
+        'is_registered': is_registered,
 
     }
     return render(request, 'core/event_detail.html', context)
@@ -268,4 +296,69 @@ def event_media(request, slug):
         'images': images,
     }
     return render(request, 'core/event_media.html', context)
+
+def register_event(request, event_id):
+    if request.method == 'POST':
+        try:
+            # Get the event
+            event = Event.objects.get(id=event_id)
+            
+            # Create registration
+            registration = EventRegistration(
+                event=event,
+                first_name=request.POST.get('first_name'),
+                last_name=request.POST.get('last_name'),
+                email=request.POST.get('email'),
+                organization=request.POST.get('organization', ''),
+                job_title=request.POST.get('job_title', ''),
+                country=request.POST.get('country'),
+                phone_number=request.POST.get('phone_number'),
+                sessions=request.POST.getlist('sessions'),
+                attend_all_days=request.POST.get('attendAllDays') == 'yes',
+                goals_expectations=request.POST.get('goalsExpectations', ''),
+                need_accommodation=request.POST.get('needAccommodation') == 'yes',
+                need_transportation=request.POST.get('transportationAssistance') == 'yes',
+                roommate_preference=request.POST.get('roommatePreference', ''),
+                arrival_date=request.POST.get('arrivalDate'),
+                departure_date=request.POST.get('departureDate')
+            )
+            registration.save()
+            
+            messages.success(request, 'Registration successful!')
+            return redirect('core:event_detail', slug=event.slug)
+            
+        except Exception as e:
+            messages.error(request, 'An error occurred during registration. Please try again.')
+            
+    return redirect('core:event_detail', slug=event.slug)
+
+@csrf_exempt
+def stripe_webhook(request):
+    payload = request.body
+    sig_header = request.META.get('HTTP_STRIPE_SIGNATURE')
+    
+    try:
+        event = stripe.Webhook.construct_event(
+            payload, sig_header, settings.STRIPE_WEBHOOK_SECRET
+        )
+    except ValueError as e:
+        return HttpResponse(status=400)
+    except stripe.error.SignatureVerificationError as e:
+        return HttpResponse(status=400)
+
+    if event['type'] == 'checkout.session.completed':
+        session = event['data']['object']
+        metadata = session.get('metadata', {})
+        
+        # Create or update payment record
+        Payment.objects.create(
+            user_id=metadata.get('user_id'),
+            event_id=metadata.get('event_id'),
+            amount=session['amount_total'] / 100,  # Convert from cents
+            payment_type=metadata.get('payment_type', 'full'),
+            payment_status='completed',
+            stripe_payment_id=session['payment_intent']
+        )
+
+    return HttpResponse(status=200)
 

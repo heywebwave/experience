@@ -9,4 +9,5 @@ urlpatterns = [
     path('events/', views.event_list, name='event_list'),
     path('event/<slug:slug>/', views.event_detail, name='event_detail'),
     path('event/<slug:slug>/media/', views.event_media, name='event_media'),
+    path('webhook/stripe/', views.stripe_webhook, name='stripe_webhook'),
 ]

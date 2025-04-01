@@ -6,6 +6,7 @@
 {% block content %}
 
 
+
 <!-- Registration Popup -->
 <div class="register-popup" id="registerPopup">
     <div class="register-content">
@@ -15,7 +16,7 @@
                 <i class="fas fa-times fs-4"></i>
             </button>
             <!-- Mobile only menu button -->
-            <button class="menu-btn border-0 bg-transparent d-lg-none rounded-pill border border-dark px-4 py-2 " style="font-size: 10px !important;" onclick="toggleMenu()">
+            <button class="menu-btn border-0 bg-transparent d-lg-none rounded-pill border border-dark px-4 py-2 "  onclick="toggleMenu()">
                 Menu
             </button>
         </div>
@@ -100,7 +101,12 @@
 </div>
 <div id="successPopup" class="popup hidden">
     <img src="{% static 'images/success.jpg' %}" alt="Success" class="success-img">
-    <p class="success-text">Congratulations! Your registration was successful.</p>
+    <p class="success-text mb-3">Congratulations! Your registration was successful.</p>
+    <p style="text-align: center;">Welcome! You've taken the first step on a transformative journey. By joining our community, you're not just becoming part of a program—you're becoming part of a movement.<br>
+
+        We celebrate your courage in taking this step, and we can't wait to witness your transformation. The path to empowerment begins now—and we're honored to walk it with you.<br>
+        
+        Welcome to the community. Your journey starts today.</p>
 </div>
 <style>
     .popup {
@@ -267,9 +273,6 @@
        
     </div>
 </section>
-
-{% block extra_js %}
 <script src="{% static 'js/script.js' %}"></script>
-{% endblock %}
 
 {% endblock %}

@@ -131,3 +131,4 @@ class DashboardView(LoginRequiredMixin, TemplateView):
                 }
             })
         return super().get(request, *args, **kwargs)
+

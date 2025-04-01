@@ -1,0 +1,235 @@
+{% extends 'base/base.html' %}
+{% load static humanize %}
+{% load custom_filters %}
+{% block title %}I am That Woman Experience{% endblock %}
+
+{% block content %}
+
+
+<!-- Back to Homepage Link -->
+<div class="back-section py-4" style="background-color: #f8f9fa;">
+    <div class="container">
+        <a href="/" class="back-link text-decoration-none text-dark d-flex align-items-center">
+            <i class="fas fa-arrow-left me-2"></i>
+            <span class="fs-5">Back to Homepage</span>
+        </a>
+    </div>
+</div>
+
+
+<!-- Upcoming Events Section -->
+<section class="upcoming-events py-5">
+    <div class="container">
+        <h2 class="mb-4 text-left text-lg-start">Events</h2>
+        <div class="row">
+            <!-- Event Card 1 -->
+            {% for event in events %}
+            <div class="col-md-6 mb-4">
+                <div class="card h-100">
+                    <div class="countdown-badge">
+                        <i class=""></i><span class="countdown" data-date="{{event.event_date|date:"Y-m-d"}}"></span><br>
+                        <span class="countdown-details">
+                            
+                        </span>
+                    </div>
+                    <img src="{{event.image.url}}" class="card-img-top" alt="Event 1">
+                    <div class="card-body">
+                        <h5 class="card-title">{{event.title}} <span class="text-muted">— {{event.event_date|date:"F Y"}}</span></h5>
+                        <p class="card-text">{{event.description}}</p>
+                        <p class="fw-bold fs-4">${{event.price|floatformat:0|intcomma}}</p>
+                        <a href="{% url 'core:event_detail' event.slug %}" class="btn btn-outline-dark px-4">View More</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+
+           
+        </div>
+    </div>
+</section>
+
+<style>
+
+
+    .bg-light-grey {
+        background-color: #F9F9F9;
+        border-radius: 0;
+        padding: 1.5rem;
+        border: 1px solid rgba(160, 158, 158, 0.38);
+    }
+
+    .profile-image {
+        width: 100%;
+        height: auto;
+        border-radius: 8px;
+    }
+
+    .about-content p {
+        color: #4A4A4A;
+        line-height: 1.8;
+    }
+
+    h1.display-4 {
+        font-size: 2.5rem;
+        margin-bottom: 0.5rem;
+    }
+
+    h2.h3 {
+        color: #000;
+        font-weight: 600;
+        font-size: 1.3rem;
+    }
+
+    .contact-info {
+        margin-top: 2rem;
+    }
+
+    .contact-link {
+        color: #333333;
+        transition: color 0.3s ease;
+    }
+
+    .contact-link:hover {
+        color: #000000;
+    }
+
+    .contact-link i {
+        width: 24px;
+        text-align: center;
+    }
+
+    /* Mobile Styles */
+    @media (max-width: 991px) {
+        .about-section {
+            text-align: left;
+        }
+
+        .contact-info {
+            background-color: #F9F9F9;
+            border-radius: 8px;
+            margin-top: 4rem !important;
+        }
+
+        .contact-link {
+            font-size: 0.95rem;
+        }
+        .bg-light-grey {
+            margin-top: 1.5rem !important;
+        }
+    }
+
+    /* Desktop Styles */
+    @media (min-width: 992px) {
+        .row.g-2 {
+            margin: 0 -0.25rem;
+        }
+        
+        .row.g-2 > [class*="col-"] {
+            padding: 0 0.25rem;
+        }
+
+        .col-lg-5 {
+            width: 49%;
+        }
+        
+        .col-lg-6 {
+            width: 49%;
+        }
+
+        .profile-section {
+            position: sticky;
+            top: 2rem;
+        }
+
+        .bg-light-grey {
+            height: 100%;
+        }
+    }
+
+    /* Add these new styles for contact section */
+    .contact-icon {
+        width: 40px;
+        height: 40px;
+        background-color: #000;
+        color: white;
+    }
+
+    .contact-label {
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: #000;
+        margin-bottom: 0.25rem;
+    }
+
+    .contact-value {
+        color: #666;
+        font-size: 0.95rem;
+    }
+
+    /* Mobile specific styles */
+    @media (max-width: 991px) {
+        .contact-label {
+            font-size: 1rem;
+        }
+        
+        .contact-value {
+            font-size: 0.9rem;
+        }
+    }
+
+    /* Only modify the contact-desktop related styles */
+    .contact-desktop {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        gap: 2rem;
+    }
+
+    .contact-desktop .contact-item {
+        flex: 1;
+    }
+
+    .contact-desktop .contact-icon {
+        margin: 0;
+        margin-right: 1rem;
+    }
+
+    .contact-desktop .contact-item .d-flex {
+        flex-direction: row;
+        align-items: flex-start;
+    }
+
+    @media (min-width: 992px) {
+        .contact-desktop .contact-label {
+            margin-top: 0;
+        }
+    }
+
+    .hover-scale {
+        transition: transform 0.3s ease;
+    }
+
+    .hover-scale:hover {
+        transform: scale(1.05);
+    }
+
+    .event-video {
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+
+    .event-images img {
+        aspect-ratio: 16/9;
+        object-fit: cover;
+    }
+
+    .form-check-label{
+        font-size: 0.9rem !important;  
+    }
+</style>
+
+<!-- Add in head or before closing body -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fslightbox/3.3.1/index.min.js"></script>
+<script src="{% static 'js/script2.js' %}"></script>
+{% endblock %}
