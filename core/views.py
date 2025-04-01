@@ -320,7 +320,7 @@ def event_registration_view(request):
 
     else:
         form = EventRegistrationForm()
-        return render(request, 'event_registration.html', {'form': form})
+        return JsonResponse({'status': 'Invalid request use post'}, status=400)
 
 @csrf_exempt
 def stripe_webhook(request):
