@@ -310,7 +310,11 @@ $(document).ready(function () {
             complete: function () {
                 $submitButton.prop("disabled", false).html('Check your mailbox for payment');
                 // Optionally, you can reset the form here
-                $(this).hide(); // Hide the button
+                $("#dietaryMedicalInfo").hide(); // Hide the button
+                $("#conferencePreferences").hide(); // Hide the button
+                $("#personalInfo").hide(); // Hide the button
+
+
               
 
             }

@@ -154,7 +154,7 @@
             <form class="event-form mt-5" id="eventForm" method="POST" action="{% url 'core:registration' %}">
                 {% csrf_token %}
                 <h4 class="mb-4">Personal Information</h4>
-                <div class="row g-1">
+                <div class="row g-1" id="personalInfo">
                     <input type="hidden" name="event" value="{{ event.id }}">
                     <div class="col-md-6 mb-3">
                         <input type="text" class="form-control form-control-lg" name="first_name" placeholder="Enter your First Name">
@@ -193,7 +193,7 @@
                 </div>
                 
                 
-                <div class="conference-preferences mt-4">
+                <div class="conference-preferences mt-4" id="conferencePreferences">
                     <h4 class="mb-3">Conference Preferences</h4>
                     
                     <div class="mb-3">
@@ -271,7 +271,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="dietary-medical-info mt-5 ">
+                <div class="dietary-medical-info mt-5 " id="dietaryMedicalInfo">
                     <h4 class="mb-3">Dietary & Medical Information</h4>
                     
                     <div class="mb-3">
