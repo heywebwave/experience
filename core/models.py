@@ -223,7 +223,7 @@ class EventRegistration(models.Model):
     interested_in_volunteering = models.BooleanField(null=True, blank=True)  # Yes/No for volunteering
 
     # Event Reference
-    event = models.ForeignKey('Event', on_delete=models.CASCADE)
+    event = models.ForeignKey(Event, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):

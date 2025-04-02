@@ -48,4 +48,5 @@ class EventRegistrationForm(forms.ModelForm):
                 (True, 'Yes'),
                 (False, 'No'),
             ]),
+            'event': forms.HiddenInput(), 
         }

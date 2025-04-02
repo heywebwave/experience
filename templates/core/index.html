@@ -23,7 +23,7 @@
         
         <div class="register-body">
             <h2 class="mb-3">Register With Us</h2>
-            <span><p class="text-muted ">Create an account with us to be a part of the amazing women that never refuse to back down.  <span id="openLoginPopupFromRegister" class="mb-4" style="cursor:pointer; text-decoration: underline;">Already have an account? Login</span></p>
+            <span><p class="text-muted ">Create an account with us to be a part of the amazing women that never refuse to back down. </p>
                </span>
             <form class="register-form" id="registerForm" method="POST" action="{% url 'userauths:register' %}">
                 {% csrf_token %}
@@ -142,7 +142,7 @@
             <div class="col-lg-6 text-center text-lg-start order-1 order-lg-1 py-5">
                 <h1 class="display-4 fw-bold mb-3">I am That Woman Experience</h1>
                 <h2 class="h3 mb-4">Empowering Marginalized Women</h2>
-                <p class="lead mb-4">
+                <p class="lead mb-4 fs-6">
                     I am that woman is an organization dedicated to empowering marginalized women by providing them with ideas, skills, mentorship, and opportunities
                 </p>
                 {% if request.user.is_authenticated %}
@@ -151,8 +151,8 @@
 
                 {% else %}
                 <div class="">
-                    <a href="#" class="btn btn-dark btn-lg px-5" style="width: 250px" onclick="toggleRegister()">Join Us</a>
-                    <a href="#upcoming-events" class="btn btn-outline-dark btn-lg px-5" style="width: 250px">Login</a>
+                    <a href="#" class="btn btn-dark btn-lg px-5 mb-3 mb-lg-0 me-lg-3 " style="width: 230px" onclick="toggleRegister()">Join Us</a>
+                    <a href="#" id="openLoginPopupFromRegister" class="btn btn-outline-dark btn-lg px-5" style="width: 230px">Login</a>
                 </div>
                 {% endif %}
             </div>
@@ -186,7 +186,7 @@
                     </div>
                     <img src="{{event.image.url}}" class="card-img-top" alt="Event 1">
                     <div class="card-body">
-                        <h5 class="card-title">{{event.title}} <span class="text-muted">— {{event.event_date|date:"F Y"}}</span></h5>
+                        <h5 class="card-title fw-600 text-black">{{event.title}} <span class="text-muted">— {{event.event_date|date:"F Y"}}</span></h5>
                         <p class="card-text">{{event.description}}</p>
                         <p class="fw-bold fs-4">${{event.price|floatformat:0|intcomma}}</p>
                         <a href="{% url 'core:event_detail' event.slug %}" class="btn btn-outline-dark px-4">View More</a>
@@ -211,7 +211,7 @@
                 <div class="card h-100">
                     <img src="{{event.image.url}}" class="card-img-top" alt="Event 1">
                     <div class="card-body">
-                        <h5 class="card-title">{{event.title}} <span class="text-muted">— {{event.event_date|date:"F Y"}}</span></h5>
+                        <h5 class="card-title fw-600 text-black">{{event.title}} <span class="text-muted">— {{event.event_date|date:"F Y"}}</span></h5>
                         <p class="card-text">{{event.description}}</p>
                         <a href="{% url 'core:event_detail' event.slug %}" class="btn btn-outline-dark px-4">View More</a>
                     </div>

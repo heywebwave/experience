@@ -104,6 +104,28 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 });
+function toggleRegister() {
+    const popup = document.getElementById('registerPopup');
+    popup.classList.toggle('active');
+    document.body.style.overflow = popup.classList.contains('active') ? 'hidden' : '';
+}
+
+// Update the click outside handler
+document.addEventListener('click', function(event) {
+    const popup = document.getElementById('registerPopup');
+    const isClickInside = popup.contains(event.target);
+    const isJoinUsButton = event.target.closest('.btn-dark');
+    
+    // Only handle click-outside on desktop
+    if (window.innerWidth >= 992) {
+        if (popup.classList.contains('active') && !isClickInside && !isJoinUsButton) {
+            toggleRegister();
+        }
+    }
+});
+document.querySelector('.register-content').addEventListener('click', function(event) {
+    event.stopPropagation();
+});
 
 
 function toggleEvent() {
@@ -245,6 +267,48 @@ $(document).ready(function () {
             },
             complete: function () {
                 $signinBtn.prop("disabled", false).html('Sign In');
+            }
+        });
+    });
+});
+
+
+$(document).ready(function () {
+    $("#eventForm").submit(function (event) {
+        event.preventDefault(); // Prevent default form submission
+
+        const formData = new FormData(this); // Collects the form data in the correct format
+
+        const $submitButton = $("#registrationButton");
+        $submitButton.prop("disabled", true).html('Submitting <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>');
+
+        const csrfToken = $('#eventForm input[name="csrfmiddlewaretoken"]').val();
+
+        $.ajax({
+            url: "/registration/", // Replace with your registration endpoint
+            type: "POST",
+            data: formData,
+            processData: false, // Prevents jQuery from converting the FormData object to a string
+            contentType: false, // Allows the FormData object to set its own content type
+            beforeSend: function (xhr) {
+                xhr.setRequestHeader("X-CSRFToken", csrfToken);
+            },
+            success: function (response) {
+                if (response.success) {
+                    console.log("Registration successful!");
+                    window.location.href = response.redirect_url; // Redirect to a thank-you page or homepage
+                } else {
+                    // Handle errors (e.g., validation errors)
+                    console.error(response.message || "An error occurred.");
+                
+                }
+            },
+            error: function (xhr) {
+                const response = xhr.responseJSON;
+                console.error(response?.message || "An error occurred.");
+            },
+            complete: function () {
+                $submitButton.prop("disabled", false).html('Submit');
             }
         });
     });

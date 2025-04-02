@@ -11,9 +11,34 @@ import time
 import stripe
 from django.conf import settings
 from .forms import EventRegistrationForm
-
+import resend 
 app_name = 'core'
+
+resend.api_key = config('RESEND_API')
 # Create your views here.
+from django.template.loader import render_to_string
+
+def send_registration_email(event, registration):
+    # Render the email subject and body
+    subject = f"Complete Your Registration for {event.title}"
+    html_content = render_to_string('emails/registration_email.html', {
+        'first_name': registration.first_name,
+        'event': event,
+        'full_payment_link': event.full_payment_link,
+        'part_payment_link': event.part_payment_link,
+    })
+
+    # Send the email using Resend
+    try:
+        resend.Emails.send({
+            "from": "Your Event Payment <no-reply@iatwexperience.com>",  # Replace with your verified domain email
+            "to": [registration.email],
+            "subject": subject,
+            "html": html_content,
+        })
+        print("Email sent successfully!")
+    except Exception as e:
+        print(f"Failed to send email: {e}")
 
 def get_dial_codes():
     dial_codes = {
@@ -313,13 +338,33 @@ def event_registration_view(request):
 
         form = EventRegistrationForm(form_data)
         if form.is_valid():
-            form.save()
-            return JsonResponse({'status': 'success', 'message': 'Registration successful!'})
+            # Save the form without committing to the database yet
+            registration = form.save(commit=False)
+
+            # Retrieve the associated Event instance
+            
+            event = get_object_or_404(Event, pk=form.cleaned_data['event'].pk)
+
+            # Attach the event to the registration
+            registration.event = event
+            registration.save()
+
+            # Use the full_payment_link from the Event model as the redirect URL
+            # Send confirmation email
+            send_registration_email(event, registration)
+
+            return JsonResponse({
+                'status': 'success',
+                'message': 'Registration successful!',
+                'redirect_url': event.full_payment_link
+            })
         else:
+            print(form.errors)
             return JsonResponse({'status': 'error', 'errors': form.errors}, status=400)
 
     else:
         form = EventRegistrationForm()
+        print('Invalid request use post')
         return JsonResponse({'status': 'Invalid request use post'}, status=400)
 
 @csrf_exempt

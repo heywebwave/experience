@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Complete Your Registration</title>
+</head>
+<body style="font-family: Arial, sans-serif; line-height: 1.6; margin: 0; padding: 0; background-color: #ffffff;">
+    <div style="max-width: 600px; margin: 20px auto; padding: 20px; border: 1px solid #000000; border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+        <h1 style="font-size: 24px; font-weight: bold; margin-bottom: 20px;">Hi {{ first_name }},</h1>
+        <p style="font-size: 16px; margin-bottom: 20px;">Thank you for registering for "{{ event.title }}". To complete your registration, please proceed with the payment using one of the links below:</p>
+        
+        <ul style="list-style-type: none; padding: 0; margin-bottom: 20px;">
+            <li style="font-size: 16px; margin-bottom: 10px;"><strong>Full Payment:</strong> <a href="{{ full_payment_link }}" style="text-decoration: none; font-weight: bold; color: #000000;">{{ full_payment_link }}</a></li>
+            <li style="font-size: 16px; margin-bottom: 10px;"><strong>Part Payment:</strong> <a href="{{ part_payment_link }}" style="text-decoration: none; font-weight: bold; color: #000000;">{{ part_payment_link }}</a></li>
+        </ul>
+
+        <p style="font-size: 16px; margin-bottom: 20px;">Please ensure that your payment is completed by <strong>{{ event.complete_payment_before }}</strong> to secure your spot.</p>
+
+        <p style="font-size: 16px; margin-bottom: 20px;">If you have any questions or need assistance, feel free to reach out to us at <a href="mailto:support@example.com" style="text-decoration: none; font-weight: bold; color: #000000;">support@example.com</a>.</p>
+
+        <p style="font-size: 16px;">We look forward to seeing you at the event!</p>
+        <p style="font-size: 16px;">Best regards,<br>The {{ event.title }} Team</p>
+    </div>
+</body>
+</html>

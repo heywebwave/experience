@@ -155,6 +155,7 @@
                 {% csrf_token %}
                 <h4 class="mb-4">Personal Information</h4>
                 <div class="row g-1">
+                    <input type="hidden" name="event" value="{{ event.id }}">
                     <div class="col-md-6 mb-3">
                         <input type="text" class="form-control form-control-lg" name="first_name" placeholder="Enter your First Name">
                     </div>
@@ -276,71 +277,71 @@
                     <div class="mb-3">
                         <label>A. Do you have any dietary restrictions or food allergies?</label>
                         <div>
-                            <input type="checkbox" id="vegetarian">
+                            <input type="checkbox" id="vegetarian" name="dietary_restrictions" value="vegetarian">
                             <label for="vegetarian" class="form-check-label">Vegetarian</label>
                         </div>
                         <div>
-                            <input type="checkbox" id="vegan">
+                            <input type="checkbox" id="vegan" name="dietary_restrictions" value="vegan">
                             <label for="vegan" class="form-check-label">Vegan</label>
                         </div>
                         <div>
-                            <input type="checkbox" id="glutenFree">
+                            <input type="checkbox" name="dietary_restrictions" value="gluten_free" id="glutenFree">
                             <label for="glutenFree" class="form-check-label">Gluten-Free</label>
                         </div>
                     </div>
                     
                     <div class="mb-3">
                         <label for="medicalConditions">B. Do you have any medical conditions or mobility needs we should be aware of?</label>
-                        <textarea class="form-control" id="medicalConditions" rows="3" placeholder="Enter your answer here"></textarea>
+                        <textarea class="form-control" name="medical_conditions" id="medicalConditions" rows="3" placeholder="Enter your answer here"></textarea>
                     </div>
                     
                     <h4 class="mt-5 mb-3">Emergency Contact Information</h4>
                     
                     <div class="mb-3">
                         <label for="emergencyContactName" class="form-check-label">A. Emergency Contact Name</label>
-                        <input type="text" class="form-control" id="emergencyContactName" placeholder="Enter your answer here">
+                        <input type="text" class="form-control" name="emergency_contact_name" id="emergencyContactName" placeholder="Enter your answer here">
                     </div>
                     
                     <div class="mb-3">
                         <label for="emergencyContactRelationship" class="form-check-label">B. Relationship to You</label>
-                        <input type="text" class="form-control" id="emergencyContactRelationship" placeholder="Enter your answer here">
+                        <input type="text" class="form-control" name="emergency_contact_relationship" id="emergencyContactRelationship" placeholder="Enter your answer here">
                     </div>
                     
                     <div class="mb-3">
                         <label for="emergencyContactPhone" class="form-check-label">C. Emergency Contact Phone Number</label>
-                        <input type="tel" class="form-control" id="emergencyContactPhone" placeholder="Enter your answer here">
+                        <input type="tel" class="form-control" name="emergency_contact_phone" id="emergencyContactPhone" placeholder="Enter your answer here">
                     </div>
                     
                     <h4 class="mt-5 mb-3">Additional Information</h4>
-                    
+
                     <div class="mb-3">
                         <label>A. How did you hear about this retreat?</label>
                         <div>
-                            <input type="checkbox"  id="hearWebsite">
+                            <input type="checkbox" name="how_heard_about_event" value="website" id="hearWebsite">
                             <label for="hearWebsite" class="form-check-label">Website</label>
                         </div>
                         <div>
-                            <input type="checkbox" id="hearSocial">
+                            <input type="checkbox" name="how_heard_about_event" value="social_media" id="hearSocial">
                             <label for="hearSocial" class="form-check-label">Social Media</label>
                         </div>
                         <div>
-                            <input type="checkbox" id="hearReferral">
-                            <label for="hearReferral" class="form-check-label" >Referral</label>
+                            <input type="checkbox" name="how_heard_about_event" value="referral" id="hearReferral">
+                            <label for="hearReferral" class="form-check-label">Referral</label>
                         </div>
                         <div>
-                            <input type="checkbox" id="hearOthers">
+                            <input type="checkbox" name="how_heard_about_event" value="others" id="hearOthers">
                             <label for="hearOthers" class="form-check-label">Others -</label>
                         </div>
                     </div>
-                    
+
                     <div class="mb-3">
                         <label>A. Are you interested in volunteering or leading a session?</label>
                         <div>
-                            <input type="radio" name="volunteerInterest" id="volunteerYes" value="yes">
+                            <input type="radio" name="interested_in_volunteering" value="yes" id="volunteerYes">
                             <label for="volunteerYes" class="form-check-label">Yes</label>
                         </div>
                         <div>
-                            <input type="radio" name="volunteerInterest" id="volunteerNo" value="no">
+                            <input type="radio" name="interested_in_volunteering" value="no" id="volunteerNo">
                             <label for="volunteerNo" class="form-check-label">No</label>
                         </div>
                     </div>
@@ -387,8 +388,8 @@
                
             </div>
             <div class="col-lg-12 d-lg-flex d-sm-grid justify-content-between mb-5">
-                <div class="col-lg-4 col-12 ">
-                    <div class="contact-info  d-lg-block  py-3">
+                <div class="col-lg-4 col-12 " >
+                    <div class="contact-info  d-lg-block  py-4 vanish-border" >
                         <h3 class="h4 mb-3 ">What's included?</h3>
     
                         <div class="contact-links contact-desktop pt-3 d-grid gap-2">
@@ -406,8 +407,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4 col-12">
-                    <div class="contact-info  d-lg-block  py-3">
+                <div class="col-lg-4 col-12" >
+                    <div class="contact-info  d-lg-block  py-4 varnish-border" >
                         <h3 class="h4 mb-3 ">What's not included?</h3>
                         
                         <div class="contact-links contact-desktop pt-3 d-grid gap-2">
@@ -576,7 +577,7 @@
         <div class="row">
             <!-- Event Card 1 -->
             {% for itinerary in itineraries %}
-                <div class="col-md-6 col-lg-6 mb-4">
+                <div class="col-md-6 col-lg-6 mb-4" style="padding: 0 1rem !important;">
                     <div class="card h-100 d-md-flex flex-md-row">
                         
                         <div class="col-12 col-md-6">
