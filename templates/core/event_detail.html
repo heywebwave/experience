@@ -159,7 +159,8 @@
             
             <form class="event-form mt-5" id="eventForm" method="POST" action="{% url 'core:registration' %}">
                 {% csrf_token %}
-                <h4 class="mb-4">Personal Information</h4>
+                <div id="errorMessages" class="alert alert-danger d-none"></div> 
+                <h4 class="mb-4" id="hiddenPersonal">Personal Information</h4>
                 <div class="row g-1" id="personalInfo">
                     <input type="hidden" name="event" value="{{ event.id }}">
                     <div class="col-md-6 mb-3">
@@ -414,7 +415,7 @@
                     </div>
                 </div>
                 <div class="col-lg-4 col-12" >
-                    <div class="contact-info  d-lg-block  py-4 varnish-border" >
+                    <div class="contact-info  d-lg-block  py-4 vanish-border" >
                         <h3 class="h4 mb-3 ">What's not included?</h3>
                         
                         <div class="contact-links contact-desktop pt-3 d-grid gap-2">

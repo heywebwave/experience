@@ -354,12 +354,12 @@ def event_registration_view(request):
             send_registration_email(event, registration)
 
             return JsonResponse({
-                'status': 'success',
+                'success': True,
                 'message': 'Registration successful!',
                 'redirect_url': event.full_payment_link
             })
         else:
-            print(form.errors)
+            
             return JsonResponse({'status': 'error', 'errors': form.errors}, status=400)
 
     else:

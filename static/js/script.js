@@ -189,7 +189,17 @@ $(document).ready(function () {
         $signupBtn.prop("disabled", true).html('Continue <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>');
 
         const csrfToken = $('input[name="csrfmiddlewaretoken"]').val();
+        const dialCode = $("#dialCode").text().trim();
+        const phoneNumberInput = $("input[name='phone_number']");
+        let phoneNumber = phoneNumberInput.val().trim();
 
+
+        // Prepend the dial code to the phone number if it's not already there
+        if (!phoneNumber.startsWith(dialCode)) {
+            phoneNumber = dialCode + phoneNumber;
+            phoneNumberInput.val(phoneNumber);
+            formData.set("phone_number", phoneNumber);
+        }
         $.ajax({
             url: "/user/sign-up/",
             type: "POST",

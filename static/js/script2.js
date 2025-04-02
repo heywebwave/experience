@@ -202,7 +202,17 @@ $(document).ready(function () {
         $signupBtn.prop("disabled", true).html('Continue <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>');
 
         const csrfToken = $('input[name="csrfmiddlewaretoken"]').val();
+        const dialCode = $("#dialCode").text().trim();
+        const phoneNumberInput = $("input[name='phone_number']");
+        let phoneNumber = phoneNumberInput.val().trim();
 
+
+        // Prepend the dial code to the phone number if it's not already there
+        if (!phoneNumber.startsWith(dialCode)) {
+            phoneNumber = dialCode + phoneNumber;
+            phoneNumberInput.val(phoneNumber);
+            formData.set("phone_number", phoneNumber);
+        }
         $.ajax({
             url: "/user/sign-up/",
             type: "POST",
@@ -296,26 +306,34 @@ $(document).ready(function () {
             success: function (response) {
                 if (response.success) {
                     console.log("Registration successful!");
+                    $(this).reset(); // Reset the form
+                    $submitButton.prop("disabled", true).html('Check your mailbox for payment');
+                    // Optionally, you can reset the form here
+                    $("hiddenPersonal").hide(); // Hide the button
+                    $("#dietaryMedicalInfo").hide(); // Hide the button
+                    $("#conferencePreferences").hide(); // Hide the button
+                    $("#personalInfo").hide(); // Hide the button
+    
                     // window.location.href = response.redirect_url; // Redirect to a thank-you page or homepage
                 } else {
                     // Handle errors (e.g., validation errors)
-                    console.error(response.message || "An error occurred.");
+                    console.error(response.errors || "An error occurred.");
+                    $("#errorMessages").html(response.errors).removeClass("d-none"); // Show errors
+
                 
                 }
             },
             error: function (xhr) {
                 const response = xhr.responseJSON;
-                console.error(response?.message || "An error occurred.");
+                if (response && response.errors) {
+                    // Display errors in the designated div
+                    $("#errorMessages").html(response.errors).removeClass("d-none"); // Show errors
+                } else {
+                    console.error(response?.message || "An unexpected error occurred.");
+                }
             },
             complete: function () {
-                $submitButton.prop("disabled", false).html('Check your mailbox for payment');
-                // Optionally, you can reset the form here
-                $("#dietaryMedicalInfo").hide(); // Hide the button
-                $("#conferencePreferences").hide(); // Hide the button
-                $("#personalInfo").hide(); // Hide the button
-
-
-              
+                $submitButton.prop("disabled", false).html('Submit');
 
             }
         });

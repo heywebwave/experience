@@ -216,7 +216,8 @@ class EventRegistration(models.Model):
     # Emergency Contact Information
     emergency_contact_name = models.CharField(max_length=200, blank=True)
     emergency_contact_relationship = models.CharField(max_length=100, blank=True)
-    emergency_contact_phone = PhoneNumberField(blank=True)
+    emergency_contact_phone =  models.CharField(max_length=20, blank=True)
+
 
     # Additional Information
     how_heard_about_event = models.JSONField(default=list, blank=True)  # Website, Social Media, Referral, Others
