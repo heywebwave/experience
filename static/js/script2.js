@@ -306,7 +306,6 @@ $(document).ready(function () {
             success: function (response) {
                 if (response.success) {
                     console.log("Registration successful!");
-                    $(this).reset(); // Reset the form
                     $submitButton.prop("disabled", true).html('Check your mailbox for payment');
                     // Optionally, you can reset the form here
                     $("hiddenPersonal").hide(); // Hide the button
