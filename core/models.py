@@ -12,7 +12,8 @@ from phonenumber_field.modelfields import PhoneNumberField
 cloudinary.config( 
   cloud_name = "dl7u4nm7l",
   api_key = "883756833185195", 
-  api_secret = "9dd_1LrMmKMq4yQG7zWwVAk87n0"
+  api_secret = "9dd_1LrMmKMq4yQG7zWwVAk87n0",
+  secure=True  # This ensures all URLs are generated with HTTPS
 )
 # Create your models here.
 class EventFeature(models.Model):
