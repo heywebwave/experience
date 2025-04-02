@@ -5,7 +5,10 @@
 
 {% block content %}
 
+{% if request.user.is_authenticated %}
 <!-- Registration Popup -->
+<div class="register-content"></div>
+{% else %}
 <div class="register-popup" id="registerPopup">
     <div class="register-content">
         <div class="register-header d-flex justify-content-between align-items-center mb-4">
@@ -73,6 +76,7 @@
         
     </div>
 </div>
+{% endif %}
 <!-- Login Popup -->
 <div id="loginPopup" class="popup hidden">
     <div class="popup-content">
