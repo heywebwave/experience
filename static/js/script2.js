@@ -296,7 +296,7 @@ $(document).ready(function () {
             success: function (response) {
                 if (response.success) {
                     console.log("Registration successful!");
-                    window.location.href = response.redirect_url; // Redirect to a thank-you page or homepage
+                    // window.location.href = response.redirect_url; // Redirect to a thank-you page or homepage
                 } else {
                     // Handle errors (e.g., validation errors)
                     console.error(response.message || "An error occurred.");
@@ -308,7 +308,11 @@ $(document).ready(function () {
                 console.error(response?.message || "An error occurred.");
             },
             complete: function () {
-                $submitButton.prop("disabled", false).html('Submit');
+                $submitButton.prop("disabled", false).html('Check your mailbox for payment');
+                // Optionally, you can reset the form here
+                $(this).hide(); // Hide the button
+              
+
             }
         });
     });
