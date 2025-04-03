@@ -532,8 +532,8 @@
                     <div class="row g-3">
                         {% for media in event.images %}
                         <div class="col-md-4">
-                            <a href="{{ media.image.url|replace:'http://','https://' }}" data-fslightbox="gallery">
-                                <img src="{{{ media.image.url|replace:'http://','https://' }}" 
+                            <a href="{{ media.image.url }}" data-fslightbox="gallery">
+                                <img src="{{{ media.image.url }}" 
                                     alt="{{ media.title|default:event.title }}" 
                                     class="img-fluid rounded shadow-sm hover-scale">
                             </a>
