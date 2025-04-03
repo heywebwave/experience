@@ -533,7 +533,7 @@
                         {% for media in event.images %}
                         <div class="col-md-4">
                             <a href="{{ media.image.url }}" data-fslightbox="gallery">
-                                <img src="{{{ media.image.url }}" 
+                                <img src="{{ media.image.url }}" 
                                     alt="{{ media.title|default:event.title }}" 
                                     class="img-fluid rounded shadow-sm hover-scale">
                             </a>
