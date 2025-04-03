@@ -13,7 +13,7 @@ class EventRegistrationForm(forms.ModelForm):
             'dietary_restrictions', 'medical_conditions',
             'emergency_contact_name', 'emergency_contact_relationship',
             'emergency_contact_phone', 'how_heard_about_event',
-            'interested_in_volunteering', 'event'
+            'interested_in_volunteering', 'event', 'user'
         ]
         widgets = {
             'sessions': forms.CheckboxSelectMultiple(choices=[
@@ -33,20 +33,20 @@ class EventRegistrationForm(forms.ModelForm):
                 ('others', 'Others'),
             ]),
             'attend_all_days': forms.RadioSelect(choices=[
-                (True, 'Yes'),
+                (True, 'yes'),
                 (False, 'No'),
             ]),
             'need_accommodation': forms.RadioSelect(choices=[
-                (True, 'Yes'),
-                (False, 'No'),
+                (True, 'yes'),
+                (False, 'no'),
             ]),
             'need_transportation': forms.RadioSelect(choices=[
-                (True, 'Yes'),
-                (False, 'No'),
+                (True, 'yes'),
+                (False, 'no'),
             ]),
             'interested_in_volunteering': forms.RadioSelect(choices=[
-                (True, 'Yes'),
-                (False, 'No'),
+                (True, 'yes'),
+                (False, 'no'),
             ]),
             'event': forms.HiddenInput(), 
         }

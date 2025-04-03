@@ -79,6 +79,7 @@ class Event(models.Model):
     complete_payment_before = models.DateField()
     full_payment_link = models.URLField(max_length=500, blank=True)
     part_payment_link = models.URLField(max_length=500, blank=True)
+    complete_part_payment_link = models.URLField(max_length=500, blank=True)
     location = models.CharField(max_length=100)
     status = models.CharField(max_length=10, choices=EVENT_STATUS, default='upcoming')
     created_at = models.DateTimeField(auto_now_add=True)
@@ -189,7 +190,15 @@ class Itinerary(models.Model):
     
 
 class EventRegistration(models.Model):
+
+    PAYMENT_STATUS_CHOICES = (
+        ('part', 'Part Payment'),
+        ('completed', 'Completed'),
+        ('failed', 'Failed'),
+    )
+
     # Personal Information
+    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='registrations')
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)
     email = models.EmailField()
@@ -228,6 +237,10 @@ class EventRegistration(models.Model):
     event = models.ForeignKey(Event, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
 
+    payment_status = models.CharField(max_length=10, choices=PAYMENT_STATUS_CHOICES, default='pending')
+    confirmed_part_payment = models.BooleanField(default=False)
+    confirmed_full_payment = models.BooleanField(default=False)
+
     def __str__(self):
         return f"{self.first_name} {self.last_name} - {self.event.title}"
 
@@ -239,7 +252,7 @@ class Payment(models.Model):
     )
     
     PAYMENT_STATUS_CHOICES = (
-        ('pending', 'Pending'),
+        ('part', 'Part Payment'),
         ('completed', 'Completed'),
         ('failed', 'Failed'),
     )
