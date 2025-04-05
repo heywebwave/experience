@@ -359,12 +359,12 @@ def event_registration_view(request):
                 'redirect_url': event.full_payment_link
             })
         else:
-            
+           
             return JsonResponse({'status': 'error', 'errors': form.errors}, status=400)
 
     else:
         form = EventRegistrationForm()
-        print('Invalid request use post')
+        
         return JsonResponse({'status': 'Invalid request use post'}, status=400)
 
 @csrf_exempt

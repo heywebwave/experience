@@ -253,8 +253,27 @@ $(document).ready(function () {
                     window.location.href = response.redirect_url; // Redirect to the specified URL
                 } else {
                     // Handle errors (e.g., invalid credentials)
-                    console.error(response.message || "An error occurred.");
-                    console.error(response.message || "An error occurred."); // Optional: Display a message to the user
+                    if (response && response.errors) {
+                        const errorList = $("#loginerrorMessages"); // Get the error display element
+                    
+                        // Clear any existing error messages
+                        errorList.empty();
+                    
+                        // Iterate over each field in the errors object
+                        for (const field in response.errors) {
+                            if (response.errors.hasOwnProperty(field)) {
+                                const errors = response.errors[field]; // Array of errors for the current field
+                    
+                                // Append each error message to the error list
+                                errors.forEach(error => {
+                                    errorList.append(`<li class="error-message">${field}: ${error}</li>`);
+                                });
+                            }
+                        }
+                    
+                        // Show the error container if there are errors
+                        $("#loginerrorMessages").removeClass("d-none");
+                    }
                 }
             },
             error: function (xhr) {

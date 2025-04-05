@@ -59,7 +59,7 @@
                             <img src="https://flagcdn.com/24x18/us.png" alt="Country Flag" class="country-flag" id="selectedFlag">
                             <span id="dialCode">+1</span>
                         </span>
-                        <input type="tel" class="form-control form-control-lg" name="phone_number" placeholder="Enter your Phone Number">
+                        <input type="tel"   class="form-control form-control-lg" name="phone_number" placeholder="Enter your Phone Number">
                         <div class="error-message text-danger small"></div>
                     </div>
                 </div>
@@ -79,6 +79,7 @@
     </div>
 </div>
 {% endif %}
+
 <!-- Login Popup -->
 <div id="loginPopup" class="popup hidden">
     <div class="popup-content">
@@ -159,7 +160,6 @@
             
             <form class="event-form mt-5" id="eventForm" method="POST" action="{% url 'core:registration' %}">
                 {% csrf_token %}
-                <div id="errorMessages" class="alert alert-danger d-none"></div> 
                 <h4 class="mb-4" id="hiddenPersonal">Personal Information</h4>
                 <div class="row g-1" id="personalInfo">
                     <input type="hidden" name="event" value="{{ event.id }}">
@@ -197,7 +197,7 @@
                                 <img src="https://flagcdn.com/24x18/us.png" alt="Country Flag" class="country-flag" id="selectedFlag">
                                 <span id="dialCode">+1</span>
                             </span>
-                            <input type="tel" class="form-control form-control-lg" name="phone_number" placeholder="Enter your Phone Number">
+                            <input type="tel"   class="form-control form-control-lg" name="phone_number" placeholder="Enter your Phone Number">
                         </div>
                     </div>
                 </div>
@@ -319,7 +319,7 @@
                     
                     <div class="mb-3">
                         <label for="emergencyContactPhone" class="form-check-label">C. Emergency Contact Phone Number</label>
-                        <input type="tel" class="form-control" name="emergency_contact_phone" id="emergencyContactPhone" placeholder="Enter your answer here">
+                        <input type="tel"   class="form-control" name="emergency_contact_phone" id="emergencyContactPhone" placeholder="Enter your answer here">
                     </div>
                     
                     <h4 class="mt-5 mb-3">Additional Information</h4>
@@ -357,6 +357,7 @@
                     </div>
                 </div>
                 <button type="submit" id="registrationButton" class="btn btn-dark btn-lg w-100">Submit</button>
+                <div id="errorMessages" class="alert alert-danger d-none mt-2"></div> 
             </form>
         </div>
     </div>

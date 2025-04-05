@@ -82,6 +82,7 @@
         <h2 style="text-align: start" class="mb-4">Login</h2>
         <p class="text-muted mb-4" style="text-align: start">Login to be a part of the amazing women that never refuse to back down.</p>
         <form id="loginForm" method="POST" action="{% url 'userauths:login' %}">
+            <div id="loginerrorMessages" class="alert alert-danger d-none"></div> 
             {% csrf_token %}
             <div class="mb-3">
                 <input type="email" class="form-control form-control-lg" name="email" placeholder="Enter your Email Address">
