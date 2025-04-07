@@ -325,13 +325,12 @@ $(document).ready(function () {
             success: function (response) {
                 if (response.success) {
                     console.log("Registration successful!");
-                    $submitButton.prop("disabled", true).html('Check your mailbox for payment');
+                    $("#successP").html('You can check your mailbox for full payment details or to secure a slot for the event.');
+                    $("#successPopup").removeClass("hidden");
+                    $("#eventPopup").addClass("hidden"); // Hide the event popup
+
                     // Optionally, you can reset the form here
-                    $("#hiddenPersonal").hide(); // Hide the button
-                    $("#dietaryMedicalInfo").hide(); // Hide the button
-                    $("#conferencePreferences").hide(); // Hide the button
-                    $("#personalInfo").hide(); // Hide the button
-    
+                   
                     // window.location.href = response.redirect_url; // Redirect to a thank-you page or homepage
                 } else {
                     // Handle errors (e.g., validation errors)
