@@ -205,7 +205,7 @@ class EventRegistration(models.Model):
     organization = models.CharField(max_length=200, blank=True)
     job_title = models.CharField(max_length=200, blank=True)
     country = CountryField()
-    phone_number = PhoneNumberField()
+    phone_number = models.CharField(max_length=20, blank=True)
 
     # Conference Preferences
     sessions = models.JSONField(default=list)  # Store selected sessions
