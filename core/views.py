@@ -12,6 +12,7 @@ import stripe
 from django.conf import settings
 from .forms import EventRegistrationForm
 import resend 
+from datetime import date
 app_name = 'core'
 
 resend.api_key = config('RESEND_API')
@@ -283,7 +284,7 @@ def update_event_status(request):
 
 def event_list(request):
     events = Event.objects.all()
-    return render(request, 'core/event_list.html', {'events': events})
+    return render(request, 'core/event_list.html', {'events': events, 'today': date.today()})
 
 def event_detail(request, slug):
     event = get_object_or_404(Event, slug=slug)

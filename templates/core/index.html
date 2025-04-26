@@ -136,40 +136,89 @@
         margin-top: 10px;
     }
 </style>
-<section class="hero-section position-relative">
+<section class="hero-section position-relative bg-pink">
     <div class="container">
-        <div class="row align-items-center min-vh-75">
+        <div class="row align-items-center min-vh-75 d-grid">
             <!-- Text Content -->
-            <div class="col-lg-6 text-center text-lg-start order-1 order-lg-1 py-5">
+            <div class="col-lg-12 text-center align-items-center order-1 order-lg-1 py-2 ">
+                <img height="150" src="{% static 'images/20250418_094027_1__1__1_-removebg-preview.png' %}" alt="I am That" />
                 <h1 class="display-4 fw-bold mb-3">I am That Woman Experience</h1>
                 <h2 class="h3 mb-4">Empowering Marginalized Women</h2>
                 <p class="lead mb-4 fs-6">
-                    I am that woman is an organization dedicated to empowering marginalized women by providing them with ideas, skills, mentorship, and opportunities
+                    I am that woman is an organization dedicated to empowering marginalized women by<br> providing them with ideas, skills, mentorship, and opportunities
                 </p>
                 {% if request.user.is_authenticated %}
                 
-                    <a href="#upcoming-events" class="btn btn-dark btn-lg px-5" style="width: 250px">Join Us</a>
+                    <a href="#upcoming-events" class="btn btn-purple btn-lg px-5 " style="width: 180px; ">Join Us</a>
 
                 {% else %}
                 <div class="">
-                    <a href="#" class="btn btn-dark btn-lg px-5 mb-3 mb-lg-0 me-lg-3 " style="width: 230px" onclick="toggleRegister()">Join Us</a>
-                    <a href="#" id="openLoginPopupFromRegister" class="btn btn-outline-dark btn-lg px-5" style="width: 230px">Login</a>
+                    <a href="#" class="btn btn-purple btn-lg px-5 mb-lg-0 me-lg-3 " style="width: 180px; " onclick="toggleRegister()">Join Us</a>
+                    <a href="#" id="openLoginPopupFromRegister" class="btn btn-outline-dark btn-lg px-5" style="width: 140px;">Login</a>
                 </div>
                 {% endif %}
             </div>
             
             <!-- Image -->
-            <div class="col-lg-6 order-2 position-relative">
-                <div class="image-wrapper position-relative">
-                    <img src="{% static 'images/Frame-43.jpg' %}" alt="Empowered Woman" class="img-fluid rounded" >
-                    
-                    
-                </div>
+            <div class="col-lg-12 order-2 image-container py-5">
+                
+                <div class="diamond "><img src="{% static 'images/image-4.jpg' %}" alt/></div>
+                <div class="diamond move-content"><img src="{% static 'images/image-3.jpg' %}" alt/></div>
+                <div class="diamond move-content"><img src="{% static 'images/image-1.jpg' %}" alt/></div>
+                <div class="diamond move-content"><img src="{% static 'images/image-2.jpg' %}" alt/></div>
+
             </div>
         </div>
     </div>
 </section>
+<section class="upcoming-events py-5">
+    <div class="container">
+    
+        <div class="row">
+            <!-- Event Card 1 -->
+                <div class="col-md-12 col-lg-12 mb-4" style="padding: 0 1rem !important;">
+                    <div class="card h-100 d-md-flex flex-md-row">
+                        
+                        <div class="card-body col-12 col-md-6">
+                            <h2 class=" text-start">Pioneering Women Empowerment</h2>
+                            <h4 class="fs-5 text-start">Breaking Barriers, Building Futures</h2>
 
+                            <p class="card-text">For generations, women have fought tirelessly against systemic barriers, shattering glass ceilings and redefining what's possible. Today, we stand at a critical crossroads—acknowledging progress made while recognizing the journey ahead. True women empowerment isn't just about equal representation; it's about creating environments where women thrive authentically, lead boldly, and shape the future on their own terms.</p>
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <img src="{% static "images/12402-min.webp" %}" class="card-img-top" alt="Event 1">
+                        </div>
+                        
+                        
+                    </div>
+                </div>
+        
+                <div class="col-md-12 col-lg-12 mb-4" style="padding: 0 1rem !important;">
+                    <div class="card h-100 d-md-flex flex-md-row">
+                        
+                        <div class="col-12 col-md-6">
+                            <img src="{% static "images/12402-min.webp" %}" class="card-img-top" alt="Event 1">
+                        </div>
+                        
+                        <div class="card-body col-12 col-md-6">
+                            <h2 class=" text-start">Pioneering Women Empowerment</h2>
+                            <h4 class="fs-5 text-start">Empowerment Through Economic Independence</h2>
+
+                            <p class="card-text">Financial autonomy remains the cornerstone of true empowerment. When women control their economic destiny, entire communities transform. Our initiatives focus on:
+                                Skills development programs designed for women's specific needs and circumstances
+                                Microfinancing opportunities that recognize women's proven reliability as borrowers
+                                Entrepreneurial mentorship connecting experienced women leaders with emerging talents
+                                Workplace policies that accommodate caregiving responsibilities without career penalties</p>
+                        </div>
+                        
+                    </div>
+                </div>
+            
+
+           
+        </div>
+    </div>
+</section>
 <!-- Upcoming Events Section -->
 <section class="upcoming-events py-5" id="upcoming-events">
     <div class="container">
@@ -201,28 +250,6 @@
 </section>
 
 
-<!-- Past Events Section -->
-<section class="upcoming-events py-5">
-    <div class="container">
-        <h2 class="mb-4 text-center text-lg-start">Check out our past Events</h2>
-        <div class="row">
-            <!-- Event Card 1 -->
-            {% for event in past_events %}
-            <div class="col-md-6 mb-4">
-                <div class="card h-100">
-                    <img src="{{event.image.url}}" class="card-img-top" alt="Event 1">
-                    <div class="card-body">
-                        <h5 class="card-title fw-600 text-black">{{event.title}} <span class="text-muted">— {{event.event_date|date:"F Y"}}</span></h5>
-                        <p class="card-text">{{event.description}}</p>
-                        <a href="{% url 'core:event_detail' event.slug %}" class="btn btn-outline-dark px-4">View More</a>
-                    </div>
-                </div>
-            </div>
-            {% endfor %}
-            
-        </div>
-    </div>
-</section>
 
 <!-- Add this before the newsletter section -->
 <section class="testimonials-section py-5">
@@ -247,7 +274,7 @@
                                         <img src="{% static 'images/testimonial1.jpeg' %}" alt="Testimonial 1" class="testimonial-img rounded-4">
                                     </div>
                                     <h3 class="mt-4 mb-2">Sharon</h3>
-                                    <p class="text-muted">Indonesia Trip</p>
+                                    <p class="text-white">Indonesia Trip</p>
                                 </div>
                             </div>
                             <!-- Testimonial 2 -->
@@ -257,7 +284,7 @@
                                         <img src="{% static 'images/testimonial2.jpeg' %}" alt="Testimonial 2" class="testimonial-img rounded-4">
                                     </div>
                                     <h3 class="mt-4 mb-2">Jessica</h3>
-                                    <p class="text-muted">Dubai Experience</p>
+                                    <p class="text-white">Dubai Experience</p>
                                 </div>
                             </div>
                             <!-- Testimonial 3 -->
@@ -267,7 +294,7 @@
                                         <img src="{% static 'images/testimonial3.jpeg' %}" alt="Testimonial 3" class="testimonial-img rounded-4">
                                     </div>
                                     <h3 class="mt-4 mb-2">Maria</h3>
-                                    <p class="text-muted">Greece Adventure</p>
+                                    <p class="text-white">Greece Adventure</p>
                                 </div>
                             </div>
                         </div>

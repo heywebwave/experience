@@ -45,6 +45,12 @@ function initCountdowns() {
 
         // Format the countdown text
         element.textContent = `${days}d : ${hours}h : ${minutes}m : ${seconds}s`;
+        const eventDay = `<br>This trip will begin in ${days} days,<br> ${hours} hours, ${minutes} minutes, and ${seconds}<br> seconds. Please check back later.`;
+        
+        const detailsElement = element.parentElement.querySelector('.countdown-details');
+        if (detailsElement) {
+            detailsElement.innerHTML = eventDay;
+        }
 
         // Add highlight animation when minutes or seconds change
         if (seconds === 0) {
@@ -59,7 +65,6 @@ function initCountdowns() {
         setInterval(() => updateCountdown(countdown), 1000);
     });
 }
-
 // Initialize countdowns when DOM is loaded
 document.addEventListener('DOMContentLoaded', function() {
     initCountdowns();

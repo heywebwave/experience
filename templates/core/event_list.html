@@ -5,26 +5,18 @@
 
 {% block content %}
 
-
-<!-- Back to Homepage Link -->
-<div class="back-section py-4" style="background-color: #f8f9fa;">
-    <div class="container">
-        <a href="/" class="back-link text-decoration-none text-dark d-flex align-items-center">
-            <i class="fas fa-arrow-left me-2"></i>
-            <span class="fs-5">Back to Homepage</span>
-        </a>
-    </div>
-</div>
-
-
 <!-- Upcoming Events Section -->
-<section class="upcoming-events py-5">
+<section class="upcoming-events py-5 bg-pink">
     <div class="container">
         <h2 class="mb-4 text-left text-lg-start">Events</h2>
+        <div class="mb-2"> 
+            <button id="upcomingBtn" class="tab-btn actives">Upcoming Events</button>
+            <button id="pastBtn" class="tab-btn">Past Events</button>
+        </div>
         <div class="row">
             <!-- Event Card 1 -->
             {% for event in events %}
-            <div class="col-md-6 mb-4">
+            <div class="col-md-6 mb-4 event {% if event.event_date > today %}upcoming{% else %}past{% endif %}">
                 <div class="card h-100">
                     <div class="countdown-badge">
                         <i class=""></i><span class="countdown" data-date="{{event.event_date|date:"Y-m-d"}}"></span><br>
@@ -32,7 +24,7 @@
                             
                         </span>
                     </div>
-                    <img src="{{event.image.url}}" class="card-img-top" alt="Event 1">
+                    <img src="{{event.image.url}}" class="card-img-top" alt="Event">
                     <div class="card-body">
                         <h5 class="card-title">{{event.title}} <span class="text-muted">— {{event.event_date|date:"F Y"}}</span></h5>
                         <p class="card-text">{{event.description}}</p>
@@ -49,7 +41,11 @@
 </section>
 
 <style>
+    .tab-btn.actives { color: #000 !important; font-weight: 600 !important; border-bottom: 1px solid #000 !important;}
+    .tab-btn { padding: 10px 20px; background: #FFCDD2; border: none; cursor: pointer;  color: #333; font-size: 1rem; margin-right: 10px; border-radius: 5px; transition: background-color 0.3s ease; }
 
+    .event { display: none; margin: 10px 0; }
+    
 
     .bg-light-grey {
         background-color: #F9F9F9;
@@ -231,5 +227,107 @@
 
 <!-- Add in head or before closing body -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/fslightbox/3.3.1/index.min.js"></script>
-<script src="{% static 'js/script2.js' %}"></script>
+<script >
+    
+function toggleMenu() {
+    const menu = document.getElementById('darkMenu');
+    menu.classList.toggle('active');
+    document.body.style.overflow = menu.classList.contains('active') ? 'hidden' : '';
+}
+
+// Intersection Observer for card animations
+document.addEventListener('DOMContentLoaded', function() {
+    const cards = document.querySelectorAll('.card');
+    
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, {
+        threshold: 0.1
+    });
+
+    cards.forEach(card => {
+        observer.observe(card);
+    });
+});
+
+// Countdown Timer Function
+function initCountdowns() {
+    const countdowns = document.querySelectorAll('.countdown');
+    
+    function updateCountdown(element) {
+        const targetDate = new Date(element.dataset.date);
+        const now = new Date();
+        const difference = targetDate - now;
+
+        if (difference <= 0) {
+            element.textContent = 'Event Started';
+            return;
+        }
+
+        const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+        // Format the countdown text
+        element.textContent = `${days}d : ${hours}h : ${minutes}m : ${seconds}s`;
+        const eventDay = `<br>This trip will begin in ${days} days,<br> ${hours} hours, ${minutes} minutes, and ${seconds}<br> seconds. Please check back later.`;
+        
+        const detailsElement = element.parentElement.querySelector('.countdown-details');
+        if (detailsElement) {
+            detailsElement.innerHTML = eventDay;
+        }
+
+        // Add highlight animation when minutes or seconds change
+        if (seconds === 0) {
+            element.classList.add('highlight');
+            setTimeout(() => element.classList.remove('highlight'), 1000);
+        }
+    }
+
+    // Update all countdowns
+    countdowns.forEach(countdown => {
+        updateCountdown(countdown);
+        setInterval(() => updateCountdown(countdown), 1000);
+    });
+}
+// Initialize countdowns when DOM is loaded
+document.addEventListener('DOMContentLoaded', function() {
+    initCountdowns();
+});
+document.addEventListener('DOMContentLoaded', function() {
+    const upcomingBtn = document.getElementById('upcomingBtn');
+    const pastBtn = document.getElementById('pastBtn');
+    const events = document.querySelectorAll('.event');
+
+    function showEvents(type) {
+        events.forEach(event => {
+            if (event.classList.contains(type)) {
+                event.style.display = 'block';
+            } else {
+                event.style.display = 'none';
+            }
+        });
+    }
+
+    upcomingBtn.addEventListener('click', function() {
+        upcomingBtn.classList.add('actives');
+        pastBtn.classList.remove('actives');
+        showEvents('upcoming');
+    });
+
+    pastBtn.addEventListener('click', function() {
+        pastBtn.classList.add('actives');
+        upcomingBtn.classList.remove('actives');
+        showEvents('past');
+    });
+
+    // Show upcoming events by default
+    showEvents('upcoming');
+});
+</script>
 {% endblock %}
