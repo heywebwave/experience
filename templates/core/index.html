@@ -289,26 +289,26 @@
                 </div>
                 
             </div>
-            <div class="swiper mySwiper" style="padding-top: 5px;">
+            <div class="swiper mySwiper2" style="padding-top: 5px;">
                 <div class="swiper-wrapper">
         
                     
                     <div class="swiper-slide">
                         <div class="image-container">
-                            <img src="{% static 'images/1.jpg' %}" alt="Image 2">
+                            <img src="{% static 'images/4.jpg' %}" alt="Image 2">
                     
                         </div>
                     </div>
                     
                     <div class="swiper-slide">
                         <div class="image-container">
-                            <img src="{% static 'images/2.jpg' %}" alt="Image 4">
+                            <img src="{% static 'images/3.jpg' %}" alt="Image 4">
                             
                         </div>
                     </div>
                     <div class="swiper-slide">
                         <div class="image-container">
-                            <img src="{% static 'images/3.jpg' %}" alt="Image 5">
+                            <img src="{% static 'images/1.jpg' %}" alt="Image 5">
                             
                         </div>
                     </div>
@@ -386,20 +386,37 @@
 <script src="{% static 'js/script.js' %}"></script>
 <script src="{% static 'js/swiper8-bundle.min.js' %}"></script>
 <script>
-    var swiper = new Swiper(".mySwiper", {
+    var swiper1 = new Swiper(".mySwiper", {
       slidesPerView: 2.5,
       spaceBetween: 10,
       freeMode: true,
       autoplay: {
-        delay: 1, // Delay between slides in milliseconds
-        disableOnInteraction: false, // Keeps autoplay active even after user interaction
-    },
-    speed: 5000,
+        delay: 1,
+        disableOnInteraction: false,
+      },
+      speed: 5000,
+      pagination: {
+        clickable: true,
+      },
+      loop: true,
+    });
+  
+    var swiper2 = new Swiper(".mySwiper2", { // NOTICE a new class here
+      slidesPerView: 2.5,
+      spaceBetween: 10,
+      freeMode: true,
+      autoplay: {
+        delay: 1,
+        disableOnInteraction: false,
+        reverseDirection: true, // THIS makes it go opposite
+      },
+      speed: 5000,
       pagination: {
         clickable: true,
       },
       loop: true,
     });
   </script>
+  
   
 {% endblock %}
