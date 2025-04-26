@@ -1,6 +1,7 @@
 {% extends 'base/base.html' %}
 {% load static humanize %}
 {% load custom_filters %}
+<link rel="stylesheet" href="{% static "css/swiper8.min.css" %}" media="all"/>
 {% block title %}I am That Woman Experience{% endblock %}
 
 {% block content %}
@@ -135,6 +136,39 @@
         font-weight: bold;
         margin-top: 10px;
     }
+    .swiper-slide {
+        border-radius: 8px !important;
+        width: 100%;
+        transition: transform 0.4s ease-in;
+    }
+
+    .swiper-slide img{
+        border-radius: 8px !important;
+    }
+    .swiper {
+        width: 100%;
+    }
+    .image-container {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        border-radius: 8px !important;
+        
+    }
+    
+    .image-container img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.3s ease;
+        
+    }
+    .image-container img:hover {
+        cursor: pointer;
+        transform: scale(1.1);
+    }
+    
 </style>
 <section class="hero-section position-relative bg-pink">
     <div class="container">
@@ -186,7 +220,7 @@
                             <p class="card-text">For generations, women have fought tirelessly against systemic barriers, shattering glass ceilings and redefining what's possible. Today, we stand at a critical crossroads—acknowledging progress made while recognizing the journey ahead. True women empowerment isn't just about equal representation; it's about creating environments where women thrive authentically, lead boldly, and shape the future on their own terms.</p>
                         </div>
                         <div class="col-12 col-md-6">
-                            <img src="{% static "images/2151932836.jpg" %}" class="card-img-top" alt="Event 1">
+                            <img src="{% static "images/2151932836.jpg" %}" class="card-img-top"  style="width: 100%; height: 400px; object-fit: cover;" alt="Event 1">
                         </div>
                         
                         
@@ -197,7 +231,7 @@
                     <div class="card h-100 d-md-flex flex-md-row">
                         
                         <div class="col-12 col-md-6">
-                            <img src="{% static "images/12402-min.webp" %}" class="card-img-top" alt="Event 1">
+                            <img src="{% static "images/12402-min.webp" %}" class="card-img-top"  style="width: 100%; height: 420px; object-fit: cover;" alt="Event 1">
                         </div>
                         
                         <div class="card-body col-12 col-md-6">
@@ -205,10 +239,13 @@
                             <h4 class="fs-5 text-start">Empowerment Through Economic Independence</h2>
 
                             <p class="card-text">Financial autonomy remains the cornerstone of true empowerment. When women control their economic destiny, entire communities transform. Our initiatives focus on:
-                                Skills development programs designed for women's specific needs and circumstances
-                                Microfinancing opportunities that recognize women's proven reliability as borrowers
-                                Entrepreneurial mentorship connecting experienced women leaders with emerging talents
-                                Workplace policies that accommodate caregiving responsibilities without career penalties</p>
+                                <ul>
+                                    <li>Skills development programs designed for women's specific needs and circumstances</li>
+                                    <li>Microfinancing opportunities that recognize women's proven reliability as borrowers</li>
+                                    <li>Entrepreneurial mentorship connecting experienced women leaders with emerging talents</li>
+                                    <li>Workplace policies that accommodate caregiving responsibilities without career penalties</li>
+                                </ul>
+                            </p>
                         </div>
                         
                     </div>
@@ -222,28 +259,64 @@
 <!-- Upcoming Events Section -->
 <section class="upcoming-events py-5" id="upcoming-events">
     <div class="container">
-        <h2 class="mb-4 text-center text-lg-start">Our Upcoming Events <span class="text-warning">★</span></h2>
+        <h2 class="mb-4 text-center"  style="font-weight: 600;">Checkout our Photo Gallery</h2>
         <div class="row">
-            <!-- Event Card 1 -->
-            {% for event in upcoming_events %}
-            <div class="col-md-6 mb-4">
-                <div class="card h-100">
-                    <div class="countdown-badge">
-                        <i class=""></i><span class="countdown" data-date="{{event.event_date|date:"Y-m-d"}}"></span><br>
-                        <span class="countdown-details">
+            <div class="swiper mySwiper" style="padding-top: 20px;">
+                <div class="swiper-wrapper">
+        
+                    
+                    <div class="swiper-slide">
+                        <div class="image-container">
+                            <img src="{% static 'images/1.jpg' %}" alt="Image 2">
+                    
+                        </div>
+                    </div>
+                    
+                    <div class="swiper-slide">
+                        <div class="image-container">
+                            <img src="{% static 'images/2.jpg' %}" alt="Image 4">
                             
-                        </span>
+                        </div>
                     </div>
-                    <img src="{{event.image.url}}" class="card-img-top" alt="Event 1">
-                    <div class="card-body">
-                        <h5 class="card-title fw-600 text-black">{{event.title}} <span class="text-muted">— {{event.event_date|date:"F Y"}}</span></h5>
-                        <p class="card-text">{{event.description}}</p>
-                        <p class="fw-bold fs-4">${{event.price|floatformat:0|intcomma}}</p>
-                        <a href="{% url 'core:event_detail' event.slug %}" class="btn btn-outline-dark px-4">View More</a>
+                    <div class="swiper-slide">
+                        <div class="image-container">
+                            <img src="{% static 'images/3.jpg' %}" alt="Image 5">
+                            
+                        </div>
                     </div>
+                    
+                    
                 </div>
+                
             </div>
-            {% endfor %}
+            <div class="swiper mySwiper" style="padding-top: 5px;">
+                <div class="swiper-wrapper">
+        
+                    
+                    <div class="swiper-slide">
+                        <div class="image-container">
+                            <img src="{% static 'images/1.jpg' %}" alt="Image 2">
+                    
+                        </div>
+                    </div>
+                    
+                    <div class="swiper-slide">
+                        <div class="image-container">
+                            <img src="{% static 'images/2.jpg' %}" alt="Image 4">
+                            
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="image-container">
+                            <img src="{% static 'images/3.jpg' %}" alt="Image 5">
+                            
+                        </div>
+                    </div>
+                    
+                    
+                </div>
+                
+            </div>
            
         </div>
     </div>
@@ -311,5 +384,22 @@
     </div>
 </section>
 <script src="{% static 'js/script.js' %}"></script>
-
+<script src="{% static 'js/swiper8-bundle.min.js' %}"></script>
+<script>
+    var swiper = new Swiper(".mySwiper", {
+      slidesPerView: 2.5,
+      spaceBetween: 10,
+      freeMode: true,
+      autoplay: {
+        delay: 1, // Delay between slides in milliseconds
+        disableOnInteraction: false, // Keeps autoplay active even after user interaction
+    },
+    speed: 5000,
+      pagination: {
+        clickable: true,
+      },
+      loop: true,
+    });
+  </script>
+  
 {% endblock %}
