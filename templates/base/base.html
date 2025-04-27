@@ -30,7 +30,7 @@
 <!-- Header -->
 <header class="py-1 bg-pink ">
     <div class="container bg-pink">
-        <div class="d-flex justify-content-between align-items-center bg-pink">
+        <div class="d-flex justify-content-between align-items-center position-relative bg-pink">
             <a href="/" class="navbar-brand">
                 <img src="{% static 'images/20250418_094027_1__1-removebg-preview.png' %}" 
                      alt="I am That Woman Logo" 
@@ -40,8 +40,13 @@
             <button class="menu-btn border-0 bg-transparent d-lg-none rounded-pill border border-dark px-4 py-2 fs-5" onclick="toggleMenu()">
                 Menu
             </button>
-            <!-- About link for desktop -->
-            <a href="/about/" class="text-decoration-none text-dark d-none d-lg-block fs-3 fw-semibold hover-underline">About Us</a>
+            <ul class="d-none d-lg-flex list-unstyled mb-0 position-absolute start-50 translate-middle-x">
+                <li class="mx-3"><a href="/" class="text-decoration-none text-dark">Home</a></li>
+                <li class="mx-3"><a href="/events/" class="text-decoration-none text-dark">Events</a></li>
+                <li class="mx-3"><a href="/about/" class="text-decoration-none text-dark">About Us</a></li>
+            </ul>
+               
+            
         </div>
     </div>
 </header>
