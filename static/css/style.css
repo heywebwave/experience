@@ -5,9 +5,11 @@
     url('/static/fonts/Bagoss.woff') format('woff'),
 }	
 /* Font styles */
-h1, h2, h3, h4, h5, h6,
-.display-4, .display-6 {
+h1, h2, h3, h4, h5, h6, .display-6 {
     font-family: 'Poly', sans-serif !important;
+}
+.display-4{
+    font-family: "Playwrite US Trad", sans-serif !important;
 }
 
 .error-message {

@@ -12,7 +12,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Poly:ital@0;1&family=Lora:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
     <link id="google-fonts-1-css" href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,100..900;1,100..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet" media="all" >
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css" integrity="sha512-XcIsjKMcuVe0Ucj/xgIXQnytNwBttJbNjltBV18IOnru2lDPe9KRRyvCXw6Y5H415vbBLRm8+q6fmLUU7DfO6Q==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Playwrite+US+Trad:wght@100..400&display=swap" rel="stylesheet">
+
     <script src="{% static "js/jquery.min.js" %}"></script>
     {% block extra_css %}{% endblock %}
 </head>
@@ -37,8 +40,8 @@
                      height="50">
             </a>
             <!-- Menu button for mobile -->
-            <button class="menu-btn border-0 bg-transparent d-lg-none rounded-pill border border-dark px-4 py-2 fs-5" onclick="toggleMenu()">
-                Menu
+            <button class="menu-btn  d-lg-none  fs-5 bg-transparent " onclick="toggleMenu()" style="border: none !important; outline: none;">
+                <i class="ri-menu-line" style="font-size: 32px;"></i>
             </button>
             <ul class="d-none d-lg-flex list-unstyled mb-0 position-absolute start-50 translate-middle-x">
                 <li class="mx-3"><a href="/" class="text-decoration-none text-dark">Home</a></li>
@@ -57,7 +60,7 @@
         <!-- Header -->
         <div class="d-flex justify-content-between align-items-center mb-4">
             <a href="/" class="navbar-brand">
-                <img src="{% static 'images/WhatsApp_Image_2025-03-16_at_20.48.58_38f3d405-removebg-preview 1.jpg' %}" 
+                <img src="{% static 'images/20250418_094044_1__1-removebg-preview.png' %}" 
                      alt="I am That Woman Logo" 
                      height="50">
             </a>
