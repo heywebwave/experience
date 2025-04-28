@@ -17,6 +17,23 @@ h1, h2, h3, h4, h5, h6, .display-6 {
     font-size: 0.875rem; /* Adjust size as needed */
     margin-top: 0.25rem;
 }
+.whit-bg-pd{
+    background-color: #ffffff !important;
+    padding: 0.7rem !important;
+    border-radius: 0.8rem;
+}
+.nav-link-btn{
+    padding: 0.2rem 0.5rem !important;
+}
+.nav-link-btn.active, .nav-link-btn.active a{
+    background-color: #000000 !important;
+    color: #ffffff !important;
+    border-radius: 0.5rem !important;
+}
+.nav-link-btn a{
+    color: #000000 ;
+    font-weight: 500;
+}
 /* Body font styles */
 body, 
 p, 

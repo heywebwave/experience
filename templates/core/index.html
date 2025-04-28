@@ -183,12 +183,12 @@
                 </p>
                 {% if request.user.is_authenticated %}
                 
-                    <a href="#upcoming-events" class="btn btn-purple btn-lg px-5 " style="width: 180px; ">Join Us</a>
+                    <a href="#upcoming-events" class="btn btn-purple btn-lg px-5 " style="width: 180px;box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px; ">Join Us</a>
 
                 {% else %}
                 <div class="">
-                    <a href="#" class="btn btn-purple btn-lg px-5 mb-lg-0 me-lg-3 " style="width: 180px; " onclick="toggleRegister()">Join Us</a>
-                    <a href="#" id="openLoginPopupFromRegister" class="btn btn-outline-dark btn-lg px-5" style="width: 140px;">Login</a>
+                    <a href="#" class="btn btn-purple btn-lg px-5 mb-lg-0 me-lg-3 " style="width: 180px; box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;" onclick="toggleRegister()">Join Us</a>
+                    <a href="#" id="openLoginPopupFromRegister" class="btn btn-outline-dark btn-lg px-5" style="width: 140px; background: #fff;box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px; color: #000 !important;">Login</a>
                 </div>
                 {% endif %}
             </div>

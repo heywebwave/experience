@@ -43,10 +43,10 @@
             <button class="menu-btn  d-lg-none  fs-5 bg-transparent " onclick="toggleMenu()" style="border: none !important; outline: none;">
                 <i class="ri-menu-line" style="font-size: 32px;"></i>
             </button>
-            <ul class="d-none d-lg-flex list-unstyled mb-0 position-absolute start-50 translate-middle-x">
-                <li class="mx-3"><a href="/" class="text-decoration-none text-dark">Home</a></li>
-                <li class="mx-3"><a href="/events/" class="text-decoration-none text-dark">Events</a></li>
-                <li class="mx-3"><a href="/about/" class="text-decoration-none text-dark">About Us</a></li>
+            <ul class="d-none d-lg-flex list-unstyled mb-0 position-absolute start-50 translate-middle-x whit-bg-pd">
+                <li class=" nav-link-btn active"><a href="/" class="text-decoration-none">Home</a></li>
+                <li class="mx-3 nav-link-btn"><a href="/events/" class="text-decoration-none ">Events</a></li>
+                <li class=" nav-link-btn"><a href="/about/" class="text-decoration-none ">About Us</a></li>
             </ul>
                
             
@@ -149,7 +149,30 @@
         </div>
     </div>
 </footer>
-
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        // Get the current URL path (e.g., "/events/")
+        const currentPath = window.location.pathname;
+    
+        // Select all navigation links
+        const navLinks = document.querySelectorAll(".nav-link-btn a");
+    
+        // Loop through each link
+        navLinks.forEach(link => {
+            // Get the href attribute of the link
+            const linkPath = link.getAttribute("href");
+    
+            // Check if the current path matches the link's href
+            if (currentPath === linkPath || (currentPath === "/" && linkPath === "/")) {
+                // Add the 'active' class to the parent <li> element
+                link.parentElement.classList.add("active");
+            } else {
+                // Remove the 'active' class from other <li> elements
+                link.parentElement.classList.remove("active");
+            }
+        });
+    });
+</script>
     <script src="{% static 'js/bootstrap.js' %}"></script>
    
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
