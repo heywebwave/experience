@@ -90,8 +90,7 @@ p, .lead, .card-text {
     border-radius: 3px !important;
 }
 .hero-section {
-    background-color: #ffffff;
-    overflow: hidden;
+    background:  #FFCDD2 url(/static/images/hero-bg.jpg) no-repeat center / cover ;
 }
 
 h1 {
