@@ -309,42 +309,17 @@ footer {
     color: #000;
     font-weight: 500;
 }
-.image-container {
+.image-containers {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
   }
-  
 
-  .diamond {
-    width: 250px;
-    height: 250px;
-    border: 5px solid pink;
-    border-radius: 15px;
-    overflow: hidden;
-    transform: rotate(18deg);
-    margin: 10px;
-    background: white; /* helps if images have transparency */
-    box-shadow: 0 4px 8px rgba(255, 192, 203);
-  }
-  
-  .diamond:nth-child(2) {
-    transform: rotate(18deg);
-  }
-  
-  .diamond:nth-child(3) {
-    transform: rotate(18deg);
-  }
-  
-  .diamond:nth-child(4) {
-    transform: rotate(18deg);
-  }
   
   .diamond img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+    width: 250px;
+    height: 250px;
   }
   
   
