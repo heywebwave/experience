@@ -1,0 +1,704 @@
+
+
+.error-message {
+    color: red;
+    font-size: 0.875rem; /* Adjust size as needed */
+    margin-top: 0.25rem;
+}
+.whit-bg-pd{
+    background-color: #ffffff !important;
+    padding: 0.7rem !important;
+    border-radius: 0.8rem;
+}
+.nav-link-btn{
+    padding: 0.2rem 0.5rem !important;
+}
+.nav-link-btn.active, .nav-link-btn.active a{
+    background-color: #000000 !important;
+    color: #ffffff !important;
+    border-radius: 0.5rem !important;
+}
+.nav-link-btn a{
+    color: #000000 ;
+    font-weight: 500;
+}
+/* Body font styles */
+
+/* Apply border only on mobile view */
+@media (max-width: 600px) {
+    .vanish-border {
+        border: 1px solid rgba(160, 158, 158, 0.38);
+    }
+}
+.wobble {
+    cursor: pointer;
+    transition: transform 0.4s ease-out;
+}
+
+.wobble:hover {
+    animation: horizontalBounce 0.4s ease-in-out;
+}
+
+@keyframes horizontalBounce {
+    0% {
+        transform: scaleX(1);
+    }
+    25% {
+        transform: scaleX(0.99);
+    }
+    50% {
+        transform: scaleX(1.01);
+    }
+    75% {
+        transform: scaleX(0.99);
+    }
+    100% {
+        transform: scaleX(1);
+    }
+}
+
+/* Adjust line height for better readability */
+p, .lead, .card-text {
+    line-height: 1.6;
+}
+
+.btn-dark{
+    background-color: #000000;
+    border-color: #000000;
+    border-radius: 3px !important;
+}
+
+h1 {
+    color: #333333;
+}
+
+.lead {
+    color: #666666;
+}
+
+.newsletter-section .lead {
+    color:  #d3d1d1;
+}
+.navbar-brand img {
+    max-width: 200px;
+    height: auto;
+}
+    /* Header Styles */
+    header {
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        background: white;
+    }
+
+    /* Back Link Styles */
+    .back-section {
+        background: white;
+    }
+
+    .back-link {
+        font-family: 'Poly', serif;
+    }
+
+    .back-link:hover {
+        opacity: 0.8;
+    }
+
+    /* About Section Styles */
+    .about-section {
+        background-color: #ffffff;
+    }
+/* Decorative elements positioning */
+.decorative-elements {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+}
+
+.heart-icon {
+    position: absolute;
+    bottom: 10%;
+    right: 5%;
+    width: 40px;
+}
+
+.wave-icon {
+    position: absolute;
+    top: 10%;
+    right: 10%;
+    width: 40px;
+}
+
+/* Image and decorative elements */
+.image-wrapper {
+    overflow: visible;
+    width: 100%;
+    height: 100%;
+}
+
+
+.bold-text {
+    top: 20%;
+    left: -5%;
+    font-weight: bold;
+    font-size: 1.2rem;
+    transform: rotate(-30deg);
+}
+
+.heart {
+    bottom: 20%;
+    right: -10%;
+    transform: rotate(20deg);
+}
+
+.curve {
+    top: 15%;
+    right: 5%;
+    transform: rotate(45deg);
+}
+
+.rotate-text {
+    position: absolute;
+    transform: rotate(90deg);
+    right: -40px;
+    bottom: 25px;
+    font-size: 0.8rem;
+}
+
+/* Increase image size on large screens */
+@media (min-width: 992px) {
+    .col-lg-6.order-2 {
+        overflow: visible;
+    }
+ 
+    
+    .image-wrapper img {
+        margin-left: -10%;
+        width: 140%;
+        max-width: none;
+    }
+
+    .mt-2-desktop{
+        margin-top: 2rem;
+    }
+    
+}
+
+/* Mobile Styles */
+@media (max-width: 991px) {
+    .btn {
+        width: 100%;
+    }
+    .popup{
+        width: 100%;
+        max-width: 90%;
+        margin: 0 auto;
+    }
+    .lead{
+        font-size: 1rem;
+    }
+    .hero-section .row {
+        flex-direction: column;
+    }
+
+    .hero-section .text-lg-start {
+        text-align: center !important;
+    }
+
+    .col-lg-6 {
+        padding: 0 2rem;
+    }
+    .image-wrapper img {
+        width: 125%;
+        max-width: none;
+        margin-left: -12%;
+    }
+    
+}
+
+
+.card-title {
+    font-size: 1.25rem;
+}
+
+.card-text {
+    font-size: 0.9rem;
+}
+
+@media (max-width: 768px) {
+    .card-title {
+        font-size: 1rem;
+    }
+
+    .card-text {
+        font-size: 0.8rem;
+    }
+}
+.btn-purple{
+    background: #131627;
+    color: #ffffff;
+    transition: all 0.3s ease;
+}
+.btn-purple:hover{
+    background: #131627;
+    color: #ffffff;
+    opacity: 0.8;
+}
+/* Newsletter Section Styles */
+.newsletter-section {
+    background-color: #131627;
+    border-top: 1px solid #eee;
+    text-align: left;
+    color: #ffffff;
+}
+
+.newsletter-section h2 {
+    font-weight: 500;
+}
+
+.form-control {
+    border: 1px solid #ddd;
+    padding: 0.75rem 1rem;
+}
+
+.form-control:focus {
+    border-color: #000;
+    box-shadow: none;
+}
+
+/* Footer Styles */
+footer {
+    background-color: #ffffff;
+    border-top: 1px solid #eee;
+}
+
+.btn-pink{
+    background-color: #FFCDD2 !important;
+    border-color: #FFCDD2;
+    color: #000;
+    font-weight: 500;
+}
+.image-containers {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+  }
+
+  
+  .diamond img {
+    width: 250px;
+    height: 250px;
+  }
+  
+  
+  
+  /* Mobile: stack vertically */
+  @media (max-width: 768px) {
+    .image-container {
+      flex-direction: column;
+    }
+  
+    .image-container img {
+      width: 100%;
+    }
+  }
+  
+
+
+
+.menu-item:hover {
+    color: #888;
+}
+
+@media (max-width: 768px) {
+    .menu-content {
+        padding: 1.5rem;
+        overflow-y: auto;
+    }
+    
+    .menu-bottom {
+        margin-top: 2rem;
+    }
+}
+
+
+/* Hover underline animation for About link */
+.hover-underline {
+    position: relative;
+}
+
+.hover-underline::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: #000000;
+    transition: width 0.3s ease;
+}
+
+.hover-underline:hover::after {
+    width: 100%;
+}
+
+/* Menu button styles */
+.menu-btn {
+    border: 1px solid #000000 !important;
+    transition: all 0.3s ease;
+}
+
+.menu-btn:hover {
+    background-color: #000000;
+    color: white;
+}
+
+/* Fade in and slide up animation for sections */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Subtle scale animation for images */
+@keyframes scaleIn {
+    from {
+        opacity: 0;
+        transform: scale(0.98);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Stagger text animation */
+@keyframes textReveal {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.hero-section .lead {
+    opacity: 0;
+    animation: textReveal 0.8s ease forwards 0.4s;
+}
+
+.image-wrapper img {
+    opacity: 0;
+    animation: scaleIn 1.2s ease forwards 0.2s;
+}
+
+.card {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.6s ease;
+}
+
+.card.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Subtle hover effects */
+.card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+}
+
+.btn {
+    transition: transform 0.2s ease;
+    border-radius: 10px;
+
+}
+
+.btn:hover {
+    animation: horizontalBounce 0.4s ease-in-out;
+}
+
+/* Newsletter section animation */
+.newsletter-section {
+    position: relative;
+    overflow: hidden;
+}
+
+
+
+@keyframes lineExpand {
+    to {
+        transform: scaleX(1);
+    }
+}
+
+
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+
+
+/* Swiper Custom Styles */
+.swiper {
+    padding: 2rem 0;
+}
+
+.custom-nav {
+    width: 40px !important;
+    height: 40px !important;
+    background-color: #000 !important;
+    border-radius: 50%;
+    color: #fff !important;
+}
+
+.custom-nav::after {
+    font-size: 1.2rem !important;
+}
+
+.swiper-button-disabled {
+    opacity: 0.5 !important;
+}
+
+.swiper-pagination-bullet {
+    width: 8px;
+    height: 8px;
+    background-color: #000;
+    opacity: 0.3;
+}
+
+.swiper-pagination-bullet-active {
+    opacity: 1;
+}
+
+
+/* Animation for slide transition */
+.swiper-slide-active .testimonial-img {
+    transform: scale(1);
+}
+
+.swiper-slide-prev .testimonial-img,
+.swiper-slide-next .testimonial-img {
+    transform: scale(0.8);
+    opacity: 0.5;
+}
+
+
+/* Registration Popup Styles */
+.register-popup, .event-popup{
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 100%;
+    height: 100%;
+    background-color: #ffffff;
+    z-index: 2000;
+    transition: right 0.4s ease;
+    overflow-y: auto;
+}
+
+.register-popup.active, .event-popup.active {
+    right: 0;
+}
+
+.register-content, .event-content {
+    padding: 1rem;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.register-header, .event-header {
+    position: relative;
+}
+
+.close-register {
+    color: #000;
+    cursor: pointer;
+    padding: 0.5rem;
+}
+
+.register-form input,
+.register-form select,
+.register-form .input-group-text,
+.event-form input,
+.event-form select,
+.event-form .input-group-text {
+    padding: 0.75rem 1rem;
+    font-size: 0.95rem;
+}
+
+.register-form .mb-3,
+.register-form .mb-4,
+.event-form .mb-3,
+.event-form .mb-4 {
+    margin-bottom: 1rem !important;
+}
+
+.register-body h2, .event-body h2 {
+    font-size: 1.75rem;
+    margin-bottom: 0.5rem;
+}
+
+.register-body p, .event-body p {
+    font-size: 0.9rem;
+    margin-bottom: 1.5rem;
+}
+
+.country-flag {
+    margin-right: 0.5rem;
+}
+
+/* Desktop Styles */
+@media (min-width: 992px) {
+    #loginPopup{
+        width: 100%;
+        max-width: 500px;
+    }
+    .move-content {
+        margin-left: -5%;
+      }
+    .register-popup, .event-popup {
+        right: auto;
+        left: 50%;
+        transform: translateX(-50%) scale(0.9);
+        opacity: 0;
+        width: 100%;
+        max-width: 600px;
+        max-height: 95vh;
+        margin: 1rem auto;
+        border-radius: 1rem;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        transition: all 0.3s ease;
+        pointer-events: none;
+        background-color: white;
+        overflow-y: auto;
+        scrollbar-width: thin;
+        scrollbar-color: #888 #f1f1f1;
+    }
+
+    .register-popup.active, .event-popup.active {
+        transform: translateX(-50%) scale(1);
+        opacity: 1;
+        pointer-events: all;
+    }
+
+    .register-content, .event-content {
+        padding: 2rem 3.5rem;
+    }
+
+    .register-header, .event-header {
+        margin-bottom: 0 !important;
+    }
+
+    .register-popup::-webkit-scrollbar, .event-popup::-webkit-scrollbar {
+        width: 6px;
+    }
+
+    .register-popup::-webkit-scrollbar-track, .event-popup::-webkit-scrollbar-track {
+        background: #f1f1f1;
+        border-radius: 3px;
+    }
+
+    .register-popup::-webkit-scrollbar-thumb, .event-popup::-webkit-scrollbar-thumb {
+        background: #888;
+        border-radius: 3px;
+    }
+
+    .register-popup::-webkit-scrollbar-thumb:hover, .event-popup::-webkit-scrollbar-thumb:hover {
+        background: #555;
+    }
+}
+
+/* Mobile Styles */
+@media (max-width: 991px) {
+    .register-popup, .event-popup {
+        height: 100%;
+        overflow-y: auto;
+    }
+    .move-content {
+        margin-top: -15%;
+      }
+    .register-content, .event-content {
+        padding: 1.25rem;
+    }
+    
+    .register-header, .event-header {
+        margin-bottom: 1.5rem !important;
+    }
+
+    .register-form input,
+    .register-form select,
+    .register-form .input-group-text,
+    .event-form input,
+    .event-form select,
+    .event-form .input-group-text {
+        padding: 0.625rem 0.875rem;
+    }
+}
+
+/* Country Select and Phone Styles */
+.country-select {
+    background-position: right 1rem center;
+    padding-right: 2.5rem;
+}
+
+.country-code-display {
+    min-width: 100px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background-color: #f8f9fa;
+    border: 1px solid #ddd;
+    padding: 0.75rem 1rem;
+}
+
+.country-flag {
+    width: 24px;
+    height: 18px;
+    object-fit: cover;
+    border-radius: 2px;
+}
+
+#dialCode {
+    font-size: 0.95rem;
+    color: #333;
+}
+
+/* Reduce the height of select and inputs */
+.register-form .form-select-lg,
+.register-form .form-control-lg,
+.event-form .form-select-lg,
+.event-form .form-control-lg {
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    font-size: 0.95rem;
+}
+
+.bg-grey {
+    background-color: #EDEBEB33;
+}
+.bg-pink{
+    background: #FFCDD2;
+}
+::placeholder {
+    font-size: 0.8rem !important; /* Adjust as needed */
+}

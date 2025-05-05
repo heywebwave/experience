@@ -4,6 +4,7 @@ from . import views
 app_name = 'core'
 urlpatterns = [
     path('', views.index, name='index'),
+    path('in/', views.index1, name='index1'),
     path('about/', views.about, name='about'),
     path('cron/update-event-status/', views.update_event_status, name='update_event_status'),
     path('events/', views.event_list, name='event_list'),

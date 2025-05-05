@@ -258,16 +258,21 @@ def has_user_registered_for_event(user_email, slug):
     return registration_exists
 
 def index(request):
-    events = Event.objects.all()
-    upcoming_events = events.filter(status='upcoming').order_by('event_date')[:2]
-    past_events = events.filter(status='past').order_by('-event_date')[:2]
+
     context = {
         'countries': list(countries),
         'dial_codes': get_dial_codes(),
-        'upcoming_events': upcoming_events,
-        'past_events': past_events,
     }
     return render(request, 'core/index.html', context)
+
+
+def index1(request):
+
+    context = {
+        'countries': list(countries),
+        'dial_codes': get_dial_codes(),
+    }
+    return render(request, 'core/index1.html', context)
 
 def about(request):
     return render(request, 'core/about.html')

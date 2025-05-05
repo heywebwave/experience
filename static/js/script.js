@@ -127,7 +127,7 @@ function toggleRegister() {
 document.addEventListener('click', function(event) {
     const popup = document.getElementById('registerPopup');
     const isClickInside = popup.contains(event.target);
-    const isJoinUsButton = event.target.closest('.btn-dark');
+    const isJoinUsButton = event.target.closest('.btn-purple');
     
     // Only handle click-outside on desktop
     if (window.innerWidth >= 992) {
